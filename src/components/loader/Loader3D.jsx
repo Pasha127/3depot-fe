@@ -4,9 +4,9 @@ import "./styles.css";
 const Loader3D = ()=>{
 
     return(
-        <>
-        <div></div>
-        </>
+        <div className="loaderContainer mt-5">
+        <div className="threeDLoader"></div>
+        </div>
     )
 }
 

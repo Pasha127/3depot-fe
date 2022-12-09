@@ -23,6 +23,8 @@ const LogIn = (props) => {
     const baseURL = process.env.REACT_APP_SERVER_URL
 
   const [username, setUsername] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState(null);
@@ -103,7 +105,19 @@ const readAvatar = (e)=>{
 
 const handleSubmit = (e) => {
     e.preventDefault()
-    const postObj = {username,password,email:email.toLowerCase()}
+    let postObj = null;
+    if(firstName && lastName){
+       postObj = {username,password,email:email.toLowerCase(), firstName, lastName}
+    }
+    if(!firstName && lastName){
+       postObj = {username,password,email:email.toLowerCase(),lastName}
+    }
+    if(firstName && !lastName){
+       postObj = {username,password,email:email.toLowerCase(),firstName}
+    }
+    if(!firstName && !lastName){
+       postObj = {username,password,email:email.toLowerCase()}
+    }
 /*     console.log(postObj); */
     postNewUser(postObj);
   }
@@ -135,13 +149,12 @@ const handleLogIn = async (e) =>{
 
 
 
-  return (<>
-    <div className="background-gears"></div>
+  return (<>    
     <div className="background-gears gear2"></div>
     <div className="background-gears gear3"></div>
     <div className="background-gears gear4"></div>
     <div className="background-gears gear5"></div>
-    <Container className="new-blog-container ">      
+    <Container className="new-blog-container mt-0">      
       {wantLogIn? 
       <div className="log-in-box">
         <Form>
@@ -193,6 +206,14 @@ const handleLogIn = async (e) =>{
         <Form.Group controlId="email" className="mt-1  col-12">
           <Form.Label>E-mail</Form.Label>
           <Form.Control size="lg" placeholder="E-mail"onChange={(e)=>(setEmail(e.target.value))} />
+          </Form.Group>         
+        <Form.Group controlId="Given Name" className="mt-1  col-12">
+          <Form.Label>Given Name</Form.Label>
+          <Form.Control size="lg" placeholder="GivenName"onChange={(e)=>(setFirstName(e.target.value))} />
+          </Form.Group>         
+        <Form.Group controlId="Surname" className="mt-1  col-12">
+          <Form.Label>Surname</Form.Label>
+          <Form.Control size="lg" placeholder="Surname"onChange={(e)=>(setLastName(e.target.value))} />
           </Form.Group>         
         <Form.Group className="mt-3  col-10">
         <Button type="reset" size="lg" variant="outline-dark" onClick={(e) => setWantLogIn(true)}>

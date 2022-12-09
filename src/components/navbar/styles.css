@@ -3,12 +3,22 @@
 }
 
 .blog-navbar {
+
   padding-top: 25px;
   padding-bottom: 25px;
   background-color: white;
   -webkit-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
   -moz-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
   box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
+}
+.blog-navbar-splash {
+  padding: 0;
+  padding-bottom: 25px;
+  background-color: white;
+  -webkit-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
+  -moz-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
+  box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
+  height:50px;
 }
 
 .blog-navbar-add-button {
@@ -17,4 +27,18 @@
   justify-content: space-between;
   width: 160px;
   text-decoration: none;
+}
+
+.logoContainer{
+
+  background-color: white;
+  height:50px;
+}
+
+.logo{
+  background-image: url("../../assets/3DepotLogoSmall.png");
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  background-size: contain;
 }
