@@ -4,6 +4,7 @@ import "./styles.css"
 import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
 import { connect } from "react-redux";
 import { getMeWithThunk } from "../../redux/actions";
+import { useRef } from "react";
 
 const mapStateToProps = state => {
   return {
@@ -22,11 +23,11 @@ const mapStateToProps = state => {
 const LogIn = (props) => {
     const baseURL = process.env.REACT_APP_SERVER_URL
 
-  const [username, setUsername] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const usernameRef = useRef()
+  const lastNameRef = useRef();
+  const firstNameRef = useRef();
+  const passwordRef = useRef();
+  const emailRef = useRef();
   const [avatar, setAvatar] = useState(null);
   const [avatarDataURL, setAvatarDataURL] = useState({});
   const [wantLogIn, setWantLogIn] = useState(true);
@@ -106,17 +107,17 @@ const readAvatar = (e)=>{
 const handleSubmit = (e) => {
     e.preventDefault()
     let postObj = null;
-    if(firstName && lastName){
-       postObj = {username,password,email:email.toLowerCase(), firstName, lastName}
+    if(firstNameRef && lastNameRef){
+       postObj = {username: usernameRef.current.value,password: passwordRef.current.value,email:emailRef.current.value.toLowerCase(), firstName:firstNameRef.current.value, lastName:lastNameRef.current.value}
     }
-    if(!firstName && lastName){
-       postObj = {username,password,email:email.toLowerCase(),lastName}
+    if(!firstNameRef && lastNameRef){
+       postObj = {username: usernameRef.current.value,password: passwordRef.current.value,email:emailRef.current.value.toLowerCase(),lastName:lastNameRef.current.value}
     }
-    if(firstName && !lastName){
-       postObj = {username,password,email:email.toLowerCase(),firstName}
+    if(firstNameRef && !lastNameRef){
+       postObj = {username: usernameRef.current.value,password: passwordRef.current.value,email:emailRef.current.value.toLowerCase(),firstName:firstNameRef.current.value}
     }
-    if(!firstName && !lastName){
-       postObj = {username,password,email:email.toLowerCase()}
+    if(!firstNameRef && !lastNameRef){
+       postObj = {username: usernameRef.current.value,password: passwordRef.current.value,email:emailRef.current.value.toLowerCase()}
     }
 /*     console.log(postObj); */
     postNewUser(postObj);
@@ -124,7 +125,7 @@ const handleSubmit = (e) => {
 
 const handleLogIn = async (e) =>{ 
     e.preventDefault()
-    const postObj = {password,email:email.toLowerCase()}
+    const postObj = {password:passwordRef.current.value,email:emailRef.current.value.toLowerCase()}
     const options = {        
         method: 'PUT',
         credentials:'include',
@@ -158,13 +159,14 @@ const handleLogIn = async (e) =>{
       {wantLogIn? 
       <div className="log-in-box">
         <Form>
+        <div className="login-logo"></div>
         <Form.Group controlId="Email" className="mt-1 col-12">
             <Form.Label>Email</Form.Label>
-          <Form.Control size="lg" placeholder="Email"onChange={(e)=>{setEmail(e.target.value)}} />
+          <Form.Control size="lg" placeholder="Email" ref={emailRef} />
             </Form.Group>
             <Form.Group controlId="Password" className="mt-1  col-12">
           <Form.Label>Password</Form.Label>
-          <Form.Control size="lg" type="password" placeholder="Password"onChange={(e)=>{setPassword(e.target.value)}} />
+          <Form.Control size="lg" type="password" placeholder="Password" ref={passwordRef} />
           </Form.Group> 
             <Form.Group className="mt-3  col-12 justify-content-around d-flex">
         <Button variant="outline-dark"
@@ -197,23 +199,23 @@ const handleLogIn = async (e) =>{
                           </div>        
         <Form.Group controlId="Username" className="mt-1 col-12">
           <Form.Label>Username</Form.Label>
-          <Form.Control size="lg" placeholder="Username"onChange={(e)=>(setUsername(e.target.value))} />
+          <Form.Control size="lg" placeholder="Username" ref={usernameRef} />
         </Form.Group>         
         <Form.Group controlId="Password" className="mt-1  col-12">
           <Form.Label>Password</Form.Label>
-          <Form.Control size="lg" type="password" placeholder="Password"onChange={(e)=>(setPassword(e.target.value))} />
+          <Form.Control size="lg" type="password" placeholder="Password" ref={passwordRef} />
           </Form.Group>         
         <Form.Group controlId="email" className="mt-1  col-12">
           <Form.Label>E-mail</Form.Label>
-          <Form.Control size="lg" placeholder="E-mail"onChange={(e)=>(setEmail(e.target.value))} />
+          <Form.Control size="lg" placeholder="E-mail" ref={emailRef} />
           </Form.Group>         
         <Form.Group controlId="Given Name" className="mt-1  col-12">
           <Form.Label>Given Name</Form.Label>
-          <Form.Control size="lg" placeholder="GivenName"onChange={(e)=>(setFirstName(e.target.value))} />
+          <Form.Control size="lg" placeholder="GivenName" ref={firstNameRef}/>
           </Form.Group>         
         <Form.Group controlId="Surname" className="mt-1  col-12">
           <Form.Label>Surname</Form.Label>
-          <Form.Control size="lg" placeholder="Surname"onChange={(e)=>(setLastName(e.target.value))} />
+          <Form.Control size="lg" placeholder="Surname" ref={lastNameRef} />
           </Form.Group>         
         <Form.Group className="mt-3  col-10">
         <Button type="reset" size="lg" variant="outline-dark" onClick={(e) => setWantLogIn(true)}>

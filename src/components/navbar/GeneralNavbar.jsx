@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/3Depot Logo 32.png";
 import { connect } from "react-redux";
 import "./styles.css";
 import { logOutWithThunk } from "../../redux/actions";

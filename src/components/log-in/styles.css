@@ -79,6 +79,18 @@
 .gear3,.gear4,.gear5,.gear2{
     opacity: 0;
 }
+
+.login-logo{
+        height: 100px;
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        background-image: url("../../assets/3DepotLogoSmall.png");
+        background-position: center;
+        opacity: 1;
+        display: flex;
+        background-size: cover;
+}
 @media (min-width: 1000px) {
     .gear2{
         position: absolute;
