@@ -1,0 +1,28 @@
+.search-container{
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+.splash-logo-container{
+    display: flex;
+    position: absolute;
+    width: 80vw;
+    height: 10vw;
+    top: calc(45vh - 10vw);
+    justify-content: center;
+    align-items: center;
+}
+.search-form-container{
+    justify-content: center;
+    position: absolute;
+    top: 50vh;
+
+}
+.splash-logo-image{
+    font-size: 10vw;
+    margin: 0;
+}
+.search-bar-size{
+    width: min(800px, 60vw);
+}
+.search-form-container{}

@@ -11,6 +11,7 @@ import { Suspense } from 'react';
 import { getMeWithThunk } from "../src/redux/actions";
 import Search from './components/search/Search';
 import NavBar from './components/navbar/GeneralNavbar'
+import GarageContainer from './components/GarageContainer/GarageContainer';
 const mapStateToProps = state => {
   return {
   user: state.userInfo
@@ -34,19 +35,13 @@ function App(props) {
     console.log(props.user)
   },[props.user])
   return (<>
-      <Router>
-      {props.user?._id && <NavBar/>} 
+    <Router>
       <Routes>
-      <Route path='/' exact element={<Search/>}/>
-       {/* {props.user?._id && <Route path="/" exact element={<Search/>} />}
-       {!props.user?._id &&<Route path="/" exact element={<LogIn />} /> } */}
-
+        <Route path='/' exact element={<Search/>}/>
+        <Route path="/LogIn" exact element={<LogIn />} /> 
+        <Route path="/Garage" exact element={<GarageContainer/>} /> 
       </Routes>
-      {/* <Footer /> */}
-    </Router>
-    {/* <Loader3D></Loader3D>
-      <Loader2D></Loader2D>  */}
-      
+    </Router>      
      </>);
 }
 

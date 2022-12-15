@@ -191,7 +191,7 @@ const handleLogIn = async (e) =>{
       :<Form className="mt-5 register-box">
         
           <div className="d-flex justify-content-center">
-            <div className="col-2 p-0 d-flex border rounded pic-space">
+            <div className="p-0 d-flex pic-space">
         <label className="uploaded-pic" htmlFor="avatarUploadBtn">{!avatar ? <BsPersonBoundingBox style={{fontSize: "25px", color: "gray", cursor: "pointer"}}></BsPersonBoundingBox>:<img className="uploaded-pic" src={avatarDataURL} alt="avatar"/>}</label>
                           <input type="file" className="d-none" id="avatarUploadBtn"
                           onChange={(e)=>{readAvatar(e)}}></input>
