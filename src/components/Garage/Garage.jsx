@@ -66,7 +66,7 @@ function Garage() {
   return (
     <div className="canvas-container">
       <Canvas>
-        <Suspense fallback={<Search/>}>
+        <Suspense fallback={null}>
         <OrbitControls/>
         <Environment preset="warehouse" background="only"/>
         <ambientLight intensity={0.2}/>

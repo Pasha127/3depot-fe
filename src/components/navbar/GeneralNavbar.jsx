@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../../assets/3Depot Logo 32.png";
+import logo from "../../assets/3DepotLogoSmall.png";
 import { connect } from "react-redux";
 import "./styles.css";
 import { logOutWithThunk } from "../../redux/actions";
@@ -25,6 +25,56 @@ const NavBar = (props) => {
           <img className="blog-navbar-brand" alt="logo" src={logo} />
         </Navbar.Brand>
         <div className="d-flex flex-row">
+        <Button
+          onClick={()=>{
+           
+          }}
+          variant="outline-dark"
+          className="blog-navbar-add-button"
+          size="lg"
+        >
+          Statistics
+        </Button>
+        <Button
+          onClick={()=>{
+           
+          }}
+          variant="outline-dark"
+          className="blog-navbar-add-button"
+          size="lg"
+        >
+          Upload
+        </Button>
+        <Button
+          onClick={()=>{
+           
+          }}
+          variant="outline-dark"
+          className="blog-navbar-add-button"
+          size="lg"
+        >
+          Download
+        </Button>
+        <Button
+          onClick={()=>{
+           
+          }}
+          variant="outline-dark"
+          className="blog-navbar-add-button"
+          size="lg"
+        >
+          For Sale
+        </Button>
+        <Button
+          onClick={()=>{
+           
+          }}
+          variant="outline-dark"
+          className="blog-navbar-add-button"
+          size="lg"
+        >
+          Purchased
+        </Button>
         <Button
           onClick={()=>{
             props.logOut()

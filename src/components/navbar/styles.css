@@ -1,5 +1,5 @@
 .blog-navbar-brand {
-  width: 180px;
+  width: 50px;
 }
 
 .blog-navbar {
@@ -10,6 +10,7 @@
   -webkit-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
   -moz-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
   box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
+  height: 80px;
 }
 .blog-navbar-splash {
   padding: 0;
