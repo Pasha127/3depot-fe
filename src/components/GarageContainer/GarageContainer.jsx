@@ -13,6 +13,7 @@ import AxesBtn from "../AxesBtn/AxesBtn";
 const GarageContainer = (props)=>{
 const [showAxes, setShowAxes] = useState(false);
 const [axesSize, setAxesSize] = useState(1);
+const [clickClass, setClickClass] = useState("");
 
 
 
@@ -21,6 +22,10 @@ return(<>
     <GeneralNavbar></GeneralNavbar>
     <AxesBtn showAxes={showAxes} setShowAxes={setShowAxes} axesSize={axesSize} setAxesSize={setAxesSize} />
     <Garage showAxes={showAxes} axesSize={axesSize}/>
+    <div className={`instruction-container + ${clickClass}`}>
+    <div className={`instructionSVG + ${clickClass}`} onClick={()=>{
+        setClickClass("invisible")
+    }}></div></div>
 </Suspense>
 </>)
 }
