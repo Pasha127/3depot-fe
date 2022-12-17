@@ -8,13 +8,19 @@ import Search from "../search/Search";
 import "./styles.css"
 import Garage from "../Garage/Garage";
 import GeneralNavbar from "../navbar/GeneralNavbar";
+import AxesBtn from "../AxesBtn/AxesBtn";
 
 const GarageContainer = (props)=>{
-return(<>
+const [showAxes, setShowAxes] = useState(false);
+const [axesSize, setAxesSize] = useState(1);
 
+
+
+return(<>
 <Suspense fallback={<Loader2D/>}>
     <GeneralNavbar></GeneralNavbar>
-    <Garage/>
+    <AxesBtn showAxes={showAxes} setShowAxes={setShowAxes} axesSize={axesSize} setAxesSize={setAxesSize} />
+    <Garage showAxes={showAxes} axesSize={axesSize}/>
 </Suspense>
 </>)
 }

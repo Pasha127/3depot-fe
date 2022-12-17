@@ -1,8 +1,9 @@
-import React, { Suspense, useMemo, useState } from 'react';
-import { Canvas, useLoader } from '@react-three/fiber';
-import { Environment, OrbitControls,Stars, useTexture } from '@react-three/drei';
+import React, { Suspense, useMemo, useState, useEffect } from 'react';
+import { Canvas, useLoader, useThree } from '@react-three/fiber';
+import { Environment, Stars, useTexture } from '@react-three/drei';
 import { Physics, useBox, useConvexPolyhedron, useCylinder, useHeightfield, usePlane, useTrimesh } from '@react-three/cannon';
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {Mesh} from 'three'
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
@@ -16,6 +17,22 @@ import "./styles.css"
 const pi= Math.PI;
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
+
+const CameraController = () => {
+  const { camera, gl } = useThree();
+  useEffect(
+    () => {
+      const controls = new OrbitControls(camera, gl.domElement);
+      controls.minDistance = .5;
+      controls.maxDistance = 20;
+      return () => {
+        controls.dispose();
+      };
+    },
+    [camera, gl]
+  );
+  return null;
+};
 
 
 /*function ObjToPrimitive({ url, mat }) {
@@ -62,16 +79,17 @@ function Asset2() {
 
 
 
-function Garage() {
+function Garage(props) {
   return (
     <div className="canvas-container">
       <Canvas>
+        <CameraController />
         <Suspense fallback={null}>
-        <OrbitControls/>
         <Environment preset="warehouse" background="only"/>
         <ambientLight intensity={0.2}/>
         <spotLight position={[2,8,5]} angle={0.3} color="white" intensity={1}/>
         <spotLight position={[-6,8,5]} angle={0.3} color="white"/>
+        {props.showAxes && <primitive object={new THREE.AxesHelper(props.axesSize)}></primitive>}
         <Asset2/>
         </Suspense>
       </Canvas>
