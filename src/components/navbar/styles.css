@@ -11,6 +11,7 @@
   -moz-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
   box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
   height: 80px;
+  z-index: 1;
 }
 .blog-navbar-splash {
   padding: 0;

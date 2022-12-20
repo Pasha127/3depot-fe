@@ -26,7 +26,7 @@ const Search = (props)=>{
 return(<>
 <div className="search-container">
   <SearchNavBar/>
-   <GarageFooter/>
+   {/* <GarageFooter/> */}
       <SearchCardContainer/>
 </div>
 <CookieModal/>

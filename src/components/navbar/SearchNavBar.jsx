@@ -30,6 +30,7 @@ const SearchNavBar = (props) => {
         </Navbar.Brand>
         <SearchBar/>
         <div className="buttons-container">
+       <GarageBtn/>
        <LogInBtn/>
        {/* <LogOutBtn logOut={props.logOut}/> */}
         </div>

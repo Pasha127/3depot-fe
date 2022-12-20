@@ -17,7 +17,7 @@
     width: 40px;
     height: 40px;
     border: 1px solid black;
-    border-width: 1px 1px 1px 0px;
+    border-width: 1px 2px 2px 0px;
     border-radius: 0% 0% 100% 0%;
     top: 140px;
     right:20px;
@@ -29,6 +29,7 @@
     height: 40px;
     border: 1px solid black;
     border-radius: 0% 0% 0% 100%;
+    border-width: 1px 1px 2px 2px;
     top: 140px;
     right:60px;
     z-index: 1;
