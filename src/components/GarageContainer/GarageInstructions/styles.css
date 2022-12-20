@@ -1,0 +1,23 @@
+.instructionSVG{
+    position: absolute;
+    background-image: url("/public/mouseInstructions.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 400px;
+    z-index: 2;
+    top: -55px;
+    }
+.instruction-container{
+    background-color: rgba(255, 255, 255, 0.658);
+    border: 2px solid black;
+    border-radius: 20px;
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    z-index: 2;
+    top: calc(50vh - 180px);
+    left: calc(50vw - 120px);
+
+}

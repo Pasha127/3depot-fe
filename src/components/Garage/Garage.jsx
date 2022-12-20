@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo, useState, useEffect } from 'react';
 import { Canvas, useLoader, useThree } from '@react-three/fiber';
-import { Environment, Stars, useTexture } from '@react-three/drei';
+import { Environment, Html, Stars, useProgress, useTexture } from '@react-three/drei';
 import { Physics, useBox, useConvexPolyhedron, useCylinder, useHeightfield, usePlane, useTrimesh } from '@react-three/cannon';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -11,7 +11,7 @@ import { DDSLoader } from "three-stdlib";
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import Search from '../search/Search';
 import "./styles.css"
-
+import Loader2D from ""
 
 
 const pi= Math.PI;
@@ -77,6 +77,10 @@ function Asset2() {
     
 }
 
+function Loader() {
+  const {progress} = useProgress()
+  return 
+}
 
 
 function Garage(props) {
@@ -84,7 +88,7 @@ function Garage(props) {
     <div className="canvas-container">
       <Canvas>
         <CameraController />
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader/>}>
         <Environment preset="warehouse" background="only"/>
         <ambientLight intensity={0.2}/>
         <spotLight position={[2,8,5]} angle={0.3} color="white" intensity={1}/>

@@ -6,8 +6,11 @@ import "./styles.css"
 
 
 const SearchCard = (props)=>{
-const [infoClass, setInfoClass] = useState("d-none")
-const [buttonClass, setButtonClass] = useState("d-none")
+    const [infoClass, setInfoClass] = useState("d-none")
+    const [buttonClass, setButtonClass] = useState("d-none")
+    const navigate = useNavigate();
+    const goToGarage = () => navigate('/Garage');
+
 
 return(<>
   <Card style={{ width: '18rem' }} onMouseOver={()=>{
@@ -24,7 +27,9 @@ return(<>
         <Card.Text>
           Description of Asset
         </Card.Text>
-        <Button className={`${buttonClass}`} variant="dark">View in 3D</Button>
+        <Button className={`${buttonClass}`} variant="dark"
+        onClick={goToGarage}
+        >View in 3D</Button>
       </Card.Body>
     </Card>
 </>)
