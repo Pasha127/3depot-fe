@@ -24,12 +24,14 @@ const mapStateToProps = state => {
 }; 
 const SearchNavBar = (props) => {
   return (
-    <Navbar expand="lg" className="blog-navbar" fixed="top">
-      <Container className="justify-content-between">
+    <Navbar expand="lg" className="search-navbar" fixed="top">
+      <Container className="nav-container">
+        <div className="nav-left">
         <Navbar.Brand as={Link} to="/">
           <img className="blog-navbar-brand" alt="logo" src={logo} />
         </Navbar.Brand>
         <SearchBar/>
+        </div>
         <div className="hamburger-zone">
           <UserDropdown user={props.user} logOut={props.logOut}/>
         </div>

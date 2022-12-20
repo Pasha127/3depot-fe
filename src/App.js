@@ -27,8 +27,6 @@ const mapStateToProps = state => {
 
 
 
-/* import NavBar from "./components/navbar/GeneralNavbar"
-import Home from "./components/" */
 
 function App(props) {
   useEffect(()=>{

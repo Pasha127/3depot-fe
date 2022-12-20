@@ -10,11 +10,12 @@ const UserDropdown = (props)=>{
     const goToLogin = () => navigate('/LogIn');
 return(<>
     <DropdownButton
+    className="dropdown-control"
 key={"secondaryGroup"}
 id={`dropdown-variants-secondary`}
 as={ButtonGroup}
-variant={"secondary"}
-title={"secondary"}
+variant={"outline-secondary"}
+title={<img src={props.user.avatar} alt={"UserAvatar"} className="avatar"></img>}
 >
 {props.user?._id && <Dropdown.Item eventKey="1" onClick={()=>{props.logOut()}}>Log Out</Dropdown.Item>}
 {!props.user?._id && <Dropdown.Item eventKey="1" onClick={goToLogin}>Log In</Dropdown.Item>}

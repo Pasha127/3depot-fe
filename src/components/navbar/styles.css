@@ -1,8 +1,12 @@
 .blog-navbar-brand {
   width: 50px;
 }
-
-.blog-navbar {
+.nav-container{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: left;
+}
+.search-navbar {
 
   padding-top: 25px;
   padding-bottom: 25px;
@@ -12,6 +16,8 @@
   box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
   height: 80px;
   z-index: 1;
+  flex-wrap: nowrap;
+  display: flex;
 }
 .blog-navbar-splash {
   padding: 0;
@@ -50,4 +56,8 @@
   flex-direction: row;
   justify-content: space-between;
   height: 38px;
+}
+.nav-left{
+  display: flex;
+  flex-direction: row;
 }

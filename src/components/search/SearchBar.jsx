@@ -6,9 +6,9 @@ import "./styles.css"
 const SearchBar = (props) =>{
 
     return(
-        <Form className="w-100 search-form-container">
+        <Form className="search-form-container">
         <Form.Group className="mb-3" controlId="SearchForm">
-          <Form.Control className="border-custom"  placeholder="What are you looking for?" />
+          <Form.Control className="search-custom"  placeholder="What are you looking for?" />
         </Form.Group>
       </Form>
    )
