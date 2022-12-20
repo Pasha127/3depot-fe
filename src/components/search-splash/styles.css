@@ -2,7 +2,6 @@
     display: flex;
     overflow: hidden;
     justify-content: center;
-    align-items: center;
 }
 .splash-logo-container{
     display: flex;
@@ -14,8 +13,9 @@
     align-items: center;
 }
 .search-form-container{
-    width: 100%;
-    margin-top: 15px;
+    justify-content: center;
+    position: absolute;
+    top: 50vh;
 
 }
 .splash-logo-image{
@@ -25,9 +25,4 @@
 .search-bar-size{
     width: min(800px, 60vw);
 }
-.border-custom{
-    border: 1px solid grey;
-    border-radius: 4px 0px 0px 4px;
-    border-width: 1px 0px 1px 1px;
-}
-    
+.search-form-container{}

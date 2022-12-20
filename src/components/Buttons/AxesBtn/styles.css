@@ -7,7 +7,7 @@
     top:100px;
     right: 20px;
     z-index: 1;
-    background-image: url("../../../public/Axes.svg");
+    background-image: url("../../../../public/Axes.svg");
     background-repeat: no-repeat;
     background-size: 80px 80px;
     background-position: -2px -15px;
@@ -17,6 +17,7 @@
     width: 40px;
     height: 40px;
     border: 1px solid black;
+    border-width: 1px 1px 1px 0px;
     border-radius: 0% 0% 100% 0%;
     top: 140px;
     right:20px;
@@ -40,11 +41,13 @@
 .axes-plus:hover{
     border: 2px solid black;
     border-radius: 0% 0% 20% 0%;
+    border-width: 1px 2px 2px 0px;
     
 }
 .axes-minus:hover{
     border: 2px solid black;
     border-radius: 0% 0% 0% 20%;
+    border-width: 1px 1px 2px 2px;
     
 
 }

@@ -1,0 +1,14 @@
+.info-show{
+z-index: 2;
+position: absolute;
+flex-direction: column;
+display: flex;
+}
+.button-show{
+z-index: 2;
+position: absolute;
+display: flex;
+top: 248px;
+width: 286px;
+left: 0px;
+}

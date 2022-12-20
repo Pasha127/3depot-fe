@@ -5,6 +5,7 @@ import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
 import { connect } from "react-redux";
 import { getMeWithThunk } from "../../redux/actions";
 import { useRef } from "react";
+import CookieModal from "../CookieModal/CookieModal";
 
 const mapStateToProps = state => {
   return {
@@ -251,6 +252,7 @@ const handleLogIn = async (e) =>{
 
         
     </div>
+    <CookieModal/>
               </>
   );
 };

@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import "./styles.css"
 
 
-const GarageBtn = (props)=>{
+const LogInBtn = (props)=>{
     const navigate = useNavigate();
-    const handleNavigate = () => navigate('/Garage');
+    const handleNavigate = () => navigate('/LogIn');
 return(<>
-    <Button variant="outline-secondary" className="garage-btn"
+    <Button variant="outline-secondary end-button"
     onClick={handleNavigate}>
-        Garage
+        Log In
     </Button>
 </>)
 }
-export default GarageBtn;
+export default LogInBtn;

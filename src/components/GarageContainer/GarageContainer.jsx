@@ -8,7 +8,8 @@ import Search from "../search/Search";
 import "./styles.css"
 import Garage from "../Garage/Garage";
 import GeneralNavbar from "../navbar/GeneralNavbar";
-import AxesBtn from "../AxesBtn/AxesBtn";
+import AxesBtn from "../Buttons/AxesBtn/AxesBtn";
+import CookieModal from "../CookieModal/CookieModal";
 
 const GarageContainer = (props)=>{
 const [showAxes, setShowAxes] = useState(false);
@@ -27,6 +28,7 @@ return(<>
         setClickClass("invisible")
     }}></div></div>
 </Suspense>
+<CookieModal/>
 </>)
 }
 export default GarageContainer;
