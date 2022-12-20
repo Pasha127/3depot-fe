@@ -11,7 +11,7 @@ import { DDSLoader } from "three-stdlib";
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import Search from '../search/Search';
 import "./styles.css"
-import Loader2D from ""
+import Loader2D from "../loader/Loader2D"
 
 
 const pi= Math.PI;
@@ -79,7 +79,9 @@ function Asset2() {
 
 function Loader() {
   const {progress} = useProgress()
-  return 
+  return <Html center>
+    <Loader2D/>
+  </Html>
 }
 
 
@@ -87,8 +89,8 @@ function Garage(props) {
   return (
     <div className="canvas-container">
       <Canvas>
-        <CameraController />
         <Suspense fallback={<Loader/>}>
+        <CameraController />
         <Environment preset="warehouse" background="only"/>
         <ambientLight intensity={0.2}/>
         <spotLight position={[2,8,5]} angle={0.3} color="white" intensity={1}/>
