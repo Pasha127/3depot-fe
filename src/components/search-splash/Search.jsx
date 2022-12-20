@@ -21,6 +21,9 @@ const mapStateToProps = state => {
 }; 
 
 const Search = (props)=>{
+
+
+
 return(<>
 <div className="search-container">
    <LogInBtn/>

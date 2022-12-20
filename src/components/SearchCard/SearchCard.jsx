@@ -6,7 +6,10 @@ import "./styles.css"
 
 
 const SearchCard = (props)=>{
-  const assetURL="https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20;right_-35;zoom_1;env_pillars;exposure_1.4/v1670880755/3DepotProducts/Sci-fi_Rifle_2_uykpuo.jpg"
+  const assetSourceName= "Sci-fi_Rifle_2_uykpuo"
+  /* const assetSourceName= "FullBody_w27qve" */
+  /* const assetSourceName= "Baloon_axtbve" */
+  const assetURL=`https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20;right_-35;zoom_1;env_pillars;exposure_1.4/v1670880755/3DepotProducts/${assetSourceName}.jpg`
   let assetName= assetURL.split("/").pop().split(".").shift().split("_")
   assetName.pop()
   assetName= assetName.join(" ")

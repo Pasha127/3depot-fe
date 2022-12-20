@@ -8,7 +8,7 @@ const LogOutBtn = (props)=>{
     
 return(<>
     <Button variant="outline-secondary end-button"
-    onClick={props.logOut()}>
+    onClick={()=>{props.logOut()}}>
         Log Out
     </Button>
 </>)

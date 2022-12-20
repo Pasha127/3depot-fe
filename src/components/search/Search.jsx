@@ -8,6 +8,7 @@ import GarageFooter from "../Buttons/GarageFooter/GarageFooter";
 import SearchNavBar from "../navbar/SearchNavBar";
 import CookieModal from "../CookieModal/CookieModal";
 import SearchCardContainer from "../SearchCardContainer/SearchCardContainer";
+import { useEffect } from "react";
 
 const mapStateToProps = state => {
   return {
@@ -23,11 +24,14 @@ const mapStateToProps = state => {
 }; 
 
 const Search = (props)=>{
+  useEffect(()=>{
+  props.getMe();
+  },[])
+
 return(<>
 <div className="search-container">
   <SearchNavBar/>
-   {/* <GarageFooter/> */}
-      <SearchCardContainer/>
+  <SearchCardContainer/>
 </div>
 <CookieModal/>
 </>)

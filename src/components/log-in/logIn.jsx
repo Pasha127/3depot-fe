@@ -240,7 +240,7 @@ const handleLogIn = async (e) =>{
     <a className="background4button" href="http://localhost:3001/user/googleLogin">
     <Button
             onClick={()=>{
-              props.getMe();
+              /* props.getMe(); */
             }}
             className="oauth-button"
             size="lg"

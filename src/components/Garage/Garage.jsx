@@ -70,6 +70,7 @@ const CameraController = () => {
 
 function Asset2() {
   const fbx = useLoader(FBXLoader, 'https://res.cloudinary.com/dirwjcohx/raw/upload/v1670880728/3DepotProducts/Sci-fi_Rifle_2_qu1tv8.fbx')
+  /* const fbx = useLoader(FBXLoader, 'https://res.cloudinary.com/dirwjcohx/raw/upload/v1671546685/3DepotProducts/Baloon_y4frgi.fbx') */
   return (
   <mesh >
     <primitive scale={.01} object={fbx} />

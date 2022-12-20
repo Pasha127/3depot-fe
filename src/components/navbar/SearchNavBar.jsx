@@ -9,18 +9,8 @@ import LogInBtn from "../Buttons/loginBtn/LogInBtn";
 import GarageBtn from "../Buttons/GarageBtn/GarageBtn";
 import LogOutBtn from "../Buttons/LogOutBtn/LogOutBtn";
 import SearchBar from "../search/SearchBar";
-const mapStateToProps = state => {
-  return {
-  user: state.userInfo
-  };
-};
- const mapDispatchToProps = dispatch => {
-  return {
-    logOut: ()=> {
-      dispatch(logOutWithThunk());
-    },        
-  };  
-}; 
+import UserDropdown from "../Buttons/UserDropdown/UserDropdown";
+
 const SearchNavBar = (props) => {
   return (
     <Navbar expand="lg" className="blog-navbar" fixed="top">
@@ -29,14 +19,12 @@ const SearchNavBar = (props) => {
           <img className="blog-navbar-brand" alt="logo" src={logo} />
         </Navbar.Brand>
         <SearchBar/>
-        <div className="buttons-container">
-       <GarageBtn/>
-       {!props.user?._id &&<LogInBtn/>}
-        {props.user?._id && <LogOutBtn logOut={props.logOut}/> }
+        <div className="hamburger-zone">
+          <UserDropdown/>
         </div>
       </Container>
     </Navbar>
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchNavBar);
+export default (SearchNavBar);
