@@ -21,7 +21,7 @@ return(<>
         setInfoClass("d-none");
         setButtonClass("d-none");
       }}>
-      <Card.Img variant="top" src="http://placekitten.com/400/400" />
+      <Card.Img variant="top" src="https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20;right_-35;zoom_1;env_pillars;exposure_1.4/v1670880755/3DepotProducts/Sci-fi_Rifle_2_uykpuo.jpg" />
       <Card.Body className={`${infoClass}`} >
         <Card.Title>Asset</Card.Title>
         <Card.Text>

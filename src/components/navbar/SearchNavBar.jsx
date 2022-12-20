@@ -31,8 +31,8 @@ const SearchNavBar = (props) => {
         <SearchBar/>
         <div className="buttons-container">
        <GarageBtn/>
-       <LogInBtn/>
-       {/* <LogOutBtn logOut={props.logOut}/> */}
+       {!props.user?._id &&<LogInBtn/>}
+        {props.user?._id && <LogOutBtn logOut={props.logOut}/> }
         </div>
       </Container>
     </Navbar>
