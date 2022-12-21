@@ -95,6 +95,7 @@
         opacity: 1;
         display: flex;
         background-size: cover;
+        cursor: pointer;
 }
 @media (min-width: 1000px) {
     .gear2{

@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { getMeWithThunk } from "../../redux/actions";
 import { useRef } from "react";
 import CookieModal from "../CookieModal/CookieModal";
+import { useNavigate } from "react-router-dom";
+import Loader2D from "../loader/Loader2D";
 
 const mapStateToProps = state => {
   return {
@@ -23,7 +25,8 @@ const mapStateToProps = state => {
 
 const LogIn = (props) => {
     const baseURL = process.env.REACT_APP_SERVER_URL
-
+  const navigate = useNavigate()
+  const goToSearch = ()=> navigate("/")
   const usernameRef = useRef()
   const lastNameRef = useRef();
   const firstNameRef = useRef();
@@ -32,6 +35,7 @@ const LogIn = (props) => {
   const [avatar, setAvatar] = useState(null);
   const [avatarDataURL, setAvatarDataURL] = useState({});
   const [wantLogIn, setWantLogIn] = useState(true);
+  const [isLoading, setIsLoading] = useState(false)
 
 const postAvatar = async (id) =>{ 
   let formData = new FormData()
@@ -46,9 +50,9 @@ const postAvatar = async (id) =>{
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {           
         const data = await response.json() 
-        console.log(data)       
+        console.log(data)      
      } else {
-       alert('Error fetching in avatar upload')
+       alert('Error Uploading Avatar')
      } 
     } catch (error) {
       console.log(error)
@@ -78,6 +82,7 @@ const readAvatar = (e)=>{
 }
 
  const postNewUser = async (postObj) => {
+    setIsLoading(true)
     const options = {
         
       method: 'POST',
@@ -88,20 +93,23 @@ const readAvatar = (e)=>{
         
       };
       const baseEndpoint = `${baseURL}/user/register`
-    /* console.log("1 submit-post")  */   
+    console.log("1 submit-post")    
       try {
-        /* console.log("2 submit-post",baseEndpoint) */        
         const response = await fetch(baseEndpoint,options);
         if (response.ok) {           
           const data = await response.json()
           console.log(data._id);
-          await postAvatar(data._id)          
+          await postAvatar(data._id)
+          console.log("2 submit-post",baseEndpoint)
+          setIsLoading(false);        
+          goToSearch()
        } else {
-         alert('Error fetching results')
+         alert('Registration Failed - Unique Email, Username and Password are Required')
+         setIsLoading(false)
        } 
       } catch (error) {
         console.log(error)
-      }finally{props.getMe()}
+      }
     }
 
 
@@ -122,9 +130,11 @@ const handleSubmit = (e) => {
     }
 /*     console.log(postObj); */
     postNewUser(postObj);
+
   }
 
 const handleLogIn = async (e) =>{ 
+  setIsLoading(true)
     e.preventDefault()
     const postObj = {password:passwordRef.current.value,email:emailRef.current.value.toLowerCase()}
     const options = {        
@@ -139,19 +149,24 @@ const handleLogIn = async (e) =>{
           const response = await fetch(baseEndpoint,options);
           if (response.ok) {           
             const data = await response.json()
+            setIsLoading(false)
+            props.getMe()
+            goToSearch()
      /*        console.log(data._id);   */
          } else {
            alert('Username, Password or Both Invalid')
+           setIsLoading(false)
          } 
         } catch (error) {
           console.log(error)
-        }finally{props.getMe()}
+        }
     
 }
 
 
 
   return (<>    
+    {isLoading && <Loader2D/>}
     <div className="background-gears gear2"></div>
     <div className="background-gears gear3"></div>
     <div className="background-gears gear4"></div>
@@ -160,7 +175,7 @@ const handleLogIn = async (e) =>{
       {wantLogIn? 
       <div className="log-in-box">
         <Form>
-        <div className="login-logo"></div>
+        <div className="login-logo" onClick={goToSearch}></div>
         <Form.Group controlId="Email" className="mt-1 col-12">
             <Form.Label>Email</Form.Label>
           <Form.Control size="lg" placeholder="Email" ref={emailRef} />
@@ -188,9 +203,7 @@ const handleLogIn = async (e) =>{
         </Form>
       </div>
       
-      
-      :<Form className="mt-5 register-box">
-        
+      :<Form className="mt-5 register-box">       
           <div className="d-flex justify-content-center">
             <div className="p-0 d-flex pic-space">
         <label className="uploaded-pic" htmlFor="avatarUploadBtn">{!avatar ? <BsPersonBoundingBox style={{fontSize: "25px", color: "gray", cursor: "pointer"}}></BsPersonBoundingBox>:<img className="uploaded-pic" src={avatarDataURL} alt="avatar"/>}</label>
@@ -219,7 +232,7 @@ const handleLogIn = async (e) =>{
           <Form.Control size="lg" placeholder="Surname" ref={lastNameRef} />
           </Form.Group>         
         <Form.Group className="mt-3  col-10">
-        <Button type="reset" size="lg" variant="outline-dark" onClick={(e) => setWantLogIn(true)}>
+        <Button className="mr-3" type="reset" size="lg" variant="outline-dark" onClick={(e) => setWantLogIn(true)}>
         Back
           </Button>
         <Button
@@ -227,9 +240,6 @@ const handleLogIn = async (e) =>{
             type="submit"
             size="lg"
             variant="dark"
-            style={{
-                marginLeft: "1em",
-            }}
             >
             Register
           </Button>

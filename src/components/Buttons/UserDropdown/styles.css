@@ -3,7 +3,22 @@
     width: 40px;
     height: 40px;
     border:1px solid black;
+    display: flex;
 }
-#dropdown-variants-secondary{
+#dropdown-variants-light{
     border: 1px solid white !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+
+}
+#dropdown-variants-light:hover{
+    background-color: white;
+}
+
+.drop-container{
+    display: flex;
+    flex-direction: row;
+    
 }

@@ -35,7 +35,7 @@ const CameraController = () => {
 };
 
 
-/*function ObjToPrimitive({ url, mat }) {
+function ObjToPrimitive({ url, mat }) {
   const [obj, setObj] = useState();
   useMemo(() => new OBJLoader().load(url, setObj), [url]);
   if (obj) {
@@ -49,7 +49,7 @@ const CameraController = () => {
   return null;
 }
 
- const Asset = () => {
+ const OBJAsset = () => {
   const mat = new THREE.MeshPhysicalMaterial({
     map: new THREE.TextureLoader().load("url"),                   //--color--
     metalnessMap:new THREE.TextureLoader().load("url"),           //--metalness--
@@ -65,16 +65,18 @@ const CameraController = () => {
       {ObjToPrimitive({ url: "astronaut002/z2_spacesuit.obj", mat })}
     </mesh>
   );
-}; */
+};
 
 
-function Asset2() {
-  const fbx = useLoader(FBXLoader, 'https://res.cloudinary.com/dirwjcohx/raw/upload/v1670880728/3DepotProducts/Sci-fi_Rifle_2_qu1tv8.fbx')
-  /* const fbx = useLoader(FBXLoader, 'https://res.cloudinary.com/dirwjcohx/raw/upload/v1671546685/3DepotProducts/Baloon_y4frgi.fbx') */
+function FBXAsset() {
+  const fbx = useLoader(FBXLoader, 'https://res.cloudinary.com/dirwjcohx/raw/upload/v1670880728/3DepotProducts/Sci-fi_Rifle_2_qu1tv8.fbx') 
+ /*  const fbx = useLoader(FBXLoader, 'https://res.cloudinary.com/dirwjcohx/raw/upload/v1671546685/3DepotProducts/Baloon_y4frgi.fbx') */
+  const newMesh = <mesh >
+  <primitive scale={.01} object={fbx} />
+  </mesh>
   return (
-  <mesh >
-    <primitive scale={.01} object={fbx} />
-    </mesh>)
+    newMesh
+    )
     
 }
 
@@ -93,11 +95,11 @@ function Garage(props) {
         <Suspense fallback={<Loader/>}>
         <CameraController />
         <Environment preset="warehouse" background="only"/>
-        <ambientLight intensity={0.2}/>
-        <spotLight position={[2,8,5]} angle={0.3} color="white" intensity={1}/>
-        <spotLight position={[-6,8,5]} angle={0.3} color="white"/>
+        <ambientLight intensity={.3}/>
+        <spotLight position={[200,800,500]} angle={0.3} color="white" intensity={1}/>
+        <spotLight position={[-600,800,500]} angle={0.3} color="white"/>
         {props.showAxes && <primitive object={new THREE.AxesHelper(props.axesSize)}></primitive>}
-        <Asset2/>
+        <FBXAsset/>
         </Suspense>
       </Canvas>
     </div>
