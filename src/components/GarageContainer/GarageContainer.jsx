@@ -8,6 +8,7 @@ import AxesBtn from "../Buttons/AxesBtn/AxesBtn";
 import CookieModal from "../CookieModal/CookieModal";
 import GarageInstructions from "./GarageInstructions/GarageInstructions";
 import GarageNavBar from "../navbar/GarageNavBar";
+import GeneralNavbar from "../navbar/GeneralNavbar";
 
 const GarageContainer = (props)=>{
 const [showAxes, setShowAxes] = useState(false);
@@ -18,7 +19,7 @@ const [axesSize, setAxesSize] = useState(1);
 
 return(<>
 <Suspense >
-    <GarageNavBar/>
+    <GeneralNavbar/>
     <AxesBtn showAxes={showAxes} setShowAxes={setShowAxes} axesSize={axesSize} setAxesSize={setAxesSize} />
     <Garage showAxes={showAxes} axesSize={axesSize}/>
     <GarageInstructions/>

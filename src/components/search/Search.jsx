@@ -9,6 +9,7 @@ import SearchNavBar from "../navbar/SearchNavBar";
 import CookieModal from "../CookieModal/CookieModal";
 import SearchCardContainer from "../SearchCardContainer/SearchCardContainer";
 import { useEffect } from "react";
+import GeneralNavbar from "../navbar/GeneralNavbar";
 
 const mapStateToProps = state => {
   return {
@@ -30,7 +31,7 @@ const Search = (props)=>{
 
 return(<>
 <div className="search-container">
-  <SearchNavBar/>
+  <GeneralNavbar/>
   <SearchCardContainer/>
 </div>
 <CookieModal/>

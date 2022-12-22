@@ -29,4 +29,14 @@
 .search-custom{
     width: 40vw;
 }
+.search-btn{
+    border-radius: 0px;
+    border-width: 1px 0px 1px 0px;
+    border-color: #ced4da;
+}
+.filters-btn{
+    border-radius: 0px 4px 4px 0px;
+    border-width: 1px 1px 1px 1px;
+    border-color: #ced4da;
+}
     

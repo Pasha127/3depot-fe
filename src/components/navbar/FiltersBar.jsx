@@ -10,11 +10,9 @@ import GarageBtn from "../Buttons/GarageBtn/GarageBtn";
 import LogOutBtn from "../Buttons/LogOutBtn/LogOutBtn";
 import SearchBar from "../search/SearchBar";
 import UserDropdown from "../Buttons/UserDropdown/UserDropdown";
-import FiltersBar from "./FiltersBar";
 const mapStateToProps = state => {
   return {
-  user: state.userInfo,
-  showFilters: state.showFilters
+  user: state.userInfo
   };
 };
  const mapDispatchToProps = dispatch => {
@@ -24,23 +22,14 @@ const mapStateToProps = state => {
     }     
   };  
 }; 
-const GeneralNavBar = (props) => {
-  return (<>
-    <Navbar expand="lg" className="search-navbar" fixed="top">
+const FiltersBar = (props) => {
+  return (
+    <Navbar expand="lg" className="filter-navbar" fixed="top">
       <Container className="nav-container">
-        <div className="nav-left">
-        <Navbar.Brand as={Link} to="/">
-          <img className="blog-navbar-brand" alt="logo" src={logo} />
-        </Navbar.Brand>
-        <SearchBar/>
-        </div>
-        <div className="hamburger-zone">
-          <UserDropdown user={props.user} logOut={props.logOut}/>
-        </div>
+       
       </Container>
     </Navbar>
-    {props.showFilters && <FiltersBar/>}
-  </>);
+  );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneralNavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(FiltersBar);

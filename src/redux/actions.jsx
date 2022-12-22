@@ -1,6 +1,7 @@
 import { emitLogOut } from "../components/chat/Chat";
 
-export const LOADING = " LOADING";
+export const LOADING = "LOADING";
+export const FILTERS = "FILTERS";
 export const SEARCH = "SEARCH";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_CHATS = "SET_CHATS";
@@ -13,6 +14,10 @@ export const SET_RECENT_MSG = "SET_RECENT_MSG";
 export const setLoading =isLoading =>({
     type:LOADING,
     payload: isLoading
+  });
+export const setFilters = showFilters =>({
+    type:FILTERS,
+    payload: showFilters
   });
 export const setSearch =query =>({
     type:SEARCH,

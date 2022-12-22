@@ -4,6 +4,7 @@ import reducer from './reducer';
 
 export const initialState = {
   isLoading: false,
+  showFilters: false,
   query: "",
   userInfo: {
     _id: "",
