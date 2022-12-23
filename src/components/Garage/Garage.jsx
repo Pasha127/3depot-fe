@@ -4,7 +4,7 @@ import { Environment, Html, Stars, useProgress, useTexture } from '@react-three/
 import { Physics, useBox, useConvexPolyhedron, useCylinder, useHeightfield, usePlane, useTrimesh } from '@react-three/cannon';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import {Mesh} from 'three'
+import {Mesh, SubdivisionModifier} from 'three'
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { DDSLoader } from "three-stdlib";
@@ -12,7 +12,11 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import Search from '../search/Search';
 import "./styles.css"
 import Loader2D from "../loader/Loader2D"
-
+import { connect } from 'react-redux';
+import { setGarage } from '../../redux/actions';
+import { useNavigate } from 'react-router-dom';
+import img from '../../assets/3DepotLogoBig.png';
+import imgAlpha from '../../assets/3DepotLogoAlpha.png';
 
 const pi= Math.PI;
 
@@ -87,14 +91,62 @@ function Loader() {
   </Html>
 }
 
+function Plane() {
+  return(
+<mesh position={[0,-1,0]} rotation={[-pi/2,0,pi/2]}>
+  <planeBufferGeometry  attach="geometry" args={[10,10,200]}/>
+  <meshBasicMaterial attach="material" wireframe={true} />
+</mesh>
+  );
+}
+
+function Image() {
+  const texture = useLoader(THREE.TextureLoader, img)
+  const textureAlpha = useLoader(THREE.TextureLoader, imgAlpha)
+  return (
+    <mesh position={[0,-10,0]} rotation={[-pi/2,0,pi/2]}>
+      <planeBufferGeometry attach="geometry" args={[30, 30]} />
+      <meshStandardMaterial attach="material" color={"#cccccc"} alphaMap={textureAlpha} transparent/>
+    </mesh>
+  )
+}
+
+const mapStateToProps = state => {
+  return {
+  user: state.userInfo,
+  isGarage: state.isGarage
+  };
+};
+ const mapDispatchToProps = dispatch => {
+  return {
+    setGarage: ()=> {
+      dispatch(setGarage());
+    }     
+  };  
+}; 
+
+
+
 
 function Garage(props) {
+
+  const navigate = useNavigate();
+  const goToLogIn = () => navigate('/LogIn');
+  
+/*   useEffect(()=>{
+    !props.user._id && goToLogIn()
+  },[]) */
+
+
   return (
     <div className="canvas-container">
       <Canvas>
         <Suspense fallback={<Loader/>}>
         <CameraController />
-        <Environment preset="warehouse" background="only"/>
+        <Environment background={true} files={'industrial_workshop_foundry_bw2.hdr'}
+              path={'/'} ></Environment>
+              <Image/>
+        {/* {!props.isGarage && <Plane/>} */}
         <ambientLight intensity={.3}/>
         <spotLight position={[200,800,500]} angle={0.3} color="white" intensity={1}/>
         <spotLight position={[-600,800,500]} angle={0.3} color="white"/>
@@ -106,4 +158,4 @@ function Garage(props) {
   );
 }
 
-export default Garage;
+export default connect(mapStateToProps, mapDispatchToProps)(Garage);

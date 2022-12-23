@@ -10,9 +10,11 @@ import GarageBtn from "../Buttons/GarageBtn/GarageBtn";
 import LogOutBtn from "../Buttons/LogOutBtn/LogOutBtn";
 import SearchBar from "../search/SearchBar";
 import UserDropdown from "../Buttons/UserDropdown/UserDropdown";
+import {Boxes, InfoCircle} from 'react-bootstrap-icons';
 const mapStateToProps = state => {
   return {
-  user: state.userInfo
+  user: state.userInfo,
+  showGarage: state.isGarage
   };
 };
  const mapDispatchToProps = dispatch => {
@@ -24,20 +26,17 @@ const mapStateToProps = state => {
 }; 
 const GarageNavBar = (props) => {
   return (
-    <Navbar expand="lg" className="search-navbar" fixed="top">
-      <Container className="nav-container">
-        <div className="nav-left">
-        <Navbar.Brand as={Link} to="/">
-          <img className="blog-navbar-brand" alt="logo" src={logo} />
-        </Navbar.Brand>
-        {/* ///////////////////Insert Buttons/////////////////// */}
-        </div>
-        <div className="hamburger-zone">
-          <UserDropdown user={props.user} logOut={props.logOut}/>
-        </div>
-      </Container>
-    </Navbar>
-  );
+      <div id="hanging-button-container" className="hanging-button-container">
+      {props.showGarage && <div className="hanging-buttons">
+      <Button className="col-3" variant="outline-secondary"><p><InfoCircle/></p><span>Model Info</span></Button>
+      <Button className="col-3" variant="outline-secondary"><p><Boxes/></p><span>My Models</span></Button>
+
+      </div>}
+      {!props.showGarage && <div className="hanging-buttons">
+      <Button variant="secondary">Shop</Button>
+      </div>}
+      </div>
+ );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GarageNavBar);

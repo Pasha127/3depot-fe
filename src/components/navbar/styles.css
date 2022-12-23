@@ -11,26 +11,33 @@
   padding-top: 25px;
   padding-bottom: 25px;
   background-color: white;
-  -webkit-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
-  -moz-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
-  box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
+  border-bottom: 2px solid black;
+  height: 80px;
+  z-index: 3;
+  flex-wrap: nowrap;
+  display: flex;
+}
+.filter-navbar {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: white;
+  margin-top: 80px;
+  border-bottom: 2px solid black;
   height: 80px;
   z-index: 2;
   flex-wrap: nowrap;
   display: flex;
 }
-.filter-navbar {
-
-  padding-top: 25px;
-  padding-bottom: 25px;
-  background-color: white;
-  -webkit-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
-  -moz-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
-  box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
-  height: 160px;
+.garage-navbar {
+  position: absolute;
+  left:0;
+  height: 100vh;
+  padding: 0;
+  width:20px;
   z-index: 1;
   flex-wrap: nowrap;
   display: flex;
+  justify-content: center;
 }
 .blog-navbar-splash {
   padding: 0;
@@ -65,6 +72,7 @@
 }
 
 .buttons-container{
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -73,4 +81,56 @@
 .nav-left{
   display: flex;
   flex-direction: row;
+}
+#hanging-button-container{
+  position: fixed;
+  left:-20px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding-inline: 0;
+  flex-direction: column;
+  height: 100vh;
+  top: 0;
+}
+#hanging-button-container .btn{
+  color: black;
+  border-radius: 0px 50% 50% 0px !important;
+  padding-inline: 30px;
+  height: 30px;
+  width: 150px;
+  border-radius: 0px 0px 4px 4px;
+  width: 150px;
+  transition:  width .3s;
+  z-index: 1;
+  background-color: white;
+  border: 2px solid black;
+}
+#hanging-button-container .btn p{
+display: inline;
+}
+#hanging-button-container .btn:hover p{
+display: none;
+}
+#hanging-button-container .btn span{
+display: none;
+}
+#hanging-button-container .btn:hover span{
+display: inline;
+}
+#hanging-button-container .btn:hover{
+  margin-top:  0px;
+  width: 350px;
+  transition:  width .3s;
+  z-index: 2;
+  color: black;
+  border-radius: 0px 20px 20px 0px !important;
+}
+.hanging-buttons{
+ height: min(80vh, 600px);
+ margin: 0;
+ justify-content: center;
+ display: flex;
+ flex-direction: column;
+ 
 }

@@ -1,8 +1,25 @@
 import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { Button, Container, Form, Row,Image, Modal, Card } from "react-bootstrap";
+import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setGarage } from "../../redux/actions";
 import "./styles.css"
+
+const mapStateToProps = state => {
+  return {
+  user: state.userInfo,
+  isGarage: state.isGarage
+  };
+};
+ const mapDispatchToProps = dispatch => {
+  return {
+    setGarage: (data)=> {
+      dispatch(setGarage(data));
+    }     
+  };  
+}; 
+
 
 
 const SearchCard = (props)=>{
@@ -20,6 +37,10 @@ const SearchCard = (props)=>{
     const navigate = useNavigate();
     const goToGarage = () => navigate('/Garage');
 
+  const handleButton = () =>{
+    props.setGarage(false);
+    goToGarage()
+  }
 
 return(<>
   <Card style={{ width: '18rem' }} onMouseOver={()=>{
@@ -37,10 +58,10 @@ return(<>
           Description of Asset
         </Card.Text>
         <Button className={`${buttonClass}`} variant="dark"
-        onClick={goToGarage}
+        onClick={()=>{handleButton()}}
         >View in 3D</Button>
       </Card.Body>
     </Card>
 </>)
 }
-export default SearchCard;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchCard);

@@ -6,6 +6,7 @@ import "./styles.css"
 const AxesBtn = (props)=>{
 
 return(<>
+    <div className="axes-toggle-container">
     <button className="axes-toggle" 
     onClick={(e)=>{
         e.stopPropagation();
@@ -27,6 +28,7 @@ return(<>
         props.setAxesSize(props.axesSize-1)
     }}>-
     </button>
+    </div>        
 </>)
 }
 export default AxesBtn;

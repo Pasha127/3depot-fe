@@ -35,7 +35,7 @@ const GeneralNavBar = (props) => {
         <SearchBar/>
         </div>
         <div className="hamburger-zone">
-          <UserDropdown user={props.user} logOut={props.logOut}/>
+          <UserDropdown/>
         </div>
       </Container>
     </Navbar>

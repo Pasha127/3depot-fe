@@ -3,14 +3,16 @@
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    position: absolute;
-    top:100px;
-    right: 20px;
-    z-index: 1;
     background-image: url("../../../../public/Axes.svg");
     background-repeat: no-repeat;
     background-size: 80px 80px;
     background-position: -2px -15px;
+}
+.axes-toggle-container{
+    position: absolute;
+    top:100px;
+    right: 20px;
+    z-index: 1; 
 }
 .axes-plus{
     position: absolute;
@@ -19,8 +21,8 @@
     border: 1px solid black;
     border-width: 1px 2px 2px 0px;
     border-radius: 0% 0% 100% 0%;
-    top: 140px;
-    right:20px;
+    top: 40px;
+    right:0px;
     z-index: 1;
 }
 .axes-minus{
@@ -30,25 +32,33 @@
     border: 1px solid black;
     border-radius: 0% 0% 0% 100%;
     border-width: 1px 1px 2px 2px;
-    top: 140px;
-    right:60px;
+    top: 40px;
+    right:40px;
     z-index: 1;
 }
 .axes-toggle:hover{
     border: 2px solid black;
-    border-radius: 20% 20% 100% 100%;
-
+    border-radius: 20px 20px 100% 100%;
+    
 }
 .axes-plus:hover{
     border: 2px solid black;
-    border-radius: 0% 0% 20% 0%;
+    border-radius: 0% 0% 10px 0%;
     border-width: 1px 2px 2px 0px;
     
 }
 .axes-minus:hover{
     border: 2px solid black;
-    border-radius: 0% 0% 0% 20%;
+    border-radius: 0% 0% 0% 10px;
     border-width: 1px 1px 2px 2px;
     
-
+    
+}
+@media (max-width: 768px){
+    .axes-toggle-container{
+        position: absolute;
+    top:140px;
+    right: 20px;
+    z-index: 1; 
+    }
 }
