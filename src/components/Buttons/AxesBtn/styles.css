@@ -7,6 +7,7 @@
     background-repeat: no-repeat;
     background-size: 80px 80px;
     background-position: -2px -15px;
+    background-color: #ffffff;
 }
 .axes-toggle-container{
     position: absolute;
@@ -24,8 +25,10 @@
     top: 40px;
     right:0px;
     z-index: 1;
+    background-color: #ffffff;
 }
 .axes-minus{
+    background-color: #ffffff;
     position: absolute;
     width: 40px;
     height: 40px;
@@ -39,18 +42,21 @@
 .axes-toggle:hover{
     border: 2px solid black;
     border-radius: 20px 20px 100% 100%;
+    transition: border-radius .3s;
     
 }
 .axes-plus:hover{
     border: 2px solid black;
     border-radius: 0% 0% 10px 0%;
     border-width: 1px 2px 2px 0px;
+    transition: border-radius .3s;
     
 }
 .axes-minus:hover{
     border: 2px solid black;
     border-radius: 0% 0% 0% 10px;
     border-width: 1px 1px 2px 2px;
+    transition: border-radius .3s;
     
     
 }

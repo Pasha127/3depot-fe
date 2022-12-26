@@ -37,7 +37,7 @@ function App(props) {
       <Routes>
         <Route path='/' exact element={<Search/>}/>
         <Route path="/LogIn" exact element={<LogIn />} /> 
-        <Route path="/Garage" exact element={<GarageContainer/>} /> 
+        <Route path="/Garage" exact element={<GarageContainer/>} />
       </Routes>
     </Router>      
      </>);

@@ -12,7 +12,8 @@ import SearchBar from "../search/SearchBar";
 import UserDropdown from "../Buttons/UserDropdown/UserDropdown";
 const mapStateToProps = state => {
   return {
-  user: state.userInfo
+  user: state.userInfo,
+  showFilters: state.showFilters
   };
 };
  const mapDispatchToProps = dispatch => {
@@ -23,12 +24,16 @@ const mapStateToProps = state => {
   };  
 }; 
 const FiltersBar = (props) => {
-  return (
-    <Navbar expand="lg" className="filter-navbar" fixed="top">
-      <Container className="nav-container">
-       
+  return (<>
+    {props.showFilters? <Navbar expand="lg" className="filter-navbar-show" fixed="top">
+      <Container className="nav-container">       
       </Container>
     </Navbar>
+    :<Navbar expand="lg" className="filter-navbar" fixed="top">
+    <Container className="nav-container">       
+    </Container>
+  </Navbar>}
+  </>
   );
 };
 

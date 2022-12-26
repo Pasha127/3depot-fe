@@ -43,7 +43,7 @@ const SearchCard = (props)=>{
   }
 
 return(<>
-  <Card style={{ width: '18rem' }} onMouseOver={()=>{
+  <Card className="search-card" style={{ width: '18rem' }} onMouseOver={()=>{
         setInfoClass("info-show");
         setButtonClass("button-show");
       }}

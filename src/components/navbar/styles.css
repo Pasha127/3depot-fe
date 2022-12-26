@@ -11,7 +11,7 @@
   padding-top: 25px;
   padding-bottom: 25px;
   background-color: white;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid #cecece;
   height: 80px;
   z-index: 3;
   flex-wrap: nowrap;
@@ -21,12 +21,25 @@
   padding-top: 25px;
   padding-bottom: 25px;
   background-color: white;
+  margin-top: 2px;
+  border-bottom: 2px solid black;
+  height: 80px;
+  z-index: 2;
+  flex-wrap: nowrap;
+  display: flex;
+  transition: margin-top .3s;
+}
+.filter-navbar-show {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: white;
   margin-top: 80px;
   border-bottom: 2px solid black;
   height: 80px;
   z-index: 2;
   flex-wrap: nowrap;
   display: flex;
+  transition: margin-top .3s;
 }
 .garage-navbar {
   position: absolute;
@@ -92,22 +105,26 @@
   flex-direction: column;
   height: 100vh;
   top: 0;
+  width: 400px;
 }
 #hanging-button-container .btn{
+  font-size: 20pt;
   color: black;
   border-radius: 0px 50% 50% 0px !important;
   padding-inline: 30px;
   height: 30px;
-  width: 150px;
+  width: 15px;
   border-radius: 0px 0px 4px 4px;
-  width: 150px;
-  transition:  width .3s;
+  transition: border-radius .3s, width .3s;
   z-index: 1;
   background-color: white;
   border: 2px solid black;
 }
 #hanging-button-container .btn p{
 display: inline;
+position: absolute;
+top: 50px;
+left: 25px;
 }
 #hanging-button-container .btn:hover p{
 display: none;
@@ -116,7 +133,11 @@ display: none;
 display: none;
 }
 #hanging-button-container .btn:hover span{
+  font-size: 15pt;
 display: inline;
+position: absolute;
+top: 45px;
+left: 18px;
 }
 #hanging-button-container .btn:hover{
   margin-top:  0px;
@@ -134,3 +155,8 @@ display: inline;
  flex-direction: column;
  
 }
+@media(max-width: 290px){
+ .navbar-brand{
+  display: none;
+ }
+  }

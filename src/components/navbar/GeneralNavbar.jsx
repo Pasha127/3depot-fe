@@ -39,7 +39,7 @@ const GeneralNavBar = (props) => {
         </div>
       </Container>
     </Navbar>
-    {props.showFilters && <FiltersBar/>}
+    <FiltersBar/>
   </>);
 };
 

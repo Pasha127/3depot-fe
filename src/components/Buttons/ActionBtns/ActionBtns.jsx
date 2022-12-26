@@ -1,17 +1,40 @@
 import React, { useCallback, useState } from "react";
 import { Button, Container, Form, Row,Image } from "react-bootstrap";
+import deleteButton from "../../../assets/Delete.svg"
+import uploadButton from "../../../assets/Upload.svg"
+import downloadButton from "../../../assets/Download.svg"
+import shareButton from "../../../assets/Share.svg"
 import "./styles.css"
+import { ArrowDown, ArrowDownLeft, ArrowDownRight, ArrowDownShort, ChevronDoubleDown, ChevronDown, Download, Share, Trash, Upload, X } from "react-bootstrap-icons";
 
 
 const ActionBtns = (props)=>{
     const [actionClass, setActionClass] = useState("action-toggle")
+    const [deleteClass, setDeleteClass] = useState("delete-button-hide")
+    const [uploadClass, setUploadClass] = useState("upload-button-hide")
+    const [downloadClass, setDownloadClass] = useState("download-button-hide")
+    const [shareClass, setShareClass] = useState("share-button-hide")
+    const [actionIcons, setActionIcons] = useState("action-icons")
+    const [actionIconsContract, setActionIconsContract] = useState("d-none")
 
     const handleToggle = () =>{
         if (actionClass === "action-toggle"){
-            setActionClass("action-toggle-clicked")
+            setActionClass("action-toggle-clicked2")
+            setDeleteClass("delete-button-show")
+            setUploadClass("upload-button-show")
+            setDownloadClass("download-button-show")
+            setShareClass("share-button-show")
+            setActionIconsContract("action-icons2")
+            setActionIcons("d-none")
         }
-        if (actionClass === "action-toggle-clicked"){
+        if (actionClass === "action-toggle-clicked2"){
             setActionClass("action-toggle")
+            setDeleteClass("delete-button-hide")
+            setUploadClass("upload-button-hide")
+            setDownloadClass("download-button-hide")
+            setShareClass("share-button-hide")
+            setActionIcons("action-icons")
+            setActionIconsContract("d-none")
         }
     }
 
@@ -23,15 +46,29 @@ return(<>
         handleToggle();
         console.log("click");
     }}>
+        <div className={actionIcons}>
+        <Trash/>⠀<Upload/>⠀<Download/>⠀<Share/>
+        </div>
+        <div className={actionIconsContract}>
+        <ChevronDoubleDown/>
+        </div>
     </button>
-    <button className="action-1" 
-    onClick={(e)=>{        
-        e.stopPropagation();
-        console.log("click1");
-        
-    }}>
-       
-    </button>
+    <div className={deleteClass}>
+        <img src={deleteButton} alt="delete-button"/>
+        <div className="trash-icon-action"><Trash/></div>
+    </div>
+    <div className={uploadClass}>
+        <img src={uploadButton} alt="upload-button"/>
+        <div className="upload-icon-action"><Upload/></div>
+    </div>
+    <div className={downloadClass}>
+        <img src={downloadButton} alt="download-button"/>
+        <div className="download-icon-action"><Download/></div>
+    </div>
+    <div className={shareClass}>
+        <img src={shareButton} alt="share-button"/>
+        <div className="share-icon-action"><Share/></div>
+    </div>
     
     </div>        
 </>)

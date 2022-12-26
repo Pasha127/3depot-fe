@@ -9,7 +9,16 @@
     position: fixed;
     left: calc(50vw - 100px);
     bottom: -100px;
+    z-index: 1;
+    background-color: #ffffff;
 }
+/* .action-toggle:before{
+    font-family: Noto Emoji;
+    content: "✖️ ⬇️ ⬆️ ➡️";
+    position: absolute;
+    top: 20px;
+    left: 50px;
+} */
 .action-toggle-container{
     position: fixed;
     bottom:0px;
@@ -26,10 +35,28 @@
     left: -100px;
     z-index: 5;
     background-color: black;
-    
 }
+.action-icons{
+    position: absolute;
+    left: 50px;
+    top: 15px;
+}
+.action-icons2{
+    position: absolute;
+    left: 84px;
+    top: 5px;
+    font-size: 20pt;
+}
+.action-icons-hide::after{
+   content:"Hide";
+   position: absolute;
+    top: 100px;
+    left: 100px;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
 
-
+}
 .action-toggle-clicked{
     border: 2px solid black;
     border-radius: 20px 20px 100% 100%;
@@ -41,25 +68,136 @@
     position: fixed;
     left: calc(50vw - 150px);
     bottom: -100px;
+    z-index: 1;
 }
-.action-plus:hover{
+.action-toggle-clicked2{
     border: 2px solid black;
-    border-radius: 0% 0% 20% 0%;
-    border-width: 1px 2px 2px 0px;
-    
+    border-radius: 50% 50% 0px 0px;
+    width: 200px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: 80px 80px;
+    background-position: -2px -15px;
+    position: fixed;
+    left: calc(50vw - 100px);
+    bottom: -100px;
+    z-index: 1;
+    background-color: #ffffff;
 }
-.action-minus:hover{
-    border: 2px solid black;
-    border-radius: 0% 0% 0% 20%;
-    border-width: 1px 1px 2px 2px;
-    
-    
+.delete-button-show{
+    position: absolute;
+    left: calc(50vw - 200px);
+    top: -95px;
+    transition: left .3s, top .3s;
+    cursor:pointer;
 }
-/* @media (max-width: 768px){
-    .action-toggle-container{
-        position: absolute;
-    top:140px;
-    right: 20px;
-    z-index: 1; 
-    }
+.upload-button-show{
+    position: absolute;
+    left: calc(50vw - 122px);
+    top: -122px;
+    transition: left .3s, top .3s;
+    cursor:pointer;
+}
+.download-button-show{
+    position: absolute;
+    left: calc(50vw - 1px);
+    top: -122px;
+    transition: left .3s, top .3s;
+    cursor:pointer;
+}
+.share-button-show{
+    position: absolute;
+    left: calc(50vw + 60px);
+    top: -95px;
+    transition: left .3s, top .3s;
+    cursor:pointer;
+}
+.delete-button-hide {
+    position: absolute;
+    left: calc(50vw - 130px);
+    top: -11px;
+    transition: left .3s, top .3s;
+    cursor:pointer;
+}
+.upload-button-hide {
+    position: absolute;
+    left: calc(50vw - 95px);
+    top: -20px;
+    transition: left .3s, top .3s;
+    cursor:pointer;
+}
+.download-button-hide {
+    position: absolute;
+    left: calc(50vw - 40px);
+    top: -21px;
+    transition: left .3s, top .3s;
+    cursor:pointer;
+}
+.share-button-hide {
+    position: absolute;
+    left: calc(50vw + -20px);
+    top: -15px;
+    transition: left .3s, top .3s;
+    cursor:pointer;
+}
+.trash-icon-action{font-size: 20pt;
+    position: absolute;
+    left: 55px;
+    top: 35px;
+    z-index: 0;
+}
+.upload-icon-action{font-size: 20pt;
+    position: absolute;
+    left: 60px;
+    top: 18px;
+    z-index: 0;
+}
+.download-icon-action{font-size: 20pt;
+    position: absolute;
+    left: 35px;
+    top: 18px;
+    z-index: 0;
+}
+.share-icon-action{font-size: 20pt;
+    position: absolute;
+    left: 55px;
+    top: 35px;
+    z-index: 0;
+}
+
+/* .delete-button-show::before{
+    font-size: 20pt;
+    font-family: Noto Emoji;
+    position: absolute;
+    left: 50px;
+    top: 40px;
+    content:"✖️";
+    z-index: 1;
+}
+.upload-button-show::before{
+    font-size: 20pt;
+    font-family: Noto Emoji;
+    position: absolute;
+    left: 60px;
+    top: 25px;
+    content:"⬇️";
+    z-index: 1;
+}
+ .download-button-show::before{
+    font-size: 20pt;
+    font-family: Noto Emoji;
+    position: absolute;
+    left: 30px;
+    top:25px;
+    content:"⬆️";
+    z-index: 1;
+}
+.share-button-show::before{
+    font-size: 20pt;
+    font-family: Noto Emoji;
+    position: absolute;
+    left: 50px;
+    top: 40px;
+    content:"➡️";
+    z-index: 1;
 } */
