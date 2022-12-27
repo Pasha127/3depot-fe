@@ -1,9 +1,22 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import axesSVG from "../../../assets/axes.svg"
 import axesWhiteSVG from "../../../assets/axesWhite.svg"
+import { setSettings } from "../../../redux/actions";
 import "./styles.css"
 
-
+const mapStateToProps = state => {
+    return {
+    settings: state.garageSettings
+    };
+  };
+   const mapDispatchToProps = dispatch => {
+    return {
+      setSettings: (settings)=> {
+        dispatch(setSettings(settings));
+      }     
+    };  
+  }; 
 const AxesBtn = (props)=>{
     const [toggleState,setToggleState] = useState("axes-toggle-off")
     const [whiteAxes,setWhiteAxes] = useState("svg-image")
@@ -13,10 +26,12 @@ const AxesBtn = (props)=>{
             setToggleState("axes-toggle-off")
             setWhiteAxes("svg-image")
             setBlackAxes("d-none")
+            props.setSettings({axes: false})
         }else{
             setToggleState("axes-toggle")
             setBlackAxes("svg-image")
             setWhiteAxes("d-none")
+            props.setSettings({axes: true})
         }
     }
 
@@ -38,17 +53,17 @@ return(<>
     onClick={(e)=>{        
         e.stopPropagation();
         console.log("click+");
-        props.setAxesSize(props.axesSize+1)
+        props.setSettings({axesSize: (props.settings.axesSize+1)})
     }}>+
     </button>
     <button className="axes-minus" 
     onClick={(e)=>{
         e.stopPropagation();
         console.log("click-");
-        props.setAxesSize(props.axesSize-1)
+        props.setSettings({axesSize: (props.settings.axesSize-1)})
     }}>-
     </button>
     </div>        
 </>)
 }
-export default AxesBtn;
+export default connect(mapStateToProps, mapDispatchToProps)(AxesBtn);

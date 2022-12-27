@@ -1,15 +1,28 @@
 import React, { useState } from "react";
 
-import {  ArrowCounterclockwise, Lightbulb, LightbulbFill, LightbulbOffFill, Sliders } from "react-bootstrap-icons";
+import {  ArrowCounterclockwise, BrightnessHigh, Lightbulb, LightbulbFill, LightbulbOffFill, Sliders } from "react-bootstrap-icons";
+import { connect } from "react-redux";
 import ReactSlider from "react-slider";
+import { setSettings } from "../../../redux/actions";
 import "./styles.css"
-
+const mapStateToProps = state => {
+    return {
+    settings: state.garageSettings
+    };
+  };
+   const mapDispatchToProps = dispatch => {
+    return {
+      setSettings: (settings)=> {
+        dispatch(setSettings(settings));
+      }     
+    };  
+  }; 
 
 const LightBtn = (props)=>{
         const [red,setRed] = useState(255)
         const [green,setGreen] = useState(255)
         const [blue,setBlue] = useState(255)
-        const [rotation,setRotation] = useState(360)
+        const [intensity,setIntensity] = useState(10)
         const [lightOnState,setLightOnState] = useState('light-show')
         const [lightOffState,setLightOffState] = useState('light-hide')
         const [toggleState,setToggleState] = useState('lights-toggle')
@@ -18,10 +31,12 @@ const LightBtn = (props)=>{
                 setToggleState("lights-toggle-off")
                 setLightOffState("light-show")
                 setLightOnState("light-hide")
+                props.setSettings({light: false})
             }else{
                 setToggleState("lights-toggle")
                 setLightOffState("light-hide")
                 setLightOnState("light-show")
+                props.setSettings({light: true})
                 
             }
         }
@@ -55,8 +70,8 @@ const LightBtn = (props)=>{
         <div className="color-label label-position3" style={{color:`rgb(0,0,${blue})`,borderColor:`rgb(0,0,${blue})`}}>
             <div>B</div>
         </div>
-        <div className="rotation-label label-position4" style={{rotate:`${rotation}deg`}}>
-            <ArrowCounterclockwise className="arrow-position" />
+        <div className="intensity-label label-position4" >
+            <BrightnessHigh className="sun-position"/>
         </div>
         <ReactSlider
          orientation="vertical"
@@ -66,8 +81,9 @@ const LightBtn = (props)=>{
         className="vertical-slider-red"
         thumbClassName="slider-thumb"
         trackClassName="red-slider-track"
-        onAfterChange={(value, index) =>{setRed(value);console.log("Red",value)}}/>
-
+        onAfterChange={(value, index) =>{
+            setRed(value);
+            props.setSettings({red: value})}}/>
         
         <ReactSlider
          orientation="vertical"
@@ -77,8 +93,9 @@ const LightBtn = (props)=>{
         className="vertical-slider-green"
         thumbClassName="slider-thumb"
         trackClassName="red-slider-track"
-        onAfterChange={(value, index) =>{setGreen(value);console.log("Green",value)}}
-        />
+         onAfterChange={(value, index) =>{
+            setGreen(value);
+            props.setSettings({green: value})}}/>
         
         <ReactSlider
          orientation="vertical"s
@@ -88,22 +105,24 @@ const LightBtn = (props)=>{
         className="vertical-slider-blue"
         thumbClassName="slider-thumb"
         trackClassName="red-slider-track"
-        onAfterChange={(value, index) =>{setBlue(value);console.log("Blue",value)}}
-        />
+        onAfterChange={(value, index) =>{
+            setBlue(value);
+            props.setSettings({blue: value})}}/>
         
         <ReactSlider
          orientation="vertical"
          invert
-         max={360}
-         value={rotation}
+         max={50}
+         value={intensity}
         className="vertical-slider-black"
         thumbClassName="slider-thumb"
         trackClassName="red-slider-track"
-        onAfterChange={(value, index) =>{setRotation(value);console.log("Rotation",value)}}
-        />
+        onAfterChange={(value, index) =>{
+            setIntensity(value);
+            props.setSettings({intensity:(value/10)})}}/>
         </div>        
     </button>
     </div>        
 </>)
 }
-export default LightBtn;
+export default connect(mapStateToProps, mapDispatchToProps)(LightBtn);

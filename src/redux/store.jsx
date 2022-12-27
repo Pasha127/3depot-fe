@@ -3,6 +3,15 @@ import thunk from 'redux-thunk';
 import reducer from './reducer';
 
 export const initialState = {
+  garageSettings: {
+    red: 255,
+    green: 255,
+    blue: 255,
+    intensity: 1,
+    light: true,
+    axes:false,
+    axesSize:1
+  },
   isLoading: false,
   isGarage: true,
   showFilters: false,

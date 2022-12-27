@@ -9,22 +9,32 @@ import ActionBtns from "../Buttons/ActionBtns/ActionBtns";
 import TogglesTab from "../Buttons/GarageSideButtons/RightSideButtons/Toggles/TogglesTab";
 import InfoTab from "../Buttons/GarageSideButtons/RightSideButtons/InfoTab/InfoTab";
 import ModelsTab from "../Buttons/GarageSideButtons/RightSideButtons/ModelsTab/ModelsTab";
-
+import { setSettings } from "../../redux/actions";
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+    return {
+    settings: state.garageSettings
+    };
+  };
+   const mapDispatchToProps = dispatch => {
+    return {
+      logOut: (settings)=> {
+        dispatch(setSettings(settings));
+      }     
+    };  
+  };
 const GarageContainer = (props)=>{
-const [showAxes, setShowAxes] = useState(false);
-const [axesSize, setAxesSize] = useState(1);
-
 return(<>
 <Suspense >
     <GeneralNavbar/>
-    <TogglesTab showAxes={showAxes} setShowAxes={setShowAxes} axesSize={axesSize} setAxesSize={setAxesSize}/>
+    <TogglesTab />
     <InfoTab/>
     <ModelsTab/>
-    <Garage showAxes={showAxes} axesSize={axesSize}/>
+    <Garage/>
     <GarageInstructions/>
     <ActionBtns/>
 </Suspense>
 <CookieModal/>
 </>)
 }
-export default GarageContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(GarageContainer);

@@ -10,7 +10,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import "./styles.css"
 import Loader2D from "../loader/Loader2D"
 import { connect } from 'react-redux';
-import { setGarage } from '../../redux/actions';
+import { setGarage, setSettings } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/3DepotLogoBig.png';
 import imgAlpha from '../../assets/3DepotLogoAlpha.png';
@@ -110,17 +110,16 @@ function Image() {
 
 const mapStateToProps = state => {
   return {
-  user: state.userInfo,
-  isGarage: state.isGarage
+  settings: state.garageSettings
   };
 };
  const mapDispatchToProps = dispatch => {
   return {
-    setGarage: ()=> {
-      dispatch(setGarage());
+    setSettings: (settings)=> {
+      dispatch(setSettings(settings));
     }     
   };  
-}; 
+};
 
 
 
@@ -145,9 +144,9 @@ function Garage(props) {
               <Image/>
         {/* {!props.isGarage && <Plane/>} */}
         <ambientLight intensity={.3}/>
-        <spotLight position={[200,800,500]} angle={0.3} color="white" intensity={1}/>
-        <spotLight position={[-600,800,500]} angle={0.3} color="white"/>
-        {props.showAxes && <primitive object={new THREE.AxesHelper(props.axesSize)}></primitive>}
+        {props.settings.light && <spotLight position={[200,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>}
+        {props.settings.light && <spotLight position={[-600,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>}
+        {props.settings.axes && <primitive object={new THREE.AxesHelper(props.settings.axesSize)}></primitive>}
         <FBXAsset/>
         </Suspense>
       </Canvas>
