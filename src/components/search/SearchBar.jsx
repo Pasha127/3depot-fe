@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { Button, Container, Form, Row,Image, InputGroup } from "react-bootstrap";
+import React from "react";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import { connect } from "react-redux";
 import { setFilters } from "../../redux/actions";
 import "./styles.css"

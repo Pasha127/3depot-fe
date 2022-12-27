@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from "react";
-import { Button, Container, Form, Row,Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Container, Form } from "react-bootstrap";
 import "./styles.css"
-import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
+import {BsPersonBoundingBox } from "react-icons/bs";
 import { connect } from "react-redux";
 import { getMeWithThunk } from "../../redux/actions";
 import { useRef } from "react";

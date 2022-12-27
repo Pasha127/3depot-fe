@@ -1,4 +1,4 @@
-.action-toggle{
+.action-toggle-square:hover{
     border: 2px solid black;
     border-radius: 50% 50% 0px 0px;
     width: 200px;
@@ -11,14 +11,8 @@
     bottom: -100px;
     z-index: 1;
     background-color: #ffffff;
+    transition: border-radius .3s;
 }
-/* .action-toggle:before{
-    font-family: Noto Emoji;
-    content: "✖️ ⬇️ ⬆️ ➡️";
-    position: absolute;
-    top: 20px;
-    left: 50px;
-} */
 .action-toggle-container{
     position: fixed;
     bottom:0px;
@@ -57,18 +51,19 @@
     height: 100vh;
 
 }
-.action-toggle-clicked{
+.action-toggle-square{
     border: 2px solid black;
     border-radius: 20px 20px 100% 100%;
-    width: 300px;
+    width: 200px;
     height: 150px;
     background-repeat: no-repeat;
     background-size: 80px 80px;
     background-position: -2px -15px;
     position: fixed;
-    left: calc(50vw - 150px);
+    left: calc(50vw - 100px);
     bottom: -100px;
-    z-index: 1;
+    z-index: 5;
+    transition: border-radius .3s;
 }
 .action-toggle-clicked2{
     border: 2px solid black;
@@ -81,8 +76,9 @@
     position: fixed;
     left: calc(50vw - 100px);
     bottom: -100px;
-    z-index: 1;
+    z-index: 5;
     background-color: #ffffff;
+    transition: border-radius .3s;
 }
 .delete-button-show{
     position: absolute;
@@ -164,40 +160,63 @@
     top: 35px;
     z-index: 0;
 }
-
-/* .delete-button-show::before{
-    font-size: 20pt;
-    font-family: Noto Emoji;
-    position: absolute;
-    left: 50px;
-    top: 40px;
-    content:"✖️";
-    z-index: 1;
+@media(max-width:290px){
+    .share-icon-action{font-size: 20pt;
+        position: absolute;
+        left: 30px;
+        top: 35px;
+        z-index: 0;
+    }
+    .trash-icon-action{font-size: 20pt;
+        position: absolute;
+        left: 85px;
+        top: 35px;
+        z-index: 0;
+    }
 }
-.upload-button-show::before{
-    font-size: 20pt;
-    font-family: Noto Emoji;
-    position: absolute;
-    left: 60px;
-    top: 25px;
-    content:"⬇️";
-    z-index: 1;
+@media(max-width:215px){
+    .share-icon-action{font-size: 20pt;
+        position: absolute;
+        left: 45px;
+        top: 5px;
+        z-index: 0;
+        rotate: 15deg;
+    }
+    .trash-icon-action{font-size: 20pt;
+        position: absolute;
+        left: 65px;
+        top: 5px;
+        z-index: 0;
+        rotate: -20deg;
+    }
+    .upload-icon-action{font-size: 20pt;
+        position: absolute;
+        left: 90px;
+        top: 0px;
+        z-index: 0;
+    }
+    .download-icon-action{font-size: 20pt;
+        position: absolute;
+        left: 5px;
+        top: 0px;
+        z-index: 0;
+    }
+    .delete-button-show{
+        position: absolute;
+        left: calc(50vw - 155px);
+        top: -123px;
+        transition: left .3s, top .3s;
+        cursor:pointer;
+        rotate: 20deg;
+        z-index: 1;
+    }
+    .share-button-show{
+        position: absolute;
+        left: calc(50vw + 13px);
+        top: -123px;
+        transition: left .3s, top .3s;
+        cursor:pointer;
+        rotate: -20deg;
+        z-index: 1;
+    }
 }
- .download-button-show::before{
-    font-size: 20pt;
-    font-family: Noto Emoji;
-    position: absolute;
-    left: 30px;
-    top:25px;
-    content:"⬆️";
-    z-index: 1;
-}
-.share-button-show::before{
-    font-size: 20pt;
-    font-family: Noto Emoji;
-    position: absolute;
-    left: 50px;
-    top: 40px;
-    content:"➡️";
-    z-index: 1;
-} */

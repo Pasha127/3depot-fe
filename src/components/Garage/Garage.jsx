@@ -1,15 +1,12 @@
 import React, { Suspense, useMemo, useState, useEffect } from 'react';
 import { Canvas, useLoader, useThree } from '@react-three/fiber';
-import { Environment, Html, Stars, useProgress, useTexture } from '@react-three/drei';
-import { Physics, useBox, useConvexPolyhedron, useCylinder, useHeightfield, usePlane, useTrimesh } from '@react-three/cannon';
+import { Environment, Html, useProgress} from '@react-three/drei';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import {Mesh, SubdivisionModifier} from 'three'
+import {Mesh} from 'three'
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { DDSLoader } from "three-stdlib";
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
-import Search from '../search/Search';
 import "./styles.css"
 import Loader2D from "../loader/Loader2D"
 import { connect } from 'react-redux';

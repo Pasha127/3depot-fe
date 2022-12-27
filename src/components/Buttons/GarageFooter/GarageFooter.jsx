@@ -1,9 +1,6 @@
-import React, { useCallback, useState } from "react";
-import { Button, Container, Form, Row,Image,Modal } from "react-bootstrap";
+import React from "react";
+import { Button} from "react-bootstrap";
 import "./styles.css"
-import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
-import { connect } from "react-redux";
-import { getMeWithThunk } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 
 const GarageFooter = ()=>{

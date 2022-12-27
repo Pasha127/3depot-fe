@@ -1,11 +1,7 @@
-import React, { useCallback, useState } from "react";
-import { Button, Container, Form, Row,Image } from "react-bootstrap";
+import React from "react";
 import "./styles.css"
-import {BsFillImageFill,BsPersonBoundingBox } from "react-icons/bs";
 import { connect } from "react-redux";
 import { getMeWithThunk } from "../../redux/actions";
-import GarageFooter from "../Buttons/GarageFooter/GarageFooter";
-import SearchNavBar from "../navbar/SearchNavBar";
 import CookieModal from "../CookieModal/CookieModal";
 import SearchCardContainer from "../SearchCardContainer/SearchCardContainer";
 import { useEffect } from "react";

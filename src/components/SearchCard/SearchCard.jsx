@@ -1,6 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { useEffect } from "react";
-import { Button, Container, Form, Row,Image, Modal, Card } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setGarage } from "../../redux/actions";
@@ -59,7 +58,7 @@ return(<>
         </Card.Text>
         <Button className={`${buttonClass}`} variant="dark"
         onClick={()=>{handleButton()}}
-        >View in 3D</Button>
+        ><h4 className="mt-n1">View in 3D</h4></Button>
       </Card.Body>
     </Card>
 </>)

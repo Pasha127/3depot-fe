@@ -1,7 +1,6 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
-import { Button, Container, Form, Row,Image, Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 import "./styles.css"
 
 

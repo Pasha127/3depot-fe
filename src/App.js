@@ -1,16 +1,11 @@
-import logo from './logo.svg';
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Loader3D from './components/loader/Loader3D';
-import Loader2D from './components/loader/Loader2D';
 import LogIn from './components/log-in/logIn';
-import { Suspense } from 'react';
 import { getMeWithThunk } from "../src/redux/actions";
 import Search from './components/search/Search';
-import NavBar from './components/navbar/GeneralNavbar'
 import GarageContainer from './components/GarageContainer/GarageContainer';
 const mapStateToProps = state => {
   return {

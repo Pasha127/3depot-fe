@@ -106,8 +106,10 @@
   height: 100vh;
   top: 0;
   width: 400px;
+  pointer-events: none;
 }
 #hanging-button-container .btn{
+  pointer-events: all;
   font-size: 20pt;
   color: black;
   border-radius: 0px 50% 50% 0px !important;

@@ -3,20 +3,36 @@
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    background-image: url("../../../../public/Axes.svg");
-    background-repeat: no-repeat;
-    background-size: 80px 80px;
-    background-position: -2px -15px;
     background-color: #ffffff;
+    transition: border-radius .3s;
+}
+.axes-toggle-off{
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background-color: #000000;
+    transition: border-radius .3s;
+    color: #ffffff;
+}
+.svg-container{
+    position: absolute;
+    top: 5px;
+    left: 25px;
+    width: 30px;
+}
+.svg-image{
+    width: 100%;
 }
 .axes-toggle-container{
     position: absolute;
-    top:100px;
-    right: 20px;
+    top:0px;
+   left: 90px;
     z-index: 1; 
 }
 .axes-plus{
     position: absolute;
+    font-weight: 800;
     width: 40px;
     height: 40px;
     border: 1px solid black;
@@ -26,9 +42,11 @@
     right:0px;
     z-index: 1;
     background-color: #ffffff;
+    transition: border-radius .3s;
 }
 .axes-minus{
     background-color: #ffffff;
+    font-weight: 800;
     position: absolute;
     width: 40px;
     height: 40px;
@@ -38,8 +56,15 @@
     top: 40px;
     right:40px;
     z-index: 1;
+    transition: border-radius .3s;
 }
 .axes-toggle:hover{
+    border: 2px solid black;
+    border-radius: 20px 20px 100% 100%;
+    transition: border-radius .3s;
+    
+}
+.axes-toggle-off:hover{
     border: 2px solid black;
     border-radius: 20px 20px 100% 100%;
     transition: border-radius .3s;
@@ -57,14 +82,9 @@
     border-radius: 0% 0% 0% 10px;
     border-width: 1px 1px 2px 2px;
     transition: border-radius .3s;
-    
-    
 }
+
 @media (max-width: 768px){
-    .axes-toggle-container{
-        position: absolute;
-    top:140px;
-    right: 20px;
-    z-index: 1; 
-    }
+    
+    
 }

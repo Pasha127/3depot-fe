@@ -30,7 +30,7 @@ top: 0;
 left: 0;
 z-index: -1;
 }
-.button-show::after{
+/* .button-show::after{
 background-image: url("/public/3DepotLogo32.ico");
 content: "";
 position: absolute;
@@ -53,7 +53,7 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 left: 158px
-}
+} */
 .card.search-card{
     border: 1px solid black;
     margin: 4px;
@@ -82,7 +82,7 @@ left: 0px;
 justify-content: left;
 padding-left: 21px;
 }
-.button-show::after{
+/* .button-show::after{
 background-image: url("/public/3DepotLogo32.ico");
 content: "";
 position: absolute;
@@ -105,7 +105,7 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 left: 74px
-}
+} */
 .info-show{
     z-index: 2;
     position: absolute;

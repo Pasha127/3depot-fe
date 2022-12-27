@@ -1,0 +1,83 @@
+.toggle-tab{
+  position: fixed;
+  top: 100px;
+  right: -20px;
+  width: 15px;
+  height:80px;
+  z-index: 2;
+  pointer-events: all;
+  font-size: 20pt;
+  border-radius: 50% 0px 0px 50% !important;
+  padding-inline: 30px;
+  border-radius: 0px 0px 4px 4px;
+  transition: border-radius .3s, width .3s, right .3s;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  
+}
+.toggle-tab:hover{
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  width: 35px;
+  right: -2px;
+  transition: border-radius .3s, width .3s, right .3s;
+  z-index: 2;
+  border-radius: 20px 0px 0px 20px !important;
+}
+.icon-container{
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  transition: top .3s, left .3s;
+}
+.toggle-tab:hover .icon-container{
+  position: absolute;
+  top: 0px;
+  left: 16px;
+  transition: top .3s, left .3s;
+  z-index: 2;
+}
+.toggle-tray{
+  position: fixed;
+  top: 100px;
+  right: -26px;
+  width: 250px;
+  height:80px;
+  z-index: 1;
+  transition: width .3s, right .3s;
+}
+.toggle-tray-closed{
+  position: fixed;
+  top: 100px;
+  right: -300px;
+  width: 250px;
+  height:80px;
+  z-index: 1;
+  transition: width .3s, right .3s;
+}
+.toggle-label{
+  opacity: 0;
+  font-size: 10pt;
+  position: absolute;
+  top: 35px;
+  left: 30px;
+  padding: 0;
+  transition: top .3s, left .3s,  opacity .3s;
+  line-height: 90%;
+}
+.toggle-tab:hover .toggle-label{
+  font-size: 10pt;
+  position: absolute;
+  top: 45px;
+  left: 5px;
+  padding: 0;
+  transition: top .3s, left .3s,  opacity .3s;
+  z-index: 2;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+  line-height: 90%;
+}

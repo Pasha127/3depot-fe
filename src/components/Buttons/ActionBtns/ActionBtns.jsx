@@ -1,15 +1,14 @@
-import React, { useCallback, useState } from "react";
-import { Button, Container, Form, Row,Image } from "react-bootstrap";
+import React, { useState } from "react";
 import deleteButton from "../../../assets/Delete.svg"
 import uploadButton from "../../../assets/Upload.svg"
 import downloadButton from "../../../assets/Download.svg"
 import shareButton from "../../../assets/Share.svg"
 import "./styles.css"
-import { ArrowDown, ArrowDownLeft, ArrowDownRight, ArrowDownShort, ChevronDoubleDown, ChevronDown, Download, Share, Trash, Upload, X } from "react-bootstrap-icons";
+import { ChevronDoubleDown, Download, Share, Trash, Upload } from "react-bootstrap-icons";
 
 
 const ActionBtns = (props)=>{
-    const [actionClass, setActionClass] = useState("action-toggle")
+    const [actionClass, setActionClass] = useState("action-toggle-square")
     const [deleteClass, setDeleteClass] = useState("delete-button-hide")
     const [uploadClass, setUploadClass] = useState("upload-button-hide")
     const [downloadClass, setDownloadClass] = useState("download-button-hide")
@@ -18,7 +17,7 @@ const ActionBtns = (props)=>{
     const [actionIconsContract, setActionIconsContract] = useState("d-none")
 
     const handleToggle = () =>{
-        if (actionClass === "action-toggle"){
+        if (actionClass === "action-toggle-square"){
             setActionClass("action-toggle-clicked2")
             setDeleteClass("delete-button-show")
             setUploadClass("upload-button-show")
@@ -27,8 +26,8 @@ const ActionBtns = (props)=>{
             setActionIconsContract("action-icons2")
             setActionIcons("d-none")
         }
-        if (actionClass === "action-toggle-clicked2"){
-            setActionClass("action-toggle")
+        else{
+            setActionClass("action-toggle-square")
             setDeleteClass("delete-button-hide")
             setUploadClass("upload-button-hide")
             setDownloadClass("download-button-hide")
