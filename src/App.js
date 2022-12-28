@@ -7,6 +7,7 @@ import LogIn from './components/log-in/logIn';
 import { getMeWithThunk } from "../src/redux/actions";
 import Search from './components/search/Search';
 import GarageContainer from './components/GarageContainer/GarageContainer';
+import Search3D from "./components/search/Search3D";
 const mapStateToProps = state => {
   return {
   user: state.userInfo
@@ -30,7 +31,7 @@ function App(props) {
   return (<>
     <Router>
       <Routes>
-        <Route path='/' exact element={<Search/>}/>
+        <Route path='/' exact element={<Search3D/>}/>
         <Route path="/LogIn" exact element={<LogIn />} /> 
         <Route path="/Garage" exact element={<GarageContainer/>} />
       </Routes>

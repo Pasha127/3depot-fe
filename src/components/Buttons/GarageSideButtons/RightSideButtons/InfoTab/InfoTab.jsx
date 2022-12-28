@@ -3,7 +3,7 @@ import { Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
 import { logOutWithThunk } from "../../../../../redux/actions";
-import { InfoCircle} from 'react-bootstrap-icons';
+import { InfoCircle, X} from 'react-bootstrap-icons';
 import { useState } from "react";
 const mapStateToProps = state => {
   return {
@@ -38,6 +38,18 @@ const InfoTab = (props) => {
               <div className="info-label">Model Info</div>
               </Button>
         <div className={trayState}>
+          <div className="info-tray-details"
+          onClick={(e)=>{e.stopPropagation()}}
+          >
+            Text Goes Here
+          </div>
+          <X className="info-tray-close-icon" 
+          onClick={(e)=>{
+            e.stopPropagation();
+            handleToggle();
+            console.log("click");}}
+          />
+
         </div>
         </>);
 };
