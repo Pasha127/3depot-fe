@@ -2,6 +2,7 @@ import { emitLogOut } from "../components/chat/Chat";
 
 export const LOADING = "LOADING";
 export const SETTINGS = "SETTINGS";
+export const SEARCH_SETTINGS = "SEARCH_SETTINGS";
 export const GARAGE = "GARAGE";
 export const FILTERS = "FILTERS";
 export const SEARCH = "SEARCH";
@@ -19,6 +20,10 @@ export const setLoading =isLoading =>({
   });
 export const setSettings =settingsData =>({
     type:SETTINGS,
+    payload: settingsData
+  });
+export const setSearchSettings =settingsData =>({
+    type:SEARCH_SETTINGS,
     payload: settingsData
   });
 export const setGarage =isGarage =>({

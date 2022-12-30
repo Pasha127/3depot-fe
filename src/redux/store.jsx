@@ -3,6 +3,9 @@ import thunk from 'redux-thunk';
 import reducer from './reducer';
 
 export const initialState = {
+  searchSettings:{
+    activeAsset:""
+  },
   garageSettings: {
     red: 255,
     green: 255,

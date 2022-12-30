@@ -2,7 +2,6 @@ import React, { Suspense, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { Environment, Html, useProgress} from '@react-three/drei';
 import { Physics, useBox, useConvexPolyhedron, useCylinder, useHeightfield, usePlane, useTrimesh } from '@react-three/cannon';
-import { animated } from "react-spring/three";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {Mesh} from 'three'
@@ -12,7 +11,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import "./styles.css"
 import Loader2D from "../loader/Loader2D"
 import { connect } from 'react-redux';
-import { setGarage, setSettings } from '../../redux/actions';
+import { setGarage, setSearchSettings, setSettings } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/3DepotLogoBig.png';
 import imgAlpha from '../../assets/3DepotLogoAlpha.png';
@@ -140,17 +139,19 @@ function Box(props) {
     raycaster.set( vector, direction );
     const intersects = raycaster.intersectObjects(objects); */
     if(canClick){
+        props.setActiveAsset("rifle placeholder")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
         setCanClick(false);
         setTimeout(()=>setCanClick(true),2000)
         if(!clicked){
-    api.velocity.set(0,3,3);
-    api.applyTorque([4,10,1])
-    setClicked(true)}
-    else{
-        api.velocity.set(0,3,-3);
-        api.applyTorque([-4,-10,-1])
-        setClicked(false)}
-    }}
+            api.velocity.set(0,3,3);
+            api.applyTorque([4,10,1])
+            setClicked(true)}
+            else{
+                props.setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
+                api.velocity.set(0,3,-3);
+                api.applyTorque([-4,-10,-1])
+                setClicked(false)}
+            }}
 }
   
   ref={ref} >
@@ -199,35 +200,41 @@ function RearPlane() {
 }
 
 
-function PreviewAsset(){
+function PreviewAsset(props){
 const rotatingMesh = useRef();
-const [active, setActive] = useState(false);
 
+    const SelectedMesh =()=>{
+        return(<>
+        {props.activeAsset &&<FBXAsset/>}{/*  //refreshing entire page */}
+        </>
+        )
+    }
 useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
     rotatingMesh.current.rotation.y = elapsedTime;
   });
 
     return(<>
-        {active && <animated.mesh ref={rotatingMesh} position={[.05,.5,1.73]} rotation={[0,0,0]}>
+        <mesh ref={rotatingMesh} position={[.05,.5,1.73]} rotation={[0,0,0]}>
           <boxBufferGeometry  attach="geometry" args={[1,1,1]}/>
           <meshLambertMaterial attach="material" wireframe={true} />
-          <FBXAsset/>
-        </animated.mesh>}
+            <SelectedMesh/>
+        </mesh>
     </>);
 }
 
 
 const mapStateToProps = state => {
   return {
-  settings: state.garageSettings
+  settings: state.garageSettings,
+  searchSettings: state.searchSettings
   };
 };
  const mapDispatchToProps = dispatch => {
   return {
-    setSettings: (settings)=> {
+    setSearchSettings: (settings)=> {
       dispatch(setSettings(settings));
-    }     
+    }    
   };  
 };
 
@@ -236,6 +243,7 @@ const mapStateToProps = state => {
 
 function SearchCanvas(props) {
     const [oneActive,setOneActive] = useState(false);
+    const [activeAsset,setActiveAsset] = useState("");
   const navigate = useNavigate();
   const goToLogIn = () => navigate('/LogIn');
   
@@ -252,11 +260,11 @@ function SearchCanvas(props) {
         <Physics>
         <RearPlane/>
         <FloorPlane/>
-        <Box key={1.5} xPos={1.5}/>
-        <Box key={3.5} xPos={3.5}/>
-        <Box key={5.5} xPos={5.5}/>
+        <Box activeAsset={activeAsset} setActiveAsset={setActiveAsset} key={1.5} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
+        <Box activeAsset={props.searchSettings.activeAsset} setActiveAsset={props.setSearchSettings} key={3.5} xPos={3.5}/>
+        <Box activeAsset={props.searchSettings.activeAsset} setActiveAsset={props.setSearchSettings} key={5.5} xPos={5.5}/>
         </Physics>
-        <PreviewAsset/>
+        <PreviewAsset  activeAsset={activeAsset}/>
         <ambientLight intensity={.3}/>
         <spotLight position={[200,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>
         <spotLight position={[-600,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>
