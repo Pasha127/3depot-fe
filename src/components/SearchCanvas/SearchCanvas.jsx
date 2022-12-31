@@ -110,6 +110,7 @@ function FBXAsset() {
 function Box(props) {
     const [clicked,setClicked] = useState(false);
     const [canClick,setCanClick] = useState(true);
+    const [activeAsset,setActiveAsset] = useState("");
     const navigate = useNavigate();
     const goToGarage = () => navigate('/Garage');
     const texture = new THREE.TextureLoader().load( crate );
@@ -139,7 +140,7 @@ function Box(props) {
     raycaster.set( vector, direction );
     const intersects = raycaster.intersectObjects(objects); */
     if(canClick){
-        props.setActiveAsset("rifle placeholder")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
+        setTimeout(()=>setActiveAsset("rifle placeholder"),2000)  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
         setCanClick(false);
         setTimeout(()=>setCanClick(true),2000)
         if(!clicked){
@@ -147,7 +148,7 @@ function Box(props) {
             api.applyTorque([4,10,1])
             setClicked(true)}
             else{
-                props.setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
+                setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
                 api.velocity.set(0,3,-3);
                 api.applyTorque([-4,-10,-1])
                 setClicked(false)}
@@ -168,6 +169,7 @@ function Box(props) {
         <planeBufferGeometry attach="geometry" args={[1,1]}/>
         <meshStandardMaterial attach="material" map={texture2} color="black" transparent/>
     </mesh>
+    <PreviewAsset  activeAsset={activeAsset}/>
   </mesh>
 
   
@@ -215,7 +217,7 @@ useFrame(({ clock }) => {
   });
 
     return(<>
-        <mesh ref={rotatingMesh} position={[.05,.5,1.73]} rotation={[0,0,0]}>
+        <mesh ref={rotatingMesh} position={[0,0,1]} rotation={[pi/2,0,0]}>
           <boxBufferGeometry  attach="geometry" args={[1,1,1]}/>
           <meshLambertMaterial attach="material" wireframe={true} />
             <SelectedMesh/>
@@ -243,7 +245,7 @@ const mapStateToProps = state => {
 
 function SearchCanvas(props) {
     const [oneActive,setOneActive] = useState(false);
-    const [activeAsset,setActiveAsset] = useState("");
+
   const navigate = useNavigate();
   const goToLogIn = () => navigate('/LogIn');
   
@@ -260,11 +262,10 @@ function SearchCanvas(props) {
         <Physics>
         <RearPlane/>
         <FloorPlane/>
-        <Box activeAsset={activeAsset} setActiveAsset={setActiveAsset} key={1.5} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
-        <Box activeAsset={props.searchSettings.activeAsset} setActiveAsset={props.setSearchSettings} key={3.5} xPos={3.5}/>
-        <Box activeAsset={props.searchSettings.activeAsset} setActiveAsset={props.setSearchSettings} key={5.5} xPos={5.5}/>
+        <Box key={1.5} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
+        <Box key={3.5} xPos={3.5}/>
+        <Box key={5.5} xPos={5.5}/>
         </Physics>
-        <PreviewAsset  activeAsset={activeAsset}/>
         <ambientLight intensity={.3}/>
         <spotLight position={[200,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>
         <spotLight position={[-600,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>
