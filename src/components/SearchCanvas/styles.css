@@ -19,7 +19,9 @@
     left: calc(50vw - 60px);
     pointer-events: all;
     border-radius: 10px;
+    cursor: pointer;
 }
 .btn-interior-txt{
-
+    font-size: 15;
+    font-weight: 600;
 }

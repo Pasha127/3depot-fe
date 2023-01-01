@@ -16,7 +16,6 @@ import { useNavigate } from 'react-router-dom';
 import crate from '../../assets/crate.png';
 import crateStencil from '../../assets/crateStencil2.png';
 import warehouseWall from '../../assets/warehouseBG.png';
-import floorAlpha from '../../assets/floorAlpha.png';
 import { useRef } from 'react';
 
 const pi= Math.PI;
@@ -127,10 +126,7 @@ function Box(props) {
     const [clicked,setClicked] = useState(false);
     const [canClick,setCanClick] = useState(true);
     const [activeAsset,setActiveAsset] = useState("");
-    const navigate = useNavigate();
-    const goToGarage = () => navigate('/Garage');
     const texture = new THREE.TextureLoader().load( crate );
-    const textureStencil = new THREE.TextureLoader().load( crateStencil );
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set( 1, 1);
@@ -141,6 +137,26 @@ function Box(props) {
     texture.repeat.set( 1, 1);
     texture.rotation=(pi)
 
+    const openBox = ()=>{
+      api.velocity.set(0,3,3);
+      api.applyTorque([4,10,1])
+      setTimeout(()=>setActiveAsset("rifle placeholder"),2000)  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
+      setTimeout(()=>props.setSearchSettings({activeAsset:"rifle placeholder"}),2000)  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
+      setClicked(true)}
+    const closeBox = ()=>{
+      setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
+      props.setSearchSettings({activeAsset:""})
+      api.velocity.set(0,3,-3);
+      api.applyTorque([-4,-10,-1])
+      setClicked(false)
+    }
+    const clickBox = ()=>{
+      props.setSearchSettings({cameraPos:props.xPos-1.45})
+      setCanClick(false);
+      setTimeout(()=>setCanClick(true),2000)
+      props.setActiveBox(props.xPos)
+    }
+
     const [ref, api] = useBox(()=>({
       mass:1,
       position: [props.xPos,5,0],
@@ -150,28 +166,14 @@ function Box(props) {
     return(<>
   <mesh onClick={(e)=>{
     e.stopPropagation()
-    props.setSearchSettings({cameraPos:props.xPos-1.45})
-    /* const raycaster = new THREE.Raycaster();
-    const vector = new THREE.Vector3( 0, 0, 0 ); // instead of event.client.x and event.client.y
-    const direction = new THREE.Vector3( 0, 0, -1 ).transformDirection( camera.matrixWorld );
-    raycaster.set( vector, direction );
-    const intersects = raycaster.intersectObjects(objects); */
     if(canClick){
-      setCanClick(false);
-      setTimeout(()=>setCanClick(true),2000)
-      props.setActiveBox(props.xPos)
+      clickBox()
       if(!clicked){
-        api.velocity.set(0,3,3);
-        api.applyTorque([4,10,1])
-        setTimeout(()=>setActiveAsset("rifle placeholder"),2000)  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
-        setClicked(true)}
+        openBox()}
         else{
-          setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
-          api.velocity.set(0,3,-3);
-          api.applyTorque([-4,-10,-1])
-          setClicked(false)}
+          closeBox()
         }}
-}
+  }}
   
 ref={ref} >
     <boxBufferGeometry attach="geometry" args={[1,1]}/>
@@ -180,14 +182,11 @@ ref={ref} >
         <planeBufferGeometry attach="geometry" args={[1,1]}/>
         <meshStandardMaterial attach="material" map={texture2} transparent/>
     </mesh>
-    <mesh rotation={[pi/2,pi,0]} position={[0,.501,0]} onClick={(e)=>{
-        /* e.stopPropagation()
-        goToGarage(); */
-    }}>
+    <mesh rotation={[pi/2,pi,0]} position={[0,.501,0]}>
         <planeBufferGeometry attach="geometry" args={[1,1]}/>
         <meshStandardMaterial attach="material" map={texture2} color="black" transparent/>
     </mesh>
-    <PreviewAsset  activeAsset={activeAsset}/>
+    <PreviewAsset activeAsset={activeAsset}/>
   </mesh>
 
   
@@ -197,7 +196,6 @@ ref={ref} >
 
 
 function FloorPlane() {
-    const textureAlpha = useLoader(THREE.TextureLoader, floorAlpha)
      const [ref] = usePlane(()=>({
         position:[0,-1,3],
         rotation:[-pi/2,0,0]
@@ -205,7 +203,7 @@ function FloorPlane() {
   return(
 <mesh ref={ref} position={[0,-1,0]} rotation={[-pi/2,0,pi/2]}>
   <planeBufferGeometry  attach="geometry" args={[10,10,200]}/>
-  <meshStandardMaterial attach="material" alphaMap={textureAlpha} transparent /* map={textureFC} roughnessMap={textureFR} normalMap={textureFN} *//>
+  <meshStandardMaterial attach="material" opacity={0} transparent /* map={textureFC} roughnessMap={textureFR} normalMap={textureFN} *//>
 </mesh>
   );
 }
@@ -224,6 +222,8 @@ function RearPlane(props) {
 
 function PreviewAsset(props){
 const rotatingMesh = useRef();
+const navigate = useNavigate();
+const goToGarage = () => navigate('/Garage');
  const [displayable,setDisplayable] =useState(true)
  setTimeout(()=>{setDisplayable(false)},1)
     
@@ -233,8 +233,9 @@ useFrame(({ clock }) => {
   });
 
     return(<>
-        <mesh ref={rotatingMesh} position={[0,0,1]} rotation={[pi/2,0,0]}>
-          <boxBufferGeometry  attach="geometry" args={[1,1,1]}/>
+        <mesh ref={rotatingMesh} position={[0,0,1]} rotation={[pi/2,0,0]} 
+        onClick={goToGarage}>
+          <boxBufferGeometry  attach="geometry" args={[.01,.01,.01]}/>
           <meshStandardMaterial attach="material" opacity={0} color={"rgba(0,0,0,0)"} transparent/>
             {(displayable || props.activeAsset) && <FBXAsset/>}
         </mesh>
@@ -260,11 +261,13 @@ const mapStateToProps = state => {
 
 
 function SearchCanvas(props) {
+  useEffect(()=>{props.setSearchSettings({activeAsset:""})},[])
     const [activeBox,setActiveBox] = useState(1.5);
    /*  const [camVector,setCamVector] = useState(0); */
 
   const navigate = useNavigate();
   const goToLogIn = () => navigate('/LogIn');
+    const goToGarage = () => navigate('/Garage');
   
   const ScrollController = () =>{
     const { camera, gl } = useThree();
@@ -302,7 +305,9 @@ function SearchCanvas(props) {
       
     </div>
     {props.searchSettings.activeAsset && <div className="ui-container">
-      <div className="view-btn">
+      <div className="view-btn" onClick={()=>
+          goToGarage()
+      }>
         <div className="btn-interior-txt">View in 3D</div>
       </div>
     </div>}
