@@ -17,6 +17,8 @@ import crate from '../../assets/crate.png';
 import crateStencil from '../../assets/crateStencil2.png';
 import warehouseWall from '../../assets/warehouseBG.png';
 import { useRef } from 'react';
+import ScrollRightTab from './ScrollTabs/ScrollRightTab/ScrollRightTab';
+import ScrollLeftTab from './ScrollTabs/ScrollLeftTab/ScrollLeftTab';
 
 const pi= Math.PI;
 
@@ -245,7 +247,6 @@ useFrame(({ clock }) => {
 
 const mapStateToProps = state => {
   return {
-  settings: state.garageSettings,
   searchSettings: state.searchSettings
   };
 };
@@ -297,13 +298,15 @@ function SearchCanvas(props) {
         <Box key={9.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={9.5}/>
         </Physics>
         <ambientLight intensity={.3}/>
-        <spotLight position={[200,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>
-        <spotLight position={[-600,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>
-        <primitive object={new THREE.AxesHelper(props.settings.axesSize)}></primitive>
+        <spotLight position={[200,800,500]} angle={0.3} />
+        <spotLight position={[-600,800,500]} angle={0.3}/>
+        <primitive object={new THREE.AxesHelper(1)}></primitive>
         </Suspense>
       </Canvas>
       
     </div>
+    <ScrollRightTab/>
+    <ScrollLeftTab/>
     {props.searchSettings.activeAsset && <div className="ui-container">
       <div className="view-btn" onClick={()=>
           goToGarage()

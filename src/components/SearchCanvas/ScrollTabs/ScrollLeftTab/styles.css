@@ -1,0 +1,65 @@
+.left-tab{
+  position: fixed;
+  top: 195px;
+  left: -20px;
+  width: 15px;
+  height:80px;
+  z-index: 2;
+  pointer-events: all;
+  font-size: 20pt;
+  border-radius: 0% 50% 50% 0% !important;
+  padding-inline: 30px;
+  border-radius: 4px 4px 0px 0px;
+  transition: border-radius .3s, width .3s, right .3s;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  
+}
+.left-tab:hover{
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  width: 35px;
+  left: -2px;
+  transition: border-radius .3s, width .3s, right .3s;
+  z-index: 2;
+  border-radius: 0px 20px 20px 0px !important;
+}
+.left-icon-container{
+  position: absolute;
+  top: 13px;
+  left: 20px;
+  transition: top .3s, left .3s;
+}
+.left-tab:hover .left-icon-container{
+  position: absolute;
+  top: 0px;
+  left: 16px;
+  transition: top .3s, left .3s;
+  z-index: 2;
+}
+.left-tab-label{
+  opacity: 0;
+  font-size: 10pt;
+  position: absolute;
+  top: 40px;
+  left: -30px;
+  padding: 0;
+  transition: top .3s, left .3s,  opacity .3s;
+  line-height: 90%;
+}
+.left-tab:hover .left-tab-label{
+  font-size: 10pt;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  padding: 0;
+  transition: top .3s, left .3s,  opacity .3s;
+  z-index: 2;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+  line-height: 90%;
+}
