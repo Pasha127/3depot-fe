@@ -35,7 +35,7 @@
 .model-tab:hover .icon-container{
   position: absolute;
   top: 0px;
-  left: 16px;
+  left: 18px;
   transition: top .3s, left .3s;
   z-index: 2;
 }

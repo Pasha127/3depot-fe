@@ -1,10 +1,10 @@
 import React, { Suspense, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { Environment, Html, useProgress} from '@react-three/drei';
+import { Environment, Html, Scroll, useProgress} from '@react-three/drei';
 import { Physics, useBox, useConvexPolyhedron, useCylinder, useHeightfield, usePlane, useTrimesh } from '@react-three/cannon';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import {Mesh} from 'three'
+import {Mesh, Vector3} from 'three'
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { DDSLoader } from "three-stdlib";
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
@@ -29,9 +29,7 @@ const assetURL=`https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
-const ScrollController = () =>{
-    
-}
+
 
 function Loader() {
     return <Html center>
@@ -134,28 +132,29 @@ function Box(props) {
     return(<>
   <mesh onClick={(e)=>{
     e.stopPropagation()
+    props.setCamVector((props.xPos -1.5))
     /* const raycaster = new THREE.Raycaster();
     const vector = new THREE.Vector3( 0, 0, 0 ); // instead of event.client.x and event.client.y
     const direction = new THREE.Vector3( 0, 0, -1 ).transformDirection( camera.matrixWorld );
     raycaster.set( vector, direction );
     const intersects = raycaster.intersectObjects(objects); */
     if(canClick){
+      setCanClick(false);
+      setTimeout(()=>setCanClick(true),2000)
+      if(!clicked){
+        api.velocity.set(0,3,3);
+        api.applyTorque([4,10,1])
         setTimeout(()=>setActiveAsset("rifle placeholder"),2000)  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
-        setCanClick(false);
-        setTimeout(()=>setCanClick(true),2000)
-        if(!clicked){
-            api.velocity.set(0,3,3);
-            api.applyTorque([4,10,1])
-            setClicked(true)}
-            else{
-                setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
-                api.velocity.set(0,3,-3);
-                api.applyTorque([-4,-10,-1])
-                setClicked(false)}
-            }}
+        setClicked(true)}
+        else{
+          setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
+          api.velocity.set(0,3,-3);
+          api.applyTorque([-4,-10,-1])
+          setClicked(false)}
+        }}
 }
   
-  ref={ref} >
+ref={ref} >
     <boxBufferGeometry attach="geometry" args={[1,1]}/>
     <meshStandardMaterial attatch="material" map={texture} transparent/>
     <mesh rotation={[pi/2,0,pi]} position={[0,-.501,0]}>
@@ -245,26 +244,32 @@ const mapStateToProps = state => {
 
 function SearchCanvas(props) {
     const [oneActive,setOneActive] = useState(false);
+    const [camVector,setCamVector] = useState(0);
 
   const navigate = useNavigate();
   const goToLogIn = () => navigate('/LogIn');
   
-/*   useEffect(()=>{
-    !props.user._id && goToLogIn()
-  },[]) */
+  const ScrollController = () =>{
+    const { camera, gl } = useThree();
+    useFrame(({ clock }) => {
+      const elapsedTime = clock.getElapsedTime();
+      camera.position.lerp(new Vector3(camVector, 0,5), 0.1);
+    });
+  }
 
 
   return (
     <div className="canvas-container">
       <Canvas>
         <Suspense fallback={<Loader/>}>
-        <CameraController/>
+        {/* <CameraController/> */}
+        <ScrollController/>
         <Physics>
         <RearPlane/>
         <FloorPlane/>
-        <Box key={1.5} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
-        <Box key={3.5} xPos={3.5}/>
-        <Box key={5.5} xPos={5.5}/>
+        <Box key={1.5} setCamVector={setCamVector} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
+        <Box key={3.5} setCamVector={setCamVector} xPos={3.5}/>
+        <Box key={5.5} setCamVector={setCamVector} xPos={5.5}/>
         </Physics>
         <ambientLight intensity={.3}/>
         <spotLight position={[200,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>
