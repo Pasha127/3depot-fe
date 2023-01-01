@@ -1,0 +1,25 @@
+.ui-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    z-index: 10;
+    pointer-events: none;
+}
+.view-btn{
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 2px solid black;
+    width: 120px;
+    height: 40px;
+    background-color: white;
+    top:730px;
+    left: calc(50vw - 60px);
+    pointer-events: all;
+    border-radius: 10px;
+}
+.btn-interior-txt{
+
+}

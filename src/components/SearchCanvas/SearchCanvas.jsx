@@ -13,14 +13,11 @@ import Loader2D from "../loader/Loader2D"
 import { connect } from 'react-redux';
 import { setGarage, setSearchSettings, setSettings } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
-import img from '../../assets/3DepotLogoBig.png';
-import imgAlpha from '../../assets/3DepotLogoAlpha.png';
 import crate from '../../assets/crate.png';
 import crateStencil from '../../assets/crateStencil2.png';
-import crateWall from '../../assets/warehouseBG.png';
+import warehouseWall from '../../assets/warehouseBG.png';
 import floorAlpha from '../../assets/floorAlpha.png';
 import { useRef } from 'react';
-
 
 const pi= Math.PI;
 
@@ -104,6 +101,27 @@ function FBXAsset() {
     
 }
 
+function useOutsideAlerter(ref) {
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        alert("You clicked outside of me!");
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+}
+
+
+
 
 function Box(props) {
     const [clicked,setClicked] = useState(false);
@@ -132,7 +150,7 @@ function Box(props) {
     return(<>
   <mesh onClick={(e)=>{
     e.stopPropagation()
-    props.setCamVector((props.xPos -1.5))
+    props.setSearchSettings({cameraPos:props.xPos-1.45})
     /* const raycaster = new THREE.Raycaster();
     const vector = new THREE.Vector3( 0, 0, 0 ); // instead of event.client.x and event.client.y
     const direction = new THREE.Vector3( 0, 0, -1 ).transformDirection( camera.matrixWorld );
@@ -141,6 +159,7 @@ function Box(props) {
     if(canClick){
       setCanClick(false);
       setTimeout(()=>setCanClick(true),2000)
+      props.setActiveBox(props.xPos)
       if(!clicked){
         api.velocity.set(0,3,3);
         api.applyTorque([4,10,1])
@@ -190,10 +209,12 @@ function FloorPlane() {
 </mesh>
   );
 }
-function RearPlane() {
-    const textureWC = new THREE.TextureLoader().load( crateWall );
+
+
+function RearPlane(props) {
+    const textureWC = new THREE.TextureLoader().load( warehouseWall );
   return(
-<mesh position={[0,-.2,-1]} rotation={[0,0,0]}>
+<mesh position={[props.xPos,-.2,-1]} rotation={[0,0,0]}>
   <planeBufferGeometry  attach="geometry" args={[19,9,200]}/>
   <meshLambertMaterial attach="material"  map={textureWC} />
 </mesh>
@@ -203,13 +224,9 @@ function RearPlane() {
 
 function PreviewAsset(props){
 const rotatingMesh = useRef();
-
-    const SelectedMesh =()=>{
-        return(<>
-        {props.activeAsset &&<FBXAsset/>}{/*  //refreshing entire page */}
-        </>
-        )
-    }
+ const [displayable,setDisplayable] =useState(true)
+ setTimeout(()=>{setDisplayable(false)},1)
+    
 useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
     rotatingMesh.current.rotation.y = elapsedTime;
@@ -218,8 +235,8 @@ useFrame(({ clock }) => {
     return(<>
         <mesh ref={rotatingMesh} position={[0,0,1]} rotation={[pi/2,0,0]}>
           <boxBufferGeometry  attach="geometry" args={[1,1,1]}/>
-          <meshLambertMaterial attach="material" wireframe={true} />
-            <SelectedMesh/>
+          <meshStandardMaterial attach="material" opacity={0} color={"rgba(0,0,0,0)"} transparent/>
+            {(displayable || props.activeAsset) && <FBXAsset/>}
         </mesh>
     </>);
 }
@@ -234,7 +251,7 @@ const mapStateToProps = state => {
  const mapDispatchToProps = dispatch => {
   return {
     setSearchSettings: (settings)=> {
-      dispatch(setSettings(settings));
+      dispatch(setSearchSettings(settings));
     }    
   };  
 };
@@ -243,8 +260,8 @@ const mapStateToProps = state => {
 
 
 function SearchCanvas(props) {
-    const [oneActive,setOneActive] = useState(false);
-    const [camVector,setCamVector] = useState(0);
+    const [activeBox,setActiveBox] = useState(1.5);
+   /*  const [camVector,setCamVector] = useState(0); */
 
   const navigate = useNavigate();
   const goToLogIn = () => navigate('/LogIn');
@@ -253,23 +270,28 @@ function SearchCanvas(props) {
     const { camera, gl } = useThree();
     useFrame(({ clock }) => {
       const elapsedTime = clock.getElapsedTime();
-      camera.position.lerp(new Vector3(camVector, 0,5), 0.1);
+      camera.position.lerp(new Vector3(props.searchSettings.cameraPos, 0,10), 0.1);
     });
   }
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
 
-  return (
+  return (<>
     <div className="canvas-container">
-      <Canvas>
+      <Canvas camera={{fov:30, position: [0,0,10]}}>
         <Suspense fallback={<Loader/>}>
         {/* <CameraController/> */}
         <ScrollController/>
         <Physics>
-        <RearPlane/>
+        <RearPlane xPos={0} ref={wrapperRef}/>
+        <RearPlane xPos={19} ref={wrapperRef}/>
         <FloorPlane/>
-        <Box key={1.5} setCamVector={setCamVector} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
-        <Box key={3.5} setCamVector={setCamVector} xPos={3.5}/>
-        <Box key={5.5} setCamVector={setCamVector} xPos={5.5}/>
+        <Box key={1.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
+        <Box key={3.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={3.5}/>
+        <Box key={5.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={5.5}/>
+        <Box key={7.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={7.5}/>
+        <Box key={9.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={9.5}/>
         </Physics>
         <ambientLight intensity={.3}/>
         <spotLight position={[200,800,500]} angle={0.3} color={`rgb(${props.settings.red},${props.settings.green},${props.settings.blue})`} intensity={props.settings.intensity}/>
@@ -277,8 +299,14 @@ function SearchCanvas(props) {
         <primitive object={new THREE.AxesHelper(props.settings.axesSize)}></primitive>
         </Suspense>
       </Canvas>
+      
     </div>
-  );
+    {props.searchSettings.activeAsset && <div className="ui-container">
+      <div className="view-btn">
+        <div className="btn-interior-txt">View in 3D</div>
+      </div>
+    </div>}
+    </>);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchCanvas);
