@@ -1,8 +1,6 @@
 import React from "react";
-import { Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
-import { ChevronRight} from 'react-bootstrap-icons';
 import { useState } from "react";
 import { setSearchSettings } from "../../../redux/actions";
 import { useEffect } from "react";
@@ -29,7 +27,7 @@ const DropdownSign = (props) => {
   return (<>      
     <div className={signboardState} >
        <img src={signboard} className="signboard" />
-       <div className="signboard-text">Example Rifle</div>
+       <div className="signboard-text">Example Rifle 001</div>
     </div>        
         </>);
 };

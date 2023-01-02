@@ -1,7 +1,7 @@
 import React, { Suspense, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { Environment, Html, Scroll, useProgress} from '@react-three/drei';
-import { Physics, useBox, useConvexPolyhedron, useCylinder, useHeightfield, usePlane, useTrimesh } from '@react-three/cannon';
+import { Html } from '@react-three/drei';
+import { Physics, useBox, usePlane} from '@react-three/cannon';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {Mesh, Vector3} from 'three'
@@ -11,15 +11,15 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import "./styles.css"
 import Loader2D from "../loader/Loader2D"
 import { connect } from 'react-redux';
-import { setGarage, setSearchSettings, setSettings } from '../../redux/actions';
+import {  setSearchSettings} from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import crate from '../../assets/crate.png';
-import crateStencil from '../../assets/crateStencil2.png';
-import warehouseWall from '../../assets/warehouseBG.png';
+import warehouseWall from '../../assets/warehouseBGDark.png';
 import { useRef } from 'react';
 import ScrollRightTab from './ScrollTabs/ScrollRightTab/ScrollRightTab';
 import ScrollLeftTab from './ScrollTabs/ScrollLeftTab/ScrollLeftTab';
 import DropdownSign from './DropdownSign/DropdownSign';
+import InstructionHolograms from './InstructionHolograms/InstructionHolograms';
 
 const pi= Math.PI;
 
@@ -312,7 +312,7 @@ function SearchCanvas(props) {
         <ambientLight intensity={.3}/>
         <spotLight position={[200,800,500]} angle={0.3} />
         <spotLight position={[-600,800,500]} angle={0.3}/>
-        <primitive object={new THREE.AxesHelper(1)}></primitive>
+        {/* <primitive object={new THREE.AxesHelper(1)}></primitive> */}
         </Suspense>
       </Canvas>
 
@@ -321,6 +321,7 @@ function SearchCanvas(props) {
     <ScrollRightTab listLength={choicesLength}/>
     <div className="ui-container">
       <ScrollLeftTab/>
+      <InstructionHolograms/>
       {/* <div className="view-btn" onClick={()=>
           goToGarage()
       }>

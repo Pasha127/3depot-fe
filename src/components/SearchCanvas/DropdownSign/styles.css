@@ -26,8 +26,10 @@ height: 260px;
 }
 .signboard-text{
     position: absolute;
-    top:150px;
+    top:158px;
+    left: 16px;
+    line-height: 90%;
     z-index: 6;
     font-family: Allerta Stencil;
-    font-size: 30pt;
+    font-size: 28pt;
 }

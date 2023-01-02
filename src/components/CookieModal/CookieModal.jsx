@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
+import { XCircleFill } from "react-bootstrap-icons";
 import "./styles.css"
 
 
@@ -32,6 +33,7 @@ return(<>
 <Modal show={show} onHide={()=>{handleClose(); localStorage.setItem('acceptedCookies','true');}} centered>
     <Modal.Header closeButton className="bg-dark text-light">
       <Modal.Title>Cookies! 🍪 </Modal.Title>
+      <XCircleFill className="modal-close-x"/>
     </Modal.Header>
     <Modal.Body>
         This site uses cookies to keep you logged in and authorize requests to the server. 
