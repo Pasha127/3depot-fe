@@ -19,6 +19,7 @@ import warehouseWall from '../../assets/warehouseBG.png';
 import { useRef } from 'react';
 import ScrollRightTab from './ScrollTabs/ScrollRightTab/ScrollRightTab';
 import ScrollLeftTab from './ScrollTabs/ScrollLeftTab/ScrollLeftTab';
+import DropdownSign from './DropdownSign/DropdownSign';
 
 const pi= Math.PI;
 
@@ -126,8 +127,9 @@ function useOutsideAlerter(ref) {
 
 function Box(props) {
     const [clicked,setClicked] = useState(false);
-    const [canClick,setCanClick] = useState(true);
+    const [canClick,setCanClick] = useState(false);
     const [activeAsset,setActiveAsset] = useState("");
+    const [boxOpen,setBoxOpen] = useState(false);
     const texture = new THREE.TextureLoader().load( crate );
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -138,26 +140,36 @@ function Box(props) {
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set( 1, 1);
     texture.rotation=(pi)
+    useEffect(()=>{
+      if(props.settings.cameraPos !== props.xPos && boxOpen){closeBox()}
+    },[props.settings.cameraPos])
+    useEffect(()=>{
+      setTimeout(()=>{setCanClick(true)},2400)
+    },[])
+    
 
     const openBox = ()=>{
-      api.velocity.set(0,3,3);
+      if(canClick){api.velocity.set(0,3,3);
       api.applyTorque([4,10,1])
       setTimeout(()=>setActiveAsset("rifle placeholder"),2000)  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
       setTimeout(()=>props.setSearchSettings({activeAsset:"rifle placeholder"}),2000)  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
       setClicked(true)}
+      setBoxOpen(true)}
     const closeBox = ()=>{
-      setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
+      if(canClick){setActiveAsset("")  /////////////!!!!!!!MAKE DYNAMIC!!!!!/////////////
       props.setSearchSettings({activeAsset:""})
       api.velocity.set(0,3,-3);
       api.applyTorque([-4,-10,-1])
       setClicked(false)
+      setBoxOpen(false)}
     }
     const clickBox = ()=>{
+      if(canClick){
       props.setSearchSettings({cameraPos:props.xPos-1.45})
       setCanClick(false);
       setTimeout(()=>setCanClick(true),2000)
       props.setActiveBox(props.xPos)
-    }
+    }}
 
     const [ref, api] = useBox(()=>({
       mass:1,
@@ -167,14 +179,13 @@ function Box(props) {
     
     return(<>
   <mesh onClick={(e)=>{
-    e.stopPropagation()
-    if(canClick){
+    e.stopPropagation()    
       clickBox()
       if(!clicked){
         openBox()}
         else{
           closeBox()
-        }}
+        }
   }}
   
 ref={ref} >
@@ -274,12 +285,13 @@ function SearchCanvas(props) {
     const { camera, gl } = useThree();
     useFrame(({ clock }) => {
       const elapsedTime = clock.getElapsedTime();
-      camera.position.lerp(new Vector3(props.searchSettings.cameraPos, 0,10), 0.1);
+      camera.position.lerp(new Vector3(props.searchSettings.cameraPos, 1,10), 0.1);
     });
   }
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
+  let choicesLength = 5;
 
   return (<>
     <div className="canvas-container">
@@ -291,11 +303,11 @@ function SearchCanvas(props) {
         <RearPlane xPos={0} ref={wrapperRef}/>
         <RearPlane xPos={19} ref={wrapperRef}/>
         <FloorPlane/>
-        <Box key={1.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
-        <Box key={3.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={3.5}/>
-        <Box key={5.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={5.5}/>
-        <Box key={7.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={7.5}/>
-        <Box key={9.5} activeBox={activeBox} setActiveBox={setActiveBox} setSearchSettings={props.setSearchSettings} xPos={9.5}/>
+        <Box key={1.5} activeBox={activeBox} setActiveBox={setActiveBox} settings={props.searchSettings} setSearchSettings={props.setSearchSettings} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
+        <Box key={3.5} activeBox={activeBox} setActiveBox={setActiveBox} settings={props.searchSettings} setSearchSettings={props.setSearchSettings} xPos={3.5}/>
+        <Box key={5.5} activeBox={activeBox} setActiveBox={setActiveBox} settings={props.searchSettings} setSearchSettings={props.setSearchSettings} xPos={5.5}/>
+        <Box key={7.5} activeBox={activeBox} setActiveBox={setActiveBox} settings={props.searchSettings} setSearchSettings={props.setSearchSettings} xPos={7.5}/>
+        <Box key={9.5} activeBox={activeBox} setActiveBox={setActiveBox} settings={props.searchSettings} setSearchSettings={props.setSearchSettings} xPos={9.5}/>
         </Physics>
         <ambientLight intensity={.3}/>
         <spotLight position={[200,800,500]} angle={0.3} />
@@ -303,17 +315,18 @@ function SearchCanvas(props) {
         <primitive object={new THREE.AxesHelper(1)}></primitive>
         </Suspense>
       </Canvas>
-      
+
     </div>
-    <ScrollRightTab/>
-    <ScrollLeftTab/>
-    {props.searchSettings.activeAsset && <div className="ui-container">
-      <div className="view-btn" onClick={()=>
+    <DropdownSign/>
+    <ScrollRightTab listLength={choicesLength}/>
+    <div className="ui-container">
+      <ScrollLeftTab/>
+      {/* <div className="view-btn" onClick={()=>
           goToGarage()
       }>
         <div className="btn-interior-txt">View in 3D</div>
-      </div>
-    </div>}
+      </div> */}
+    </div>
     </>);
 }
 

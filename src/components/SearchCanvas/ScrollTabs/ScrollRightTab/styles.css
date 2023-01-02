@@ -1,6 +1,6 @@
 .right-tab{
   position: fixed;
-  top: 195px;
+  top: 390px;
   right: -20px;
   width: 15px;
   height:80px;
@@ -32,7 +32,7 @@
   left: 10px;
   transition: top .3s, left .3s;
 }
-.right-tab:hover .icon-container{
+.right-tab:hover .right-icon-container{
   position: absolute;
   top: 0px;
   left: 16px;
