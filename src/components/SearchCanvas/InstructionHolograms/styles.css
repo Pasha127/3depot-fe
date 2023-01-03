@@ -69,7 +69,7 @@
     position: absolute;
     top: 500px;
     left: calc(50vw);
-    animation: 3s 1 forwards inNOut; 
+    animation: 2s 1 forwards inNOut; 
 }
 @keyframes inNOut {
     0% {
@@ -116,7 +116,7 @@
         color: rgba(185, 250, 255, 0.8);
         position: absolute;
         left: calc(50vw - 94px);
-        animation: 3s 1 forwards click; 
+        animation: 2s 1 forwards click; 
         width: 200px;
         font-size: 60pt;
     }

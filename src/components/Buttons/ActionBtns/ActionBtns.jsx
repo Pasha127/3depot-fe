@@ -19,10 +19,10 @@ const ActionBtns = (props)=>{
     const handleToggle = () =>{
         if (actionClass === "action-toggle-square"){
             setActionClass("action-toggle-clicked2")
-            setDeleteClass("delete-button-show")
-            setUploadClass("upload-button-show")
-            setDownloadClass("download-button-show")
-            setShareClass("share-button-show")
+            setDeleteClass("delete-button-show blue-text")
+            setUploadClass("upload-button-show blue-text")
+            setDownloadClass("download-button-show blue-text")
+            setShareClass("share-button-show blue-text")
             setActionIconsContract("action-icons2")
             setActionIcons("d-none")
         }
@@ -53,18 +53,20 @@ return(<>
         </div>
     </button>
     <div className={deleteClass}>
-        <img src={deleteButton} alt="delete-button"/>
+       
+        <img src={deleteButton } alt="delete-button"/>
         <div className="trash-icon-action"><Trash/></div>
     </div>
-    <div className={uploadClass}>
+    <div className={uploadClass }>
         <img src={uploadButton} alt="upload-button"/>
         <div className="upload-icon-action"><Upload/></div>
     </div>
-    <div className={downloadClass}>
+    <div className={downloadClass }>
+    <a href="https://res.cloudinary.com/dirwjcohx/raw/upload/v1670880728/3DepotProducts/Sci-fi_Rifle_2_qu1tv8.fbx">
         <img src={downloadButton} alt="download-button"/>
-        <div className="download-icon-action"><Download/></div>
+        <div className="download-icon-action"><Download/></div></a>
     </div>
-    <div className={shareClass}>
+    <div className={shareClass }>
         <img src={shareButton} alt="share-button"/>
         <div className="share-icon-action"><Share/></div>
     </div>

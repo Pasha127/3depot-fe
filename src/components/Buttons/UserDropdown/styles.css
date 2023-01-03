@@ -6,21 +6,22 @@
     display: flex;
 }
 #dropdown-variants-light{
-    border: 1px solid white !important;
+    border: 1px solid var(--bg-color) !important;
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: white;
+    background-color: var(--bg-color);
 
 }
 #dropdown-variants-light:hover{
-    background-color: white;
+    background-color: var(--bg-color);
 }
+
 
 .drop-container{
     display: flex;
     flex-direction: row;
-    
+    background-color: var(--bg-color);
 }
 @media(min-width: 291px){.responsive{
     display: none;

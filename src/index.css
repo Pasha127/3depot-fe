@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Inter&family=Noto+Emoji&family=Roboto&family=Splash&family=Work+Sans&display=swap');
+:root{
+  --bg-color: #B99182;
+  --holo-blue-alpha: rgba(185, 250, 255, 0.6);
+  --holo-blue: rgb(99, 182, 202);
+  --text-blue: #007bff; 
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: Allerta Stencil, -apple-system, BlinkMacSystemFont,  'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -12,4 +18,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+*{
+  font-family: Allerta Stencil, -apple-system, BlinkMacSystemFont,  'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+.pointer-cursor-class{
+cursor: pointer;
+}
+.default-cursor-class{
+cursor: default;
 }

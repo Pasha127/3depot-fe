@@ -30,20 +30,23 @@
     width: 40vw;
 }
 .search-btn{
+    background-color: var(--holo-blue);
     border-radius: 0px;
     border-width: 1px 1px 1px 0px;
-    border-color: #ced4da;
+    border-color: var(--holo-blue);
 }
 .filters-btn{
+    background-color: var(--holo-blue);
     border-radius: 0px 4px 4px 0px;
     border-width: 1px 1px 1px 0px;
-    border-color: #ced4da;
+    border-color: var(--holo-blue);
 }
 .filters-btn:before{
     content:"Filters";
 }
 .search-field-placeholder{
- font-family: Noto Emoji;
+    border-color: white;
+    font-family: Noto Emoji;
 }
 @media (max-width: 608px){
     .search-form-container{

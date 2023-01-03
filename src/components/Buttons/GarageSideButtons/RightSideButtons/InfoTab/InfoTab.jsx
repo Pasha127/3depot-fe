@@ -5,6 +5,7 @@ import "./styles.css";
 import { logOutWithThunk } from "../../../../../redux/actions";
 import { InfoCircle, X} from 'react-bootstrap-icons';
 import { useState } from "react";
+import useDragEffect from "../../../../../hooks/useDragEffect";
 const mapStateToProps = state => {
   return {
   user: state.userInfo,
@@ -19,6 +20,7 @@ const mapStateToProps = state => {
   };  
 }; 
 const InfoTab = (props) => {
+  useDragEffect("info-tray");
   const [trayState,setTrayState] = useState("info-tray-closed")
   const handleToggle= ()=>{
     if(trayState === "info-tray-closed"){
@@ -37,7 +39,8 @@ const InfoTab = (props) => {
               </div>
               <div className="info-label">Model Info</div>
               </Button>
-        <div className={trayState}>
+        <div className="drag-container">
+         <div id="info-tray" className={trayState}>
           <div className="info-tray-details"
           onClick={(e)=>{e.stopPropagation()}}
           >
@@ -50,7 +53,9 @@ const InfoTab = (props) => {
             console.log("click");}}
           />
 
+        </div> 
         </div>
+        
         </>);
 };
 

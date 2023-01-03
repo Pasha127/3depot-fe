@@ -1,4 +1,5 @@
 .instructionSVG{
+    color: rgba(185, 250, 255);
     position: absolute;
     background-image: url("/public/mouseInstructions.svg");
     background-size: cover;

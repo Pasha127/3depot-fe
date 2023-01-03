@@ -139,7 +139,7 @@ function Garage(props) {
       <Canvas>
         <Suspense fallback={<Loader/>}>
         <CameraController />
-        <Environment background={true} files={'industrial_workshop_foundry_bw2.hdr'}
+        <Environment background={true} files={'industrial_workshop_foundry_bw4.hdr'}
               path={'/'} ></Environment>
               <Image/>
         {/* {!props.isGarage && <Plane/>} */}

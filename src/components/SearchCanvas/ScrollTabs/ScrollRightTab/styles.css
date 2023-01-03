@@ -11,15 +11,15 @@
   padding-inline: 30px;
   border-radius: 0px 0px 4px 4px;
   transition: border-radius .3s, width .3s, right .3s;
-  color: black;
-  background-color: white;
-  border: 2px solid black;
+  color: white;
+  background-color: var(--holo-blue-alpha);
+
   
 }
 .right-tab:hover{
-  color: black;
-  background-color: white;
-  border: 2px solid black;
+  color: white;
+  background-color: var(--holo-blue);
+ 
   width: 35px;
   right: -2px;
   transition: border-radius .3s, width .3s, right .3s;

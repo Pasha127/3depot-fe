@@ -28,7 +28,7 @@ const assetURL=`https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
-
+let objectsArray =[] 
 
 function Loader() {
     return <Html center>
@@ -37,7 +37,7 @@ function Loader() {
 }
 
 const CameraController = () => {
-    const { camera, gl } = useThree();
+  const { camera, gl } = useThree();
     useEffect(
         () => {
             const controls = new OrbitControls(camera, gl.domElement);
@@ -103,26 +103,6 @@ function FBXAsset() {
     
 }
 
-function useOutsideAlerter(ref) {
-  useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
-    function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        alert("You clicked outside of me!");
-      }
-    }
-    // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
-}
-
-
 
 
 function Box(props) {
@@ -146,7 +126,7 @@ function Box(props) {
     useEffect(()=>{
       setTimeout(()=>{setCanClick(true)},2400)
     },[])
-    
+    objectsArray.push(this);
 
     const openBox = ()=>{
       if(canClick){api.velocity.set(0,3,3);
@@ -272,8 +252,30 @@ const mapStateToProps = state => {
 
 
 
+/* const onDocumentMouseMove = (e,camera)=>{
+  const mouse = new THREE.Vector2();
+  mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+  mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+
+  const raycaster = new THREE.Raycaster();
+  raycaster.setFromCamera( mouse, camera );
+  const intersects = raycaster.intersectObjects( objectsArray );
+
+  if(intersects.length > 0) {
+      document.getElementsByTagName('html')[0].classList.add('pointer-cursor-class');
+  } else {
+    document.getElementsByTagName('html')[0].classList.add('default-cursor-class');
+  }
+
+} */
+
 function SearchCanvas(props) {
-  useEffect(()=>{props.setSearchSettings({activeAsset:""})},[])
+  
+
+  useEffect(()=>{
+    props.setSearchSettings({activeAsset:""});
+   /*  document.addEventListener('mousemove', onDocumentMouseMove) */
+},[])
     const [activeBox,setActiveBox] = useState(1.5);
    /*  const [camVector,setCamVector] = useState(0); */
 
@@ -288,8 +290,7 @@ function SearchCanvas(props) {
       camera.position.lerp(new Vector3(props.searchSettings.cameraPos, 1,10), 0.1);
     });
   }
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+
 
   let choicesLength = 5;
 
@@ -300,8 +301,8 @@ function SearchCanvas(props) {
         {/* <CameraController/> */}
         <ScrollController/>
         <Physics>
-        <RearPlane xPos={0} ref={wrapperRef}/>
-        <RearPlane xPos={19} ref={wrapperRef}/>
+        <RearPlane xPos={0} />
+        <RearPlane xPos={19}/>
         <FloorPlane/>
         <Box key={1.5} activeBox={activeBox} setActiveBox={setActiveBox} settings={props.searchSettings} setSearchSettings={props.setSearchSettings} xPos={1.5}/>{/* !! MAKE THESE WITH A MAP !!*/}
         <Box key={3.5} activeBox={activeBox} setActiveBox={setActiveBox} settings={props.searchSettings} setSearchSettings={props.setSearchSettings} xPos={3.5}/>

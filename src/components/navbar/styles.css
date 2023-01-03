@@ -10,7 +10,7 @@
 
   padding-top: 25px;
   padding-bottom: 25px;
-  background-color: white;
+  background-color: var(--bg-color);
   border-bottom: 1px solid #cecece;
   height: 80px;
   z-index: 30;
@@ -20,7 +20,7 @@
 .filter-navbar {
   padding-top: 25px;
   padding-bottom: 25px;
-  background-color: white;
+  background-color: var(--bg-color);
   margin-top: 2px;
   border-bottom: 2px solid black;
   height: 80px;
@@ -32,7 +32,7 @@
 .filter-navbar-show {
   padding-top: 25px;
   padding-bottom: 25px;
-  background-color: white;
+  background-color: var(--bg-color);
   margin-top: 80px;
   border-bottom: 2px solid black;
   height: 80px;
@@ -44,7 +44,7 @@
 
 .logoContainer{
 
-  background-color: white;
+  background-color: var(--bg-color);
   height:50px;
 }
 

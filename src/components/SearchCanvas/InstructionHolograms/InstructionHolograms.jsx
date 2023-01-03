@@ -29,9 +29,12 @@ const InstructionHolograms = (props) => {
   useEffect(()=>{
     if(props.searchSettings.activeAsset)
     {localStorage.setItem("seenBoxClick", true);
-    setArrowsState("d-none");
-    setCircleState("circle-container");
-    setClickingFinger("clicking-finger");}
+    setArrowsState("d-none");    
+    if(!sessionStorage.getItem("seenModelClick")){
+        setClickingFinger("clicking-finger");
+        setCircleState("circle-container");
+        sessionStorage.setItem("seenModelClick", true);
+    }}
   },[props.searchSettings.activeAsset])
   useEffect(()=>{
     setTimeout(()=>{!localStorage.getItem("seenBoxClick") && setArrowsState("arrows-container")},3000);
