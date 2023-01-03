@@ -11,7 +11,7 @@ function useDragEffect(id){
         lastY: 0
     })
 useEffect(()=>{
-    if(window.innerWidth > 300){
+    if(window.innerWidth > 390){
     const target = document.getElementById(id);
     if (!target) throw new Error("No element with id:", id );
 
@@ -37,8 +37,8 @@ useEffect(()=>{
         const nextX = e.clientX - coordinates.current.startX + coordinates.current.lastX;
         const nextY = e.clientY - coordinates.current.startY + coordinates.current.lastY;
         
-        target.style.top = `${nextY}px`;
-        target.style.left = `${nextX}px`;
+        target.style.top = `calc(${(nextY/vh)*100}vh)`;
+        target.style.left = `calc(${(nextX/vw)*100}vw)`;
     }
     
     target.addEventListener('mousedown', onMouseDown);
@@ -52,7 +52,15 @@ useEffect(()=>{
         container.removeEventListener('mousemove', onMouseMove);
         container.removeEventListener('mouseleave', onMouseUp);
     }
+    if(coordinates.current.lastX > vw || coordinates.current.lastY > vh || coordinates.current.lastX < 0 || coordinates.current.lastY < 0){
+        const nextX  =  (vw/2);
+        const nextY  =  (vh/2);
+        coordinates.current.lastX = (vw/2);
+        coordinates.current.lastY = (vh/2);
+        target.style.top = `calc(${(nextY/vh)*100}vh)`;
+        target.style.left = `calc(${(nextX/vw)*100}vw)`;
 
+    }
     return cleanup;}
 },[id])
 }
