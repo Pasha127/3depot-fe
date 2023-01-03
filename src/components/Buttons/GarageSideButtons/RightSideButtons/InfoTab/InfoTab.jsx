@@ -3,7 +3,7 @@ import { Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
 import { logOutWithThunk } from "../../../../../redux/actions";
-import { InfoCircle, X} from 'react-bootstrap-icons';
+import { InfoCircle, InfoCircleFill, X} from 'react-bootstrap-icons';
 import { useState } from "react";
 import useDragEffect from "../../../../../hooks/useDragEffect";
 const mapStateToProps = state => {
@@ -34,8 +34,8 @@ const InfoTab = (props) => {
           e.stopPropagation();
           handleToggle();
           console.log("click");}} className="info-tab" variant="outline-secondary">
-            <div className="icon-container">
-              <InfoCircle/>
+            <div className="info-icon-container">
+              <InfoCircleFill/>
               </div>
               <div className="info-label">Model Info</div>
               </Button>

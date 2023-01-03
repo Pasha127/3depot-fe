@@ -11,15 +11,13 @@
   padding-inline: 30px;
   border-radius: 4px 4px 0px 0px;
   transition: border-radius .3s, width .3s, right .3s;
-  color: black;
-  background-color: white;
-  border: 2px solid black;
-  
+  color: white;
+  background-color: var(--holo-blue);
 }
 .left-tab:hover{
-  color: black;
-  background-color: white;
-  border: 2px solid black;
+  color: white;
+  background-color: var(--holo-blue);
+ 
   width: 35px;
   left: -2px;
   transition: border-radius .3s, width .3s, right .3s;
@@ -28,7 +26,7 @@
 }
 .left-icon-container{
   position: absolute;
-  top: 13px;
+  top: 17px;
   left: 20px;
   transition: top .3s, left .3s;
 }

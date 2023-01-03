@@ -2,7 +2,7 @@ import React from "react";
 import { Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
-import { ChevronLeft} from 'react-bootstrap-icons';
+import { CaretLeftFill, ChevronLeft} from 'react-bootstrap-icons';
 import { useState } from "react";
 import { setSearchSettings } from "../../../../redux/actions";
 import { useEffect } from "react";
@@ -36,7 +36,7 @@ const ScrollLeftTab = (props) => {
           props.setSearchSettings({cameraPos: currentCamPos - 2})
           console.log("click");}} className={visibility}  variant="outline-secondary">
             <div className="left-icon-container">
-              <ChevronLeft/>
+              <CaretLeftFill/>
               </div>
               <div className="left-tab-label">Scroll Left</div>
               </Button>

@@ -34,7 +34,7 @@ const TogglesTab = (props) => {
           e.stopPropagation();
           handleToggle();
           console.log("click");}} className="toggle-tab" variant="outline-secondary">
-            <div className="icon-container">
+            <div className="toggle-icon-container">
               <GearFill/>
               <div className="toggle-label">Settings</div>
           </div>

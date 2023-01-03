@@ -2,7 +2,7 @@ import React from "react";
 import { Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
-import { ChevronRight} from 'react-bootstrap-icons';
+import { CaretRightFill, ChevronRight} from 'react-bootstrap-icons';
 import { useState } from "react";
 import { setSearchSettings } from "../../../../redux/actions";
 import { useEffect } from "react";
@@ -35,7 +35,7 @@ const ScrollRightTab = (props) => {
           props.setSearchSettings({cameraPos: currentCamPos + 2})
           console.log("clickR");}} className={visibility} variant="outline-secondary">
             <div className="right-icon-container">
-              <ChevronRight/>
+              <CaretRightFill/>
               </div>
               <div className="right-tab-label">Scroll Right</div>
               </Button>

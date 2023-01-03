@@ -5,6 +5,7 @@ import "./styles.css";
 import { logOutWithThunk } from "../../../../../redux/actions";
 import {Boxes, X} from 'react-bootstrap-icons';
 import { useState } from "react";
+import useDragEffect from "../../../../../hooks/useDragEffect";
 const mapStateToProps = state => {
   return {
   user: state.userInfo,
@@ -19,6 +20,7 @@ const mapStateToProps = state => {
   };  
 }; 
 const ModelsTab = (props) => {
+  useDragEffect("model-tray"); 
   const [trayState,setTrayState] = useState("model-tray-closed")
   const handleToggle= ()=>{
     if(trayState === "model-tray-closed"){
@@ -32,12 +34,13 @@ const ModelsTab = (props) => {
           e.stopPropagation();
           handleToggle();
           console.log("click");}} className="model-tab" variant="outline-secondary">
-            <div className="icon-container">
+            <div className="model-icon-container">
               <Boxes/>
               <div className="model-label">My Models</div>
               </div>
               </Button>
-        <div className={trayState}>
+        <div className="drag-container">
+        <div id="model-tray" className={trayState}>
         <div className="model-tray-details"
           onClick={(e)=>{e.stopPropagation()}}
           >
@@ -51,6 +54,8 @@ const ModelsTab = (props) => {
           />
 
         </div>
+        </div>
+
         </>);
 };
 

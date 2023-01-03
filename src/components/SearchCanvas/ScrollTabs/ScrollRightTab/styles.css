@@ -12,7 +12,7 @@
   border-radius: 0px 0px 4px 4px;
   transition: border-radius .3s, width .3s, right .3s;
   color: white;
-  background-color: var(--holo-blue-alpha);
+  background-color: var(--holo-blue);
 
   
 }
@@ -28,7 +28,7 @@
 }
 .right-icon-container{
   position: absolute;
-  top: 13px;
+  top: 17px;
   left: 10px;
   transition: top .3s, left .3s;
 }
