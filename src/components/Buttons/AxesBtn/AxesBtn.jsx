@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DashLg, Plus, PlusLg } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import axesSVG from "../../../assets/axes.svg"
 import axesWhiteSVG from "../../../assets/axesWhite.svg"
@@ -45,7 +46,7 @@ return(<>
         console.log("click");
     }}>
         <div className="svg-container">
-            <img className={blackAxes} src={axesSVG} alt="axes"/>
+            <img className={blackAxes} src={axesWhiteSVG} alt="axes"/>
             <img className={whiteAxes} src={axesWhiteSVG} alt="axes"/>
         </div>
     </button>
@@ -54,14 +55,14 @@ return(<>
         e.stopPropagation();
         console.log("click+");
         props.setSettings({axesSize: (props.settings.axesSize+1)})
-    }}>+
+    }}><PlusLg/>
     </button>
     <button className="axes-minus" 
     onClick={(e)=>{
         e.stopPropagation();
         console.log("click-");
         props.setSettings({axesSize: (props.settings.axesSize-1)})
-    }}>-
+    }}><DashLg/>
     </button>
     </div>        
 </>)

@@ -114,7 +114,7 @@ const LightBtn = (props)=>{
          invert
          max={50}
          value={intensity}
-        className="vertical-slider-black"
+        className="vertical-slider-brightness"
         thumbClassName="slider-thumb"
         trackClassName="red-slider-track"
         onAfterChange={(value, index) =>{

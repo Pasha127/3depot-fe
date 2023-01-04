@@ -1,13 +1,13 @@
 .lights-toggle{
-    border: 2px solid black;
+    border: none;
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    background-color: #ffffff;
+    background-color: var(--holo-blue);
     transition: border-radius .3s;
 }
 .lights-toggle-off{
-    border: 2px solid black;
+    border: none;
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -16,12 +16,12 @@
     
 }
 .lights-toggle:hover{
-    border: 2px solid black;
+    border: none;
     border-radius: 20px 20px 100% 100%;
     transition: border-radius .3s;    
 }
 .lights-toggle-off:hover{
-    border: 2px solid black;
+    border: none;
     border-radius: 20px 20px 100% 100%;
     transition: border-radius .3s;    
 }
@@ -32,12 +32,12 @@
     z-index: 1; 
 }
 .lights-settings{
-    background-color: #ffffff;
+    background-color: var(--holo-blue);
     font-weight: 800;
     position: absolute;
     width: 80px;
     height: 40px;
-    border: 1px solid black;
+    border: none;
     border-radius: 0% 0% 80px 80px;
     border-width: 1px 2px 2px 2px;
     top: 40px;
@@ -45,9 +45,10 @@
     z-index: 1;
     transition: border-radius .3s, height .3s;
     overflow: hidden;
+    color: #ffffff;
 }
 .lights-settings:hover{     
-    border: 2px solid black;
+    border: none;
     border-radius: 0% 0% 10px 10px;
     border-width: 1px 2px 2px 2px;
     transition: border-radius .3s, height .3s;
@@ -102,8 +103,8 @@
     opacity: 0;
 }
 .vertical-slider-red{
-    background-color: #ff0000;
-    position: absolute !important;
+    background: rgb(255,0,0);
+    background: linear-gradient(180deg, rgba(255,0,0,1) 0%, rgba(0,0,0,1) 100%);position: absolute !important;
     top: 30px;
     left: 5px;
     width: 6px;
@@ -111,7 +112,8 @@
     margin-right: 0px;
 }
 .vertical-slider-green{
-    background-color: #00ff00;
+    background: rgb(0,255,0);
+    background: linear-gradient(180deg, rgba(0,255,0,1) 0%, rgba(0,0,0,1) 100%);
     position: absolute !important;
     top: 30px;
     left: 25px;
@@ -119,15 +121,17 @@
     height: 110px;
 }
 .vertical-slider-blue{
-    background-color: #0000ff;
+    background: rgb(0,0,255);
+    background: linear-gradient(180deg, rgba(0,0,255,1) 0%, rgba(0,0,0,1) 100%);
     position: absolute !important;
     top: 30px;
     left: 45px;
     width: 6px;
     height: 110px;
 }
-.vertical-slider-black{
-    background-color: black;
+.vertical-slider-brightness{
+    background: white; 
+    background: linear-gradient(180deg, rgba(245,245,245,1) 67%, rgba(0,0,0,1) 100%);
     position: absolute;
     top: 30px;
     left: 65px;
