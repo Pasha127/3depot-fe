@@ -11,6 +11,7 @@ import InfoTab from "../Buttons/GarageSideButtons/RightSideButtons/InfoTab/InfoT
 import ModelsTab from "../Buttons/GarageSideButtons/RightSideButtons/ModelsTab/ModelsTab";
 import { setSettings } from "../../redux/actions";
 import { connect } from "react-redux";
+import InstructionsTab from "../Buttons/GarageSideButtons/RightSideButtons/InstructionsTab/InstructionsTab";
 const mapStateToProps = state => {
     return {
     settings: state.garageSettings
@@ -30,6 +31,7 @@ return(<>
     <TogglesTab />
     <InfoTab/>
     <ModelsTab/>
+    <InstructionsTab/>
     <Garage/>
     <GarageInstructions/>
     <ActionBtns/>

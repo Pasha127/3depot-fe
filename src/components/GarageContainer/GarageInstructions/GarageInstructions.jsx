@@ -4,7 +4,7 @@ import { X } from "react-bootstrap-icons";
 import "./styles.css"
 
 const GarageInstructions = (props) =>{
-    const [clickClass, setClickClass] = useState("");
+    const [containerState, setContainerState] = useState("instruction-container");
     const seenModal = ()=>{
         const seenInstructions = sessionStorage.getItem('seenInstructions')
         if(seenInstructions){
@@ -13,19 +13,23 @@ const GarageInstructions = (props) =>{
         return false
     }
     useEffect(()=>{
-        seenModal() && setClickClass("d-none");
+        seenModal() && setContainerState("d-none");
         },[])
         
     return(<>
-            <div className={`instruction-border + ${clickClass}`}></div>
-        <div className={`instruction-container + ${clickClass}`}>
-            <X className="instructions-tray-close-icon"/>
-            <div className={`instructionSVG + ${clickClass}`} onClick={()=>{
-                setClickClass("d-none");
+    <div className={containerState}>
+            <div className={`instruction-border `}>
+                <X className="instructions-tray-close-icon"/>
+            </div>
+        <div className={`instruction-details`}>
+        <p>Camera Controls</p> 
+            <div className={`instructionSVG`} onClick={()=>{
+                setContainerState("instruction-container-close");
                 sessionStorage.setItem('seenInstructions', true)
             }}>
             </div>
         </div>
+    </div>
         </>)
 }
 
