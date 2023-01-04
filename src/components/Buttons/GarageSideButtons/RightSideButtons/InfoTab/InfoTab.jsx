@@ -35,7 +35,7 @@ const InfoTab = (props) => {
           handleToggle();
           console.log("click");}} className="info-tab" variant="outline-secondary">
             <div className="info-icon-container">
-              <InfoCircleFill/>
+              <InfoCircle/>
               </div>
               <div className="info-label">Model Info</div>
               </Button>

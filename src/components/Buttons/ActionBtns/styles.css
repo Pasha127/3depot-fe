@@ -1,61 +1,56 @@
-.action-toggle-square:hover{
-    border: 2px solid black;
-    border-radius: 50% 50% 0px 0px;
+.initial-action-text{
+    font-size: 10pt;
+    line-height: 100%;
+    opacity: 0;
+    top: 50px;
+    position: absolute;
+    left: 0px;
+    transition: top .3s, left .3s, opacity .3s  opacity .3s cubic-bezier(.6,1,.92,.87);
+}
+.action-icons{
+    font-size: 20pt;
+    position: fixed;
+    left: calc(50vw - 100px);
+    bottom: -105px;
+    height: 150px;
     width: 200px;
+}
+.action-icons-contracted{
+    position: fixed;
+    left: calc(50vw - 14px);
+    bottom: 5px;
+    font-size: 20pt;
+}
+.action-toggle-square:hover{
+    border: none;
+    border-radius: 50% 50% 0px 0px;
+    width: 300px;
     height: 150px;
     background-repeat: no-repeat;
     background-size: 80px 80px;
     background-position: -2px -15px;
     position: fixed;
-    left: calc(50vw - 100px);
+    left: calc(50vw - 150px);
     bottom: -100px;
     z-index: 1;
-    background-color: #ffffff;
-    transition: border-radius .3s;
+    background-color: var(--holo-blue);
+    transition: border-radius .3s, width .3s, left.3s;
 }
 .action-toggle-container{
     position: fixed;
     bottom:0px;
     left: 0px;
     z-index: 1; 
+    background-color: var(--holo-blue);
 }
-.action-1{
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    border: 1px solid black;
-    opacity: 0;
-    bottom: -100px;
-    left: -100px;
-    z-index: 5;
-    background-color: black;
-}
-.action-icons{
-    position: absolute;
-    left: 50px;
-    top: 15px;
-}
-.action-icons2{
-    position: absolute;
-    left: 84px;
-    top: 5px;
-    font-size: 20pt;
-}
-.action-icons-hide::after{
-   content:"Hide";
-   position: absolute;
-    top: 100px;
-    left: 100px;
-    background-color: black;
-    width: 100vw;
-    height: 100vh;
 
-}
 .action-toggle-square{
-    border: 2px solid black;
+    border: none;
     border-radius: 20px 20px 100% 100%;
+    color: white;
     width: 200px;
     height: 150px;
+    background-color: var(--holo-blue);
     background-repeat: no-repeat;
     background-size: 80px 80px;
     background-position: -2px -15px;
@@ -63,10 +58,11 @@
     left: calc(50vw - 100px);
     bottom: -100px;
     z-index: 5;
-    transition: border-radius .3s;
+    transition: border-radius .3s, width .3s, left.3s;
 }
 .action-toggle-clicked2{
-    border: 2px solid black;
+    color: white;
+    border: none;
     border-radius: 50% 50% 0px 0px;
     width: 200px;
     height: 150px;
@@ -77,149 +73,472 @@
     left: calc(50vw - 100px);
     bottom: -100px;
     z-index: 5;
-    background-color: #ffffff;
-    transition: border-radius .3s;
+    background-color: var(--holo-blue);
+    transition: border-radius .3s, width .3s, left .3s;
 }
 .delete-button-show{
+    opacity: 1;
     position: absolute;
-    left: calc(50vw - 200px);
+    left: calc(50vw - 197px);
     top: -95px;
-    transition: left .3s, top .3s;
+    transition: left  .3s, top  .3s;
     cursor:pointer;
 }
 .upload-button-show{
+    opacity: 1;
     position: absolute;
-    left: calc(50vw - 122px);
-    top: -122px;
-    transition: left .3s, top .3s;
+    left: calc(50vw - 121px);
+    top: -121.5px;
+    transition: left  .3s, top  .3s;
     cursor:pointer;
 }
 .download-button-show{
+    opacity: 1;
     position: absolute;
-    left: calc(50vw - 1px);
-    top: -122px;
-    transition: left .3s, top .3s;
+    left: calc(50vw - 2px);
+    top: -121.5px;
+    transition: left  .3s, top  .3s;
     cursor:pointer;
 }
 .share-button-show{
+    opacity: 1;
     position: absolute;
-    left: calc(50vw + 60px);
+    left: calc(50vw + 58px);
     top: -95px;
-    transition: left .3s, top .3s;
+    transition: left  .3s, top  .3s;
     cursor:pointer;
 }
 .delete-button-hide {
+    opacity:0;
+    color: white;
     position: absolute;
     left: calc(50vw - 130px);
     top: -11px;
-    transition: left .3s, top .3s;
+    transition: left  .3s, top  .3s;
     cursor:pointer;
 }
 .upload-button-hide {
+    opacity:0;
+    color: white;
     position: absolute;
     left: calc(50vw - 95px);
     top: -20px;
-    transition: left .3s, top .3s;
+    transition: left  .3s, top  .3s;
     cursor:pointer;
 }
 .download-button-hide {
+    opacity:0;
+    color: white;
     position: absolute;
     left: calc(50vw - 40px);
     top: -21px;
-    transition: left .3s, top .3s;
+    transition: left  .3s, top  .3s;
     cursor:pointer;
 }
 .share-button-hide {
+    opacity:0;
+    color: white;
     position: absolute;
     left: calc(50vw + -20px);
     top: -15px;
-    transition: left .3s, top .3s;
+    transition: left  .3s, top  .3s;
     cursor:pointer;
+}
+
+.delete-button-circle{
+    border: none;
+    border-radius: 50%;
+    background-color: var(--holo-blue);
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    top: 22px;
+    left: 33px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    transition: left .3s, top .3s, width .3s, height .3s;
+}
+.upload-button-circle{
+    border: none;
+    border-radius: 50%;
+    background-color: var(--holo-blue);
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    top: -8px;
+    left: 35px;
+    z-index: 1;
+    display: flex;
+    justify-content: center; 
+    transition: left .3s, top .3s, width .3s, height .3s;
+
+}
+.download-button-circle{
+    border: none;
+    border-radius: 50%;
+    background-color: var(--holo-blue);
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    top: -8px;
+    left: 18px;
+    z-index: 1;
+    display: flex;
+    justify-content: center; 
+    transition: left .3s, top .3s, width .3s, height .3s;
+
+}
+.share-button-circle{
+    border: none;
+    border-radius: 50%;
+    background-color: var(--holo-blue);
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    top: 22px;
+    left: 35px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    transition: left .3s, top .3s, width .3s, height .3s;
+
 }
 .trash-icon-action{font-size: 20pt;
     position: absolute;
     left: 55px;
     top: 35px;
-    z-index: 0;
+    z-index: 3;
+    transition: left .3s, top .3s;
 }
 .upload-icon-action{font-size: 20pt;
     position: absolute;
-    left: 60px;
-    top: 18px;
-    z-index: 0;
+    left: 57px;
+    top: 5px;
+    z-index: 3;
+    transition: left .3s, top .3s;
 }
 .download-icon-action{font-size: 20pt;
     position: absolute;
-    left: 35px;
-    top: 18px;
-    z-index: 0;
+    left: 40px;
+    top: 5px;
+    z-index: 3;
+    transition: left .3s, top .3s;
 }
 .share-icon-action{font-size: 20pt;
     position: absolute;
     left: 55px;
     top: 35px;
-    z-index: 0;
+    z-index: 3;
+    transition: left .3s, top .3s;
 }
-@media(max-width:290px){
-    .share-icon-action{font-size: 20pt;
-        position: absolute;
-        left: 30px;
-        top: 35px;
-        z-index: 0;
+@media(min-width:321px){
+    .delete-button-show:hover .delete-button-circle{
+        border: none;
+        border-radius: 20px;
+        background-color: var(--holo-blue);
+        width: 90px;
+        height: 90px;
+        position:absolute;
+        top: 2px;
+        left: 13px;
+        z-index: 1;
+        transition: left .3s, top .3s, width .3s, height .3s;
     }
-    .trash-icon-action{font-size: 20pt;
-        position: absolute;
-        left: 85px;
-        top: 35px;
-        z-index: 0;
+    .upload-button-show:hover .upload-button-circle{
+        border: none;
+        border-radius: 20px;
+        background-color: var(--holo-blue);
+        width: 90px;
+        height: 90px;
+        position:absolute;
+        top: -28px;
+        left: 20px;
+        z-index: 1;
+    
     }
-}
-@media(max-width:215px){
-    .share-icon-action{font-size: 20pt;
+    .download-button-show:hover .download-button-circle{
+        border: none;
+        border-radius: 20px;
+        background-color: var(--holo-blue);
+        width: 90px;
+        height: 90px;
+        position:absolute;
+        top: -28px;
+        left: 16px;
+        z-index: 1;
+    
+    }
+    .share-button-show:hover .share-button-circle{
+        border: none;
+        border-radius: 20px;
+        background-color: var(--holo-blue);
+        width: 90px;
+        height: 90px;
+        position:absolute;
+        top: 2px;
+        left: 35px;
+        z-index: 1;
+    
+    }
+    .delete-button-show:hover .trash-icon-action{
         position: absolute;
         left: 45px;
         top: 5px;
-        z-index: 0;
-        rotate: 15deg;
+        z-index: 3;
+        transition: left .3s, top .3s;
     }
-    .trash-icon-action{font-size: 20pt;
+    .delete-button-show:hover .initial-action-text{
+        opacity: 1;
         position: absolute;
-        left: 65px;
+        left: 0px;
+        top: 50px;
+        z-index: 3;
+        text-align: center;
+        transition: top .3s, left .3s, opacity .3s cubic-bezier(.6,1,.92,.87);
+    }
+    .upload-button-show:hover .upload-icon-action{
+        position: absolute;
+        left: 51px;
+        top: -25px;
+        z-index: 3;
+    }
+    .upload-button-show:hover .initial-action-text{
+        opacity: 1;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+        z-index: 3;
+        text-align: center;
+        transition: top .3s, left .3s, opacity .3s cubic-bezier(.6,1,.92,.87);
+    }
+    .download-button-show:hover .download-icon-action{
+        position: absolute;
+        left: 47px;
+        top: -25px;
+        z-index: 3;
+    }
+    .download-button-show:hover .initial-action-text{
+        opacity: 1;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+        z-index: 3;
+        text-align: center;
+        transition: top .3s, left .3s, opacity .3s cubic-bezier(.6,1,.92,.87);
+    }
+    .share-button-show:hover .share-icon-action{
+        position: absolute;
+        left: 67px;
         top: 5px;
-        z-index: 0;
-        rotate: -20deg;
+        z-index: 3;
+    }
+    .share-button-show:hover .initial-action-text{
+        opacity: 1;
+        position: absolute;
+        width: 50px;
+        left: 20px;
+        top: 50px;
+        z-index: 3;
+        text-align: center;
+        transition: top .3s, left .3s, opacity .3s cubic-bezier(.6,1,.92,.87);
+    }
+}
+@media(max-width:320px){
+    .upload-button-show{
+        opacity: 1;
+        position: absolute;
+        left: calc(50vw - 121.8px);
+        top: -121.5px;
+        transition: left  .3s, top  .3s, opacity  .3s;
+        cursor:pointer;
+    }
+    .download-button-show{
+        opacity: 1;
+        position: absolute;
+        left: calc(50vw - 1px);
+        top: -121.5px;
+        transition: left  .3s, top  .3s, opacity  .3s;
+        cursor:pointer;
+    }
+    .delete-button-show{
+        opacity: 1;
+        position: absolute;
+        left: calc(50vw - 200.1px);
+        top: -95px;
+        transition: left  .3s, top  .3s, opacity  .3s;
+        cursor:pointer;
+    }
+    .share-button-show{
+        opacity: 1;
+        position: absolute;
+        left: calc(50vw + 60.8px);
+        top: -94.5px;
+        transition: left  .3s, top  .3s, opacity  .3s;
+        cursor:pointer;
+    }
+    .upload-button-circle{
+        content: "";
+        border: none;
+        border-radius: 50%;
+        background-color: var(--holo-blue);
+        width: 40px;
+        height: 40px;
+        position:absolute;
+        top: 22px;
+        left: 60px;
+        z-index: 1;
+    
+    }
+    .download-button-circle{
+        content: "";
+        border: none;
+        border-radius: 50%;
+        background-color: var(--holo-blue);
+        width: 40px;
+        height: 40px;
+        position:absolute;
+        top: 22px;
+        left: 21px;
+        z-index: 1;
+    
     }
     .upload-icon-action{font-size: 20pt;
         position: absolute;
-        left: 90px;
-        top: 0px;
-        z-index: 0;
+        left: 67px;
+        top: 18px;
+        z-index: 3;
     }
     .download-icon-action{font-size: 20pt;
         position: absolute;
-        left: 5px;
-        top: 0px;
-        z-index: 0;
+        left: 28px;
+        top: 18px;
+        z-index: 3;
     }
-    .delete-button-show{
+    .share-icon-action{
+        font-size: 20pt;
         position: absolute;
-        left: calc(50vw - 155px);
-        top: -123px;
-        transition: left .3s, top .3s;
-        cursor:pointer;
-        rotate: 20deg;
-        z-index: 1;
+        left: 30px;
+        top: 35px;
+        z-index: 3;
     }
-    .share-button-show{
+    .trash-icon-action{
+        font-size: 20pt;
         position: absolute;
-        left: calc(50vw + 13px);
-        top: -123px;
-        transition: left .3s, top .3s;
-        cursor:pointer;
-        rotate: -20deg;
+        left: 84px;
+        top: 35px;
+        z-index: 3;
+    }
+    .delete-button-circle{
+        content: "";
+        border: none;
+        border-radius: 50%;
+        background-color: var(--holo-blue);
+        width: 40px;
+        height: 40px;
+        position:absolute;
+        top: 37px;
+        left: 78px;
         z-index: 1;
+    
+    }
+    .share-button-circle{
+        content: "";
+        border: none;
+        border-radius: 50%;
+        background-color: var(--holo-blue);
+        width: 40px;
+        height: 40px;
+        position:absolute;
+        top: 37px;
+        left: 25px;
+        z-index: 1;
+    
     }
 }
-.blue-text{
-    color: #007bff;
+@media(max-width:250px){
+    .share-icon-action{
+        font-size: 20pt;
+        position: absolute;
+        left: -5px;
+        top: -12px;
+        z-index: 3;
+    }
+    .trash-icon-action{
+        font-size: 20pt;
+        position: absolute;
+        top: -12px;
+        left: 116px;
+        z-index: 3;
+    }
+    .upload-icon-action{
+        font-size: 20pt;
+        position: absolute;
+        left: 85px;
+        top: 3px;
+        z-index: 3;
+    }
+    .download-icon-action{
+        font-size: 20pt;
+        position: absolute;
+        left: 10px;
+        top: 3px;
+        z-index: 3;
+    }
+   
+    .delete-button-circle{
+    content: "";
+    border: none;
+    border-radius: 50%;
+    background-color: var(--holo-blue);
+    width: 40px;
+    height: 40px;
+    position:absolute;
+    top: -10px;
+    left: 110px;
+    z-index: 1;
+
+    }
+    .upload-button-circle{
+    content: "";
+    border: none;
+    border-radius: 50%;
+    background-color: var(--holo-blue);
+    width: 40px;
+    height: 40px;
+    position:absolute;
+    top: 5px;
+    left: 78px;
+    z-index: 1;
+
+    }
+    .download-button-circle{
+    content: "";
+    border: none;
+    border-radius: 50%;
+    background-color: var(--holo-blue);
+    width: 40px;
+    height: 40px;
+    position:absolute;
+    top: 5px;
+    left: 3px;
+    z-index: 1;
+
+    }
+    .share-button-circle{
+    content: "";
+    border: none;
+    border-radius: 50%;
+    background-color: var(--holo-blue);
+    width: 40px;
+    height: 40px;
+    position:absolute;
+    top: -10px;
+    left: -10px;
+    z-index: 1;
+
+    }
+}
+.action-btn-text{
+    color: white !important;
 }

@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
 import { logOutWithThunk } from "../../../../../redux/actions";
-import {GearFill} from 'react-bootstrap-icons';
+import {Gear} from 'react-bootstrap-icons';
 import AxesBtn from "../../../AxesBtn/AxesBtn";
 import LightBtn from "../../../LightBtn/LightBtn";
 import { useState } from "react";
@@ -35,7 +35,7 @@ const TogglesTab = (props) => {
           handleToggle();
           console.log("click");}} className="toggle-tab" variant="outline-secondary">
             <div className="toggle-icon-container">
-              <GearFill/>
+              <Gear/>
               <div className="toggle-label">Settings</div>
           </div>
           </Button>

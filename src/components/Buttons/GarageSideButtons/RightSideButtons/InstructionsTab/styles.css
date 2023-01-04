@@ -20,7 +20,7 @@
   color: white;
   background-color: var(--holo-blue);
   border: none;
-  width: 35px;
+  width: 80px;
   right: -2px;
   transition: border-radius .3s, width .3s, right .3s;
   z-index: 2;
@@ -34,8 +34,8 @@
 }
 .instructions-tab:hover .instructions-icon-container{
   position: absolute;
-  top: 0px;
-  left: 16px;
+  top: 5px;
+  left: 28px;
   transition: top .3s, left .3s;
   z-index: 2;
 }
@@ -103,7 +103,7 @@
   opacity: 0;
   font-size: 10pt;
   position: absolute;
-  top: 25px;
+  top: 35px;
   left: 30px;
   padding: 0;
   transition: top .3s, left .3s,  opacity .3s;
@@ -112,7 +112,7 @@
 .instructions-tab:hover .instructions-label{
   font-size: 10pt;
   position: absolute;
-  top: 40px;
+  top: 45px;
   left: 5px;
   padding: 0;
   transition: top .3s, left .3s,  opacity .3s;

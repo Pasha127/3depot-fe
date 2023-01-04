@@ -11,7 +11,7 @@
   padding-top: 25px;
   padding-bottom: 25px;
   background-color: var(--bg-color);
-  border-bottom: 1px solid #cecece;
+  border-bottom: 1px solid var(--holo-blue-alpha);
   height: 80px;
   z-index: 30;
   flex-wrap: nowrap;

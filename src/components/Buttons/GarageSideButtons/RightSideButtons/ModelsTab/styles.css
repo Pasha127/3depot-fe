@@ -20,7 +20,7 @@
   color: white;
   background-color: var(--holo-blue);
   border: none;
-  width: 35px;
+  width: 80px;
   right: -2px;
   transition: border-radius .3s, width .3s, right .3s;
   z-index: 2;
@@ -34,8 +34,8 @@
 }
 .model-tab:hover .model-icon-container{
   position: absolute;
-  top: 0px;
-  left: 16px;
+  top: 5px;
+  left: 28px;
   transition: top .3s, left .3s;
   z-index: 2;
 }

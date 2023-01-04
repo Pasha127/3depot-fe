@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
 import { logOutWithThunk } from "../../../../../redux/actions";
-import {Boxes, QuestionCircleFill, X} from 'react-bootstrap-icons';
+import {Boxes, QuestionCircle, QuestionCircleFill, X} from 'react-bootstrap-icons';
 import { useState } from "react";
 import useDragEffect from "../../../../../hooks/useDragEffect";
 const mapStateToProps = state => {
@@ -35,8 +35,8 @@ const InstructionsTab = (props) => {
           handleToggle();
           console.log("click");}} className="instructions-tab" variant="outline-secondary">
             <div className="instructions-icon-container">
-              <QuestionCircleFill/>
-              <div className="instructions-label">My instructionss</div>
+              <QuestionCircle/>
+              <div className="instructions-label">Controls</div>
               </div>
               </Button>
         <div className="drag-container">

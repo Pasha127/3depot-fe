@@ -4,6 +4,7 @@
   --holo-blue-alpha: rgba(185, 250, 255, 0.6);
   --holo-blue: rgb(99, 182, 202);
   --text-blue: #007bff; 
+  --garage-beige: #c0b494;
 }
 body {
   margin: 0;
