@@ -18,7 +18,10 @@ const GarageInstructions = (props) =>{
         
     return(<>
     <div className={containerState}>
-            <div className={`instruction-border `}>
+            <div className={`instruction-border `} onClick={()=>{
+                setContainerState("instruction-container-close");
+                sessionStorage.setItem('seenInstructions', true)
+            }}>
                 <X className="instructions-tray-close-icon"/>
             </div>
         <div className={`instruction-details`}>

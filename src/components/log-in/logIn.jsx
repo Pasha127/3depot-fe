@@ -8,6 +8,7 @@ import { useRef } from "react";
 import CookieModal from "../CookieModal/CookieModal";
 import { useNavigate } from "react-router-dom";
 import Loader2D from "../loader/Loader2D";
+import { useEffect } from "react";
 
 const mapStateToProps = state => {
   return {
@@ -35,7 +36,17 @@ const LogIn = (props) => {
   const [avatar, setAvatar] = useState(null);
   const [avatarDataURL, setAvatarDataURL] = useState({});
   const [wantLogIn, setWantLogIn] = useState(true);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [awaitingConnection, setAwaitingConnection] = useState(false);
+  
+
+  useEffect(()=>{
+    if(awaitingConnection && !props.user._id){const errorTimeout = setTimeout(()=>{
+      alert("Something went wrong. Please try again.");
+      window.location.reload();
+    },10000)
+    return ()=> clearTimeout(errorTimeout)}
+  },[awaitingConnection])
 
 const postAvatar = async (id) =>{ 
   let formData = new FormData()
@@ -134,6 +145,7 @@ const handleSubmit = (e) => {
   }
 
 const handleLogIn = async (e) =>{ 
+  setAwaitingConnection(true)
   setIsLoading(true)
     e.preventDefault()
     const postObj = {password:passwordRef.current.value,email:emailRef.current.value.toLowerCase()}
@@ -173,7 +185,7 @@ const handleLogIn = async (e) =>{
     <div className="background-gears gear5"></div>
     <Container className="new-blog-container mt-0">      
       {wantLogIn? 
-      <div className="log-in-box">
+      <div className="log-in-box holo-blue-alpha-bg">
         <Form>
         <div className="login-logo" onClick={goToSearch}></div>
         <Form.Group controlId="Email" className="mt-1 col-12">
@@ -184,18 +196,19 @@ const handleLogIn = async (e) =>{
           <Form.Label>Password</Form.Label>
           <Form.Control size="lg" type="password" placeholder="Password" ref={passwordRef} />
           </Form.Group> 
-            <Form.Group className="mt-3  col-12 justify-content-around d-flex">
-        <Button variant="outline-dark"
-        onClick={(e) => {handleLogIn(e)}}
+            <Form.Group className="mt-4 mb-1  col-12 justify-content-around d-flex">
+        <Button className="holo-blue-btn w-120" variant="primary"
+        onClick={(e) => {handleLogIn(e);}}
         type="submit"
         size="lg"
         >
             Log-In
           </Button>
         <Button
+          className=" w-120"
             onClick={(e) => setWantLogIn(false)}
             size="lg"
-            variant="dark"         
+            variant="outline-secondary"         
             >
             Register
           </Button>
@@ -203,7 +216,7 @@ const handleLogIn = async (e) =>{
         </Form>
       </div>
       
-      :<Form className="mt-5 register-box">       
+      :<Form className="mt-5 register-box holo-blue-alpha-bg">       
           <div className="d-flex justify-content-center">
             <div className="p-0 d-flex pic-space">
         <label className="uploaded-pic" htmlFor="avatarUploadBtn">{!avatar ? <BsPersonBoundingBox style={{fontSize: "25px", color: "gray", cursor: "pointer"}}></BsPersonBoundingBox>:<img className="uploaded-pic" src={avatarDataURL} alt="avatar"/>}</label>
@@ -231,15 +244,20 @@ const handleLogIn = async (e) =>{
           <Form.Label>Surname</Form.Label>
           <Form.Control size="lg" placeholder="Surname" ref={lastNameRef} />
           </Form.Group>         
-        <Form.Group className="mt-3  col-10">
-        <Button className="mr-3" type="reset" size="lg" variant="outline-dark" onClick={(e) => setWantLogIn(true)}>
+          <Form.Group className="mt-4 mb-1  col-12 justify-content-around d-flex">
+        <Button 
+        className="w-120"
+        size="lg" 
+        variant="outline-secondary" 
+        onClick={(e) => setWantLogIn(true)}>
         Back
           </Button>
         <Button
+        className="holo-blue-btn w-120" 
             onClick={(e) => handleSubmit(e)}
             type="submit"
             size="lg"
-            variant="dark"
+            variant="primary"
             >
             Register
           </Button>
@@ -247,16 +265,16 @@ const handleLogIn = async (e) =>{
       </Form>}
     </Container>
     <div className="d-flex flex-wrap justify-content-center mt-5">
-    <a className="background4button" href="http://localhost:3001/user/googleLogin">
+    <a href="http://localhost:3001/user/googleLogin">
     <Button
             onClick={()=>{
               /* props.getMe(); */
             }}
-            className="oauth-button"
+            className="oauth-button holo-blue-btn"
             size="lg"
-            variant="outline-dark"            
+            variant="primary"            
             >
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4="></img>
+                <img className="mr-1 mt-n1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4="></img>
             Sign in with Google
           </Button></a>
 

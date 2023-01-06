@@ -8,6 +8,9 @@ import { getMeWithThunk } from "../src/redux/actions";
 import Search from './components/search/Search';
 import GarageContainer from './components/GarageContainer/GarageContainer';
 import Search3D from "./components/search/Search3D";
+import Chat from "./components/chat/Chat";
+import ChatHome from "./components/chat/ChatHome";
+import PrivateRoutes from "./lib/tools/PrivateRoutes";
 const mapStateToProps = state => {
   return {
   user: state.userInfo
@@ -31,6 +34,9 @@ function App(props) {
   return (<>
     <Router>
       <Routes>
+        <Route element={<PrivateRoutes />}>
+                <Route element={<ChatHome/>} path="/Chat"/>
+        </Route>
         <Route path='/' exact element={<Search3D/>}/>
         <Route path="/LogIn" exact element={<LogIn />} /> 
         <Route path="/Garage" exact element={<GarageContainer/>} />

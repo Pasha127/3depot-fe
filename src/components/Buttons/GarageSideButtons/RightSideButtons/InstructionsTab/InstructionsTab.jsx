@@ -5,7 +5,7 @@ import "./styles.css";
 import { logOutWithThunk } from "../../../../../redux/actions";
 import {Boxes, QuestionCircle, QuestionCircleFill, X} from 'react-bootstrap-icons';
 import { useState } from "react";
-import useDragEffect from "../../../../../hooks/useDragEffect";
+import useDragEffect from "../../../../../lib/hooks/useDragEffect";
 const mapStateToProps = state => {
   return {
   user: state.userInfo,

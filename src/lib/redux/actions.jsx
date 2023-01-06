@@ -159,7 +159,7 @@ export const logInWithThunk =  (email, password) =>{
         dispatch(setUserInfo(data));
         getMeWithThunk()
       } else {
-        console.log("error logging out")
+        console.log("Error logging in.")
       }
     }catch(error){
       console.log(error)

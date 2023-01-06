@@ -20,6 +20,7 @@
     overflow: hidden;
     border: 1px solid gray;
     border-radius: 50%;
+    background-color: #ffffff;
   }
   .uploaded-pic{
     max-width: 100%;
@@ -35,12 +36,10 @@
     justify-content: center;
     margin-top: 200px;
     border-radius: 10px;
-    border: 1px solid #ced4da;
+    border: none;
     padding: 20px;
     max-width: 800px;
-    background-color: #ffffff;
   }
-
 
   .background-gears{
     position: absolute;  
@@ -77,7 +76,7 @@
 
 .register-box{
     border-radius: 10px;
-    border: 1px solid #ced4da;
+    border: none;
     padding: 20px;
     background-color: #ffffff;
 }
@@ -155,4 +154,25 @@
 
   body{
     overflow-y: auto;
+    background-color: var(--bg-color);
   }
+
+.holo-blue-alpha-bg{
+      background-color: var(--holo-blue-alpha);
+    }
+    .holo-blue-bg{
+      background-color: var(--holo-blue);
+    }
+.holo-blue-btn{
+  background-color: var(--holo-blue);
+  border: none;
+  
+}
+.holo-blue-alpha-btn{
+  background-color: var(--holo-blue-alpha);
+  border: none;
+
+}
+.w-120{
+  width: 120px;
+}

@@ -1,23 +1,39 @@
 .arrows-container{
     position: absolute;
-    top: 500px;
+    bottom: 50px;
     left: calc(50vw - 75px);
     animation: 2s infinite upNDown; 
 }
-
 @keyframes upNDown {
     0% {
-        top: 450px;
+        bottom: 500px;
         opacity: .2;
     }
     50% {
-        top: 500px;
+        bottom: 400px;
         opacity: 1;
     }
     100% {
-          opacity: .2;
-        top: 450px;
-      }
+        opacity: .2;
+        bottom: 500px;
+    }
+}
+@media(max-height: 700px){
+
+    @keyframes upNDown {
+        0% {
+            bottom: 400px;
+            opacity: .2;
+        }
+        50% {
+            bottom: 300px;
+            opacity: 1;
+        }
+        100% {
+            opacity: .2;
+            bottom: 400px;
+        }
+    }
 }
 .arrow-text{
     position: absolute;

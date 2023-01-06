@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { logOutWithThunk, setGarage } from "../../../redux/actions";
 import "./styles.css"
 
+const defaultAvatar = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
 
 
 const mapStateToProps = state => {
@@ -31,10 +32,15 @@ const UserDropdown = (props)=>{
     const goToGarage = () => navigate('/Garage');
     const goToLogin = () => navigate('/LogIn');
     const goToSearch = () => navigate('/');
+    const goToChat = () => navigate('/Chat');
 
     const handleGarageButton = ()=>{
       props.setGarage(true);
        goToGarage()
+    }
+    const handleChatButton = ()=>{
+      props.setGarage(true);
+       goToChat()
     }
     const handlelogOut = ()=>{
       props.logOut();
@@ -50,18 +56,21 @@ id={`dropdown-variants-light`}
 drop={'left'}
 as={ButtonGroup}
 variant={"light"}
+itemID="userDropdown"
 title={<div className="drop-container">
-  {props.user?._id && <img src={props.user.avatar} onError={(e)=>{e.target.src = "./3DepotLogoMedium.png"}} alt={"UserAvatar"} className="avatar"></img>}
+  {props.user?._id && <img src={props.user.avatar} onError={(e)=>{e.target.src = defaultAvatar}} alt={"UserAvatar"} className="avatar"></img>}
   {!props.user?._id && <h2><List/></h2>}
   </div>}
 >
-  <Dropdown.Item className="responsive" eventKey="5" onClick={goToSearch}>Home</Dropdown.Item> 
-  <Dropdown.Divider className="responsive" />
-{props.user?._id && <Dropdown.Item eventKey="1" onClick={handlelogOut}>Log Out</Dropdown.Item>}
-{!props.user?._id && <Dropdown.Item eventKey="1" onClick={goToLogin}>Log In</Dropdown.Item>}
-{props.user?._id &&<Dropdown.Item eventKey="2"onClick={handleGarageButton}>My Garage</Dropdown.Item>}
-{props.user?.role === "Admin" &&<Dropdown.Divider />}
-{props.user?.role === "Admin" &&<Dropdown.Item eventKey="4">Back Office</Dropdown.Item> }
+  <Dropdown.Item className="responsive dropdown-custom-item" eventKey="5" onClick={goToSearch}>Home</Dropdown.Item> 
+  <Dropdown.Divider className="responsive dropdown-custom-item" />
+{props.user?._id &&<Dropdown.Item className="dropdown-custom-item" eventKey="2"onClick={handleGarageButton}>My Garage</Dropdown.Item>}
+{props.user?._id &&<Dropdown.Item className="dropdown-custom-item" eventKey="6"onClick={handleChatButton}>Chat</Dropdown.Item>}
+{props.user?.role === "Admin" && <Dropdown.Divider />}
+{props.user?.role === "Admin" && <Dropdown.Item className="dropdown-custom-item" eventKey="4">Back Office</Dropdown.Item> }
+{props.user?._id && <Dropdown.Divider />}
+{props.user?._id && <Dropdown.Item className="dropdown-custom-item" eventKey="1" onClick={handlelogOut}>Log Out</Dropdown.Item>}
+{!props.user?._id && <Dropdown.Item className="dropdown-custom-item" eventKey="1" onClick={goToLogin}>Log In</Dropdown.Item>}
 </DropdownButton>
 
 </>)
