@@ -34,7 +34,7 @@
   .log-in-box{
     display: flex;
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 80px;
     border-radius: 10px;
     border: none;
     padding: 20px;
@@ -66,6 +66,7 @@
  
     height: 50px;
     z-index: 5;
+    margin-bottom: 90px;
   }  
   .background4button{
     background-color: #ffffff;
@@ -82,6 +83,7 @@
 }
 .gear3,.gear4,.gear5,.gear2{
     opacity: 0;
+    display: none;
 }
 
 .login-logo{
@@ -96,7 +98,11 @@
         background-size: cover;
         cursor: pointer;
 }
-@media (min-width: 1000px) {
+@media (min-width: 470px) {
+  .log-in-box{
+    margin-top: 200px;
+  }}
+  @media (min-width: 1000px) {
     .gear2{
         position: absolute;
         transform: rotate(70deg);  
@@ -149,6 +155,9 @@
         top:500px;
         animation: rotateGear 30s linear 0s infinite normal both;
         background-size: cover;
+}
+.gear3,.gear4,.gear5,.gear2{
+  display: flex;
 }
   }
 

@@ -5,8 +5,6 @@
     flex-direction: row;
     position: absolute;
     bottom: 0;
-
-    
 }
 .friendlist{
     display: flex;
@@ -39,10 +37,25 @@
     background-size: 30%;
 }
 .chatbar{
-    /* transform: translateX(250px); */
+    width: calc(100vw - 250px);
+    position: absolute;
+    right:0px;
+    bottom: 48px;
+    padding-inline: 0;
+    
+}
+.single-message{
     display: flex;
-    z-index: 5;
-    bottom: 0px;
-    
-    
+    margin-top: 10px;
+}
+.single-message .list-group-item{
+    border-radius: 20px !important;
+    background-color: var(--holo-blue);
+    color: white;
+}
+.from-me{
+    justify-content: right;
+}
+.from-them{
+    justify-content: left;
 }

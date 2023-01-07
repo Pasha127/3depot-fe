@@ -3,9 +3,9 @@ import { Container } from "react-bootstrap";
 import { Controller, Envelope, EnvelopeFill, FileEarmarkPersonFill, Github, Linkedin } from "react-bootstrap-icons";
 import "./styles.css"
 
-const TransparentFooter = (props) => {
+const GarageFooter = (props) => {
   return (<>
-     <div className="transparent-footer">
+     <div className="garage-footer">
         <div>{`${new Date().getFullYear()} - © Paul Levitsky`}</div>
         <div className="contact-icons">
         <a href="https://github.com/Pasha127"  target="_blank"><Github/></a> 
@@ -18,4 +18,4 @@ const TransparentFooter = (props) => {
   </>);
 };
 
-export default TransparentFooter;
+export default GarageFooter;

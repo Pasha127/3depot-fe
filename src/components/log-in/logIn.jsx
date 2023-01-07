@@ -9,6 +9,8 @@ import CookieModal from "../CookieModal/CookieModal";
 import { useNavigate } from "react-router-dom";
 import Loader2D from "../loader/Loader2D";
 import { useEffect } from "react";
+import TransparentFooter from "../footer/TransparentFooter";
+import FieldPageFooter from "../footer/FieldPageFooter";
 
 const mapStateToProps = state => {
   return {
@@ -268,7 +270,7 @@ const handleLogIn = async (e) =>{
           </Button>
           </Form.Group>         
       </Form>}
-    </Container>
+    
     <div className="d-flex flex-wrap justify-content-center mt-5">
     <a href="http://localhost:3001/user/googleLogin">
     <Button
@@ -285,7 +287,9 @@ const handleLogIn = async (e) =>{
 
         
     </div>
+    </Container>
     <CookieModal/>
+    <FieldPageFooter/>
               </>
   );
 };
