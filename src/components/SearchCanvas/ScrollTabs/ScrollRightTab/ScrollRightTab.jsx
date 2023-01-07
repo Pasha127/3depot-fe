@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./styles.css";
 import { CaretRightFill, ChevronRight} from 'react-bootstrap-icons';
 import { useState } from "react";
-import { setSearchSettings } from "../../../../redux/actions";
+import { setSearchSettings } from "../../../../lib/redux/actions";
 import { useEffect } from "react";
 const mapStateToProps = state => {
   return {

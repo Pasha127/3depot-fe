@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
-import { logOutWithThunk } from "../../redux/actions";
+import { logOutWithThunk } from "../../lib/redux/actions";
 const mapStateToProps = state => {
   return {
   user: state.userInfo,

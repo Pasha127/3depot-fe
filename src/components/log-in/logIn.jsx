@@ -3,7 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import "./styles.css"
 import {BsPersonBoundingBox } from "react-icons/bs";
 import { connect } from "react-redux";
-import { getMeWithThunk } from "../../redux/actions";
+import { getMeWithThunk } from "../../lib/redux/actions";
 import { useRef } from "react";
 import CookieModal from "../CookieModal/CookieModal";
 import { useNavigate } from "react-router-dom";
@@ -41,12 +41,16 @@ const LogIn = (props) => {
   
 
   useEffect(()=>{
-    if(awaitingConnection && !props.user._id){const errorTimeout = setTimeout(()=>{
-      alert("Something went wrong. Please try again.");
-      window.location.reload();
+    if(awaitingConnection && !props.user._id ){const errorTimeout = setTimeout(()=>{
+      tryAgainAlert()
     },10000)
     return ()=> clearTimeout(errorTimeout)}
   },[awaitingConnection])
+
+const tryAgainAlert = ()=>{
+    if(isLoading){alert("Something went wrong. Please try again.");
+      window.location.reload();}
+}
 
 const postAvatar = async (id) =>{ 
   let formData = new FormData()
@@ -167,6 +171,7 @@ const handleLogIn = async (e) =>{
      /*        console.log(data._id);   */
          } else {
            alert('Username, Password or Both Invalid')
+           window.location.reload()
            setIsLoading(false)
          } 
         } catch (error) {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {Container,Row,Col,Form,FormControl,ListGroup} from "react-bootstrap";
 import {io} from "socket.io-client";
-import { getMeWithThunk, setActiveChat, setOnline, setRecentMsg } from "../../redux/actions";
+import { getMeWithThunk, setActiveChat, setOnline, setRecentMsg } from "../../lib/redux/actions";
 import { connect } from "react-redux";
 
 import "./styles.css"

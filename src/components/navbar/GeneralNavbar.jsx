@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/3DepotLogoSmall.png";
 import { connect } from "react-redux";
 import "./styles.css";
-import { logOutWithThunk } from "../../redux/actions";
+import { logOutWithThunk } from "../../lib/redux/actions";
 import SearchBar from "../search/SearchBar";
 import UserDropdown from "../Buttons/UserDropdown/UserDropdown";
 import FiltersBar from "./FiltersBar";

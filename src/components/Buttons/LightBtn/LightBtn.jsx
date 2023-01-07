@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import {  ArrowCounterclockwise, BrightnessHigh, Lightbulb, LightbulbFill, LightbulbOffFill, Sliders } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import ReactSlider from "react-slider";
-import { setSettings } from "../../../redux/actions";
+import { setSettings } from "../../../lib/redux/actions";
 import "./styles.css"
 const mapStateToProps = state => {
     return {

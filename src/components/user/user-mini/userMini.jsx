@@ -3,7 +3,7 @@ import { Col, Image, Row } from "react-bootstrap";
 import "../styles.css";
 import { connect } from "react-redux";
 import { joinRoom } from "../../chat/Chat";
-import { setActiveChat, setChats } from "../../../redux/actions";
+import { setActiveChat, setChats } from "../../../lib/redux/actions";
 
 const defaultAvatar = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
 

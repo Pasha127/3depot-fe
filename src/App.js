@@ -4,11 +4,9 @@ import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import LogIn from './components/log-in/logIn';
-import { getMeWithThunk } from "../src/redux/actions";
-import Search from './components/search/Search';
+import { getMeWithThunk } from "../src/lib/redux/actions";
 import GarageContainer from './components/GarageContainer/GarageContainer';
 import Search3D from "./components/search/Search3D";
-import Chat from "./components/chat/Chat";
 import ChatHome from "./components/chat/ChatHome";
 import PrivateRoutes from "./lib/tools/PrivateRoutes";
 const mapStateToProps = state => {
@@ -41,7 +39,7 @@ function App(props) {
         <Route path="/LogIn" exact element={<LogIn />} /> 
         <Route path="/Garage" exact element={<GarageContainer/>} />
       </Routes>
-    </Router>      
+    </Router>
      </>);
 }
 

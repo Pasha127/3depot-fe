@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { connect } from "react-redux";
-import { setFilters } from "../../redux/actions";
+import { setFilters } from "../../lib/redux/actions";
 import "./styles.css"
 const mapStateToProps = state => {
   return {

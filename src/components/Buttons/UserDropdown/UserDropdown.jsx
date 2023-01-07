@@ -3,7 +3,7 @@ import { Dropdown, DropdownButton, ButtonGroup } from "react-bootstrap";
 import { List } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logOutWithThunk, setGarage } from "../../../redux/actions";
+import { logOutWithThunk, setGarage } from "../../../lib/redux/actions";
 import "./styles.css"
 
 const defaultAvatar = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";

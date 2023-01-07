@@ -1,0 +1,16 @@
+.transparent-footer{
+    position: fixed;
+    background: none;
+    background-color: none;
+    color: white;
+    bottom: 0px;
+    margin-bottom: 10px;
+}
+.opaque-footer{
+    position: fixed;
+    background: var(--bg-color);
+    background-color: var(--bg-color);
+    color: black;
+    bottom: 0px;
+    margin-bottom: 5px;
+}

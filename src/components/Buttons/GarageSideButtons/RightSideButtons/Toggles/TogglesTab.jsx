@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
-import { logOutWithThunk } from "../../../../../redux/actions";
+import { logOutWithThunk } from "../../../../../lib/redux/actions";
 import {Gear} from 'react-bootstrap-icons';
 import AxesBtn from "../../../AxesBtn/AxesBtn";
 import LightBtn from "../../../LightBtn/LightBtn";

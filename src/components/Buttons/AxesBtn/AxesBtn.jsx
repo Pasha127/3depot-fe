@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { DashLg, Plus, PlusLg } from "react-bootstrap-icons";
 import { connect } from "react-redux";
-import axesSVG from "../../../assets/axes.svg"
 import axesWhiteSVG from "../../../assets/axesWhite.svg"
-import { setSettings } from "../../../redux/actions";
+import { setSettings } from "../../../lib/redux/actions";
 import "./styles.css"
 
 const mapStateToProps = state => {

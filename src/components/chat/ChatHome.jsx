@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getChatByIdWithThunk, getHistoryWithThunk, getMeWithThunk } from "../../redux/actions";
+import { getChatByIdWithThunk, getHistoryWithThunk, getMeWithThunk } from "../../lib/redux/actions";
 import Chat from "./Chat";
 import "./styles.css"
 import UsersSidebar from "../user/UsersSidebar";

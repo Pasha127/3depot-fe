@@ -4,7 +4,7 @@ import UserMini from "../user/user-mini/userMini";
 import { useEffect, useState } from "react";
 import {Container,Row,Col,Form,FormControl,ListGroup,Button} from "react-bootstrap";
 import UsersSidebar from "../user/UsersSidebar";
-import { getChatByIdWithThunk, getHistoryWithThunk, setOnline } from "../../redux/actions";
+import { getChatByIdWithThunk, getHistoryWithThunk, setOnline } from "../../lib/redux/actions";
 import "./styles.css"
 import { sendInitialMessage } from "../chat/Chat";
 

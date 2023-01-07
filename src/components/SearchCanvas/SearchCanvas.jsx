@@ -11,7 +11,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import "./styles.css"
 import Loader2D from "../loader/Loader2D"
 import { connect } from 'react-redux';
-import {  setSearchSettings} from '../../redux/actions';
+import {  setSearchSettings} from '../../lib/redux/actions';
 import { useNavigate } from 'react-router-dom';
 import crate from '../../assets/crate.png';
 import warehouseWall from '../../assets/warehouseBGDark.png';

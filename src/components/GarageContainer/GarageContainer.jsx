@@ -9,7 +9,7 @@ import ActionBtns from "../Buttons/ActionBtns/ActionBtns";
 import TogglesTab from "../Buttons/GarageSideButtons/RightSideButtons/Toggles/TogglesTab";
 import InfoTab from "../Buttons/GarageSideButtons/RightSideButtons/InfoTab/InfoTab";
 import ModelsTab from "../Buttons/GarageSideButtons/RightSideButtons/ModelsTab/ModelsTab";
-import { setSettings } from "../../redux/actions";
+import { setSettings } from "../../lib/redux/actions";
 import { connect } from "react-redux";
 import InstructionsTab from "../Buttons/GarageSideButtons/RightSideButtons/InstructionsTab/InstructionsTab";
 const mapStateToProps = state => {

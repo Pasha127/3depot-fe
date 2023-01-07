@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setGarage } from "../../redux/actions";
+import { setGarage } from "../../lib/redux/actions";
 import "./styles.css"
 
 const mapStateToProps = state => {

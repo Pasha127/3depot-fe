@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import UserMini from "../user/user-mini/userMini";
 import { useEffect, useState } from "react";
-import { getChatByIdWithThunk, getHistoryWithThunk, setOnline } from "../../redux/actions";
+import { getChatByIdWithThunk, getHistoryWithThunk, setOnline } from "../../lib/redux/actions";
 import "./styles.css"
 import Search from "./Search";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./styles.css";
 import { useState } from "react";
-import { setSearchSettings } from "../../../redux/actions";
+import { setSearchSettings } from "../../../lib/redux/actions";
 import { useEffect } from "react";
 import { HandIndex, HandIndexFill } from "react-bootstrap-icons";
 import { click } from "@testing-library/user-event/dist/click";
