@@ -29,7 +29,7 @@ const mapStateToProps = state => {
 const LogIn = (props) => {
     const baseURL = process.env.REACT_APP_SERVER_URL
   const navigate = useNavigate()
-  const goToSearch = ()=> navigate("/")
+  const goToSearch = ()=> navigate("/", {replace: true})
   const usernameRef = useRef()
   const lastNameRef = useRef();
   const firstNameRef = useRef();

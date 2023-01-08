@@ -27,8 +27,8 @@ const mapStateToProps = state => {
 
 function App(props) {
   useEffect(()=>{
-    console.log(props.user)
-  },[props.user])
+    props.getMe()
+  },[])
   return (<>
     <Router>
       <Routes>

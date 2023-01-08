@@ -107,7 +107,8 @@ export const getMeWithThunk = () =>{
       if (response.ok) {
         const data = await response.json()
         /* console.log("test resp", data); */
-        dispatch(setUserInfo(data[0]));            
+        dispatch(setUserInfo(data[0]));
+        localStorage.setItem("loggedIn", true)            
       } else {
         dispatch(logOutWithThunk())
       }             
@@ -137,7 +138,8 @@ export const logOutWithThunk = () =>{
       console.log(error)
     };
     emitLogOut();
-    dispatch(setUserInfo({}));            
+    dispatch(setUserInfo({}));
+    localStorage.removeItem("loggedIn")            
 }}
 
 export const logInWithThunk =  (email, password) =>{
