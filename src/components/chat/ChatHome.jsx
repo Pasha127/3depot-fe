@@ -51,9 +51,11 @@ const ChatHome = (props) => {
 
     return (<>
       <GeneralNavbar/>
-        <Container fluid className="home-container m-0" >
-        <div>
-            <UsersSidebar/>
+        <Container fluid className="home-container m-0 p-0" >
+        <div className="d-flex w-100">
+            <div className="friend-space">
+              <UsersSidebar/>
+            </div>
             <div className="chat-space">
                 <Chat />
             </div>

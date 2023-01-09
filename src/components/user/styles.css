@@ -3,6 +3,7 @@
   height: 40px;
 }
 .tab-body{
+  position: relative;
   border: 1px solid black;
   height: 60px;
   width: 100%;
@@ -10,7 +11,18 @@
   justify-content: left;
   align-items: center;
   cursor: pointer;
-  
+  background-color: var(--holo-blue);
+  color: black;
+}
+.delete-chat{
+  position: absolute;
+  top:5px;
+  right: 5px;
+  color: red;
+  display: none;
+}
+.tab-body:hover .delete-chat{
+  display: flex;
 }
 .online{
   height: 15px;

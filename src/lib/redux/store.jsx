@@ -25,13 +25,13 @@ export const initialState = {
     username: "",
     email: "",
     avatar: ""
-},
-chats: {
-  active: {}, 
-  list: []
-},
-onlineUsers:[],
-recentMessage:{}
+  },
+  chats: {
+    active: {}, 
+    list: []
+  },
+  onlineUsers:[],
+  recentMessage:{}
 } 
 
 export const store = configureStore({

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {Container,Row,Col,Form,FormControl,ListGroup} from "react-bootstrap";
 import {io} from "socket.io-client";
-import { getMeWithThunk, setActiveChat, setOnline, setRecentMsg } from "../../lib/redux/actions";
+import { getMeWithThunk, setActiveChat, setLoading, setOnline, setRecentMsg } from "../../lib/redux/actions";
 import { connect } from "react-redux";
 
 import "./styles.css"
@@ -15,7 +15,8 @@ const mapStateToProps = state => {
   user: state.userInfo,
   activeChat: state.chats.active,
   onlineUsers: state.onlineUsers,
-  messageHistory: state.chats.active.messages
+  messageHistory: state.chats.active.messages,
+  isLoading: state.isLoading
   };
 };
 
@@ -32,6 +33,9 @@ const mapStateToProps = state => {
     },                  
     setRecentMesg: (chat)=>{
       dispatch(setRecentMsg(chat))
+    },
+    setLoading: (loadBool)=>{
+      dispatch(setLoading(loadBool))
     }                  
   };  
 }; 
@@ -58,7 +62,7 @@ export const sendInitialMessage = (user, otherUser) => {
         }
       }      
     }
-    socket.emit("sendMessage", { message: newMessage })
+    socket.emit("sendMessage", { message: newMessage }) 
   }
 
 
@@ -67,9 +71,8 @@ export const sendInitialMessage = (user, otherUser) => {
 
 const Chat = (props) => {
   const anchor = useRef(null);
-  const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [newMessage, setNewMessage] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [chatHistory, setChatHistory] = useState([]);
   const {_id,email} = props.user
@@ -78,7 +81,7 @@ const Chat = (props) => {
 
   useEffect(()=>{
 /*     console.log('fire1', props.activeChat.messages ) */
-    setChatHistory(props.activeChat.messages)    
+    props.activeChat.messages && setChatHistory(props.activeChat.messages)    
   },[props.activeChat]);
 
   useEffect(() => {
@@ -97,7 +100,7 @@ const Chat = (props) => {
       console.log("StateChatHistory: ",props.messageHistory)
       console.log("newMessage ", receivedMessage); */
       const newEntry = {...receivedMessage, createdAt: new Date()}
-      setChatHistory(chatHistory =>[...chatHistory,newEntry]);
+      chatHistory && setChatHistory(chatHistory =>[...chatHistory,newEntry]);
       scrollToBottom()
       props.setRecentMesg(newEntry)
     });
@@ -135,7 +138,7 @@ const Chat = (props) => {
       }
       
       return (
-        <Container fluid>
+        <Container fluid >
         {props.activeChat._id && <Col md={12} className={"chatbar"}  >
           <Form
             onSubmit={e => {
@@ -144,6 +147,7 @@ const Chat = (props) => {
             }}
             >
             <FormControl
+              
               placeholder="Write your message here"
               value={message}
               onChange={e =>setMessage(e.target.value)}
@@ -151,17 +155,17 @@ const Chat = (props) => {
           </Form>
               </Col>}
       {!chatHistory && <div className="splash-logo"></div>}
-      {chatHistory && <Row style={{ height: "95%" }} className="my-3">
+      {chatHistory[0] && <Row style={{ height: "95%" }} className="my-3 pe-none">
         <Col md={12} className="d-flex flex-column justify-content-between pb-5">
           <ListGroup> {chatHistory.map((element, i) => (
               <div key={i}>
-              {element.sender === props.user._id? <div  className={"single-message from-me"}><ListGroup.Item >
-                <strong>{element.sender === props.user._id? props.user.email.split("@")[0]:props.activeChat.members.find(user => user._id !== props.user._id).email.split("@")[0]} 
+              {element.sender === props.user._id? <div  className={"single-message from-me"}>{console.log(chatHistory)}<ListGroup.Item >
+                <strong>{element.sender === props.user._id? props.user.email.split("@")[0]:props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]} 
                 </strong> | {element.content && element.content.text} at{" "}
                 {new Date(element.createdAt).toLocaleTimeString("en-US")}
               </ListGroup.Item></div>:
               <div  className={"single-message from-them"}><ListGroup.Item  >
-              <strong>{element.sender === props.user._id? props.user.email.split("@")[0]:props.activeChat.members.find(user => user._id !== props.user._id).email.split("@")[0]} 
+              <strong>{element.sender === props.user._id? props.user.email.split("@")[0]:props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]} 
               </strong> | {element.content && element.content.text} at{" "}
               {new Date(element.createdAt).toLocaleTimeString("en-US")}
             </ListGroup.Item></div>}

@@ -31,8 +31,6 @@ const mapStateToProps = state => {
 
 
 const UsersSidebar = (props) => {
-    const [activeChatMessages, setActiveChatMessages] = useState({});
-
     
     useEffect(()=>{
       props.getHistory()

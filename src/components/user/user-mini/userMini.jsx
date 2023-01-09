@@ -3,7 +3,8 @@ import { Col, Image, Row } from "react-bootstrap";
 import "../styles.css";
 import { connect } from "react-redux";
 import { joinRoom } from "../../chat/Chat";
-import { setActiveChat, setChats } from "../../../lib/redux/actions";
+import { deleteChatByIdWithThunk, setActiveChat, setChats, setLoading } from "../../../lib/redux/actions";
+import { Trash } from "react-bootstrap-icons";
 
 const defaultAvatar = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
 
@@ -13,14 +14,21 @@ const mapStateToProps = state => {
   history: state.chats.list,
   activeChat: state.chats.active,
   onlineUsers: state.onlineUsers,
-  recentMsg: state.recentMessage
+  recentMsg: state.recentMessage,
+  isLoading: state.isLoading
   };
 };
  const mapDispatchToProps = dispatch => {
   return {
     setActiveChatHistory: (chat)=>{
       dispatch(setActiveChat(chat))
-    }
+    },
+    deleteChat: (chatId)=>{
+      dispatch(deleteChatByIdWithThunk(chatId))
+    },
+    setLoading: (loadBool)=>{
+      dispatch(setLoading(loadBool))
+    } 
   };  
 }; 
 
@@ -59,8 +67,9 @@ const UserMini = (props) => {
   
   const chatPreview =() =>{
     const relevantChat = findRelevantChatWithRedux()
-    const messagePreview = relevantChat.messages[relevantChat.messages.length - 1].content.text;
-    return messagePreview 
+    if(relevantChat.messages.length){const messagePreview = relevantChat.messages[relevantChat.messages.length - 1].content.text;
+    return messagePreview }
+    else{return "..."}
   }
  
   useState(()=>{
@@ -68,7 +77,6 @@ const UserMini = (props) => {
     console.log("recent",props.recentMsg)
   })
 
-  let relevantChatVar = null;
   return (
     <Row className="tab-body m-0"
     onClick={()=>{props.getChat(props.person); JoinRelevantChat(props.history, props.person);  /* setChathistoryOnClick() */}}>
@@ -81,6 +89,12 @@ const UserMini = (props) => {
         <h6 className="truncate m-0">{props.person.email.split("@")[0]}</h6>
          <div className="truncate">"{`${chatPreviewLine}`}"</div> 
       </Col>
+      <Trash className="delete-chat" onClick={(e)=>{
+        e.stopPropagation();
+        props.deleteChat(findRelevantChatWithRedux()._id);
+        window.location.reload()
+      }
+      }/>
     </Row>
   );
 };

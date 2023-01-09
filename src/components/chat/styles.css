@@ -5,6 +5,7 @@
     flex-direction: row;
     position: absolute;
     bottom: 0;
+    background-color: white;
 }
 .friendlist{
     display: flex;
@@ -14,16 +15,6 @@
     width:250px;
     height: 100%;
     left:0
-}
-.chat-space{
-    display: flex;
-    position: absolute;
-    border:1px solid grey;
-    overflow-y: auto;
-    right:0;
-    width: calc(100vw - 249px);
-    height: 100%;
-    bottom: 0;
 }
 .splash-logo{
     height: 100%;
@@ -40,22 +31,69 @@
     width: calc(100vw - 250px);
     position: absolute;
     right:0px;
-    bottom: 48px;
+    bottom: 0px;
     padding-inline: 0;
-    
+    z-index: 5;
 }
 .single-message{
     display: flex;
     margin-top: 10px;
-}
-.single-message .list-group-item{
-    border-radius: 20px !important;
-    background-color: var(--holo-blue);
-    color: white;
 }
 .from-me{
     justify-content: right;
 }
 .from-them{
     justify-content: left;
+}
+.from-me .list-group-item{
+    border-radius: 20px !important;
+    color: black;
+    background-color: var(--holo-blue-alpha);
+}
+.from-them .list-group-item{
+    border-radius: 20px !important;
+    color: black;
+    background-color: var(--holo-blue);
+}
+.chat-space{
+    display: flex;
+    position: relative;
+    border:1px solid grey;
+    overflow-y: auto;
+    right:0;
+    width: calc(100vw - 252px);
+    height: 100%;
+    bottom: 0;
+    background-color: white;
+}
+.friend-space{
+    background-color: var(--holo-blue-alpha);
+    display: flex;
+    position: relative;
+    border:1px solid grey;
+    overflow-y: auto;
+    width: 252px;
+    height: 100%;
+}
+@media(max-width:600px){
+.chat-space{
+    display: flex;
+    position: relative;
+    border:1px solid grey;
+    overflow-y: auto;
+    right:0;
+    width: 100vw;
+    height: 100%;
+    bottom: 0;
+    z-index: 0;
+}
+.friend-space{
+    display: flex;
+    position: absolute;
+    border:1px solid grey;
+    overflow-y: auto;
+    width: 252px;
+    height: 100%;
+    z-index: 5;
+}
 }

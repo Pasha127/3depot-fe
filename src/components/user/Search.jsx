@@ -45,6 +45,13 @@ const handleSearch = async (emailQuery, history, user, onlineUsers) =>{
       }          
 }
 
+const initialMsg = async (user,otherUser) =>{
+  await new Promise(function(resolve,reject){
+    resolve(sendInitialMessage(user,otherUser));
+  }) 
+  window.location.reload()
+}
+
 const resultHandler = (otherUser, history, user, onlineUsers)=>{
   if(history.length>0){ const existingChats = history.map(chat => {return(chat.members)});
 /*   console.log("existingChats: ",existingChats) */
@@ -56,10 +63,10 @@ const resultHandler = (otherUser, history, user, onlineUsers)=>{
    /*  console.log("chat exists") */
   alert("You are already friends!");
   }else{
-    sendInitialMessage(user,otherUser);
+    initialMsg(user,otherUser);
   }
 }else{
-    sendInitialMessage(user,otherUser);
+    initialMsg(user,otherUser);
   }
 } 
 

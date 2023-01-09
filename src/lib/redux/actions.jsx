@@ -75,7 +75,6 @@ export const getChatByIdWithThunk = (id) =>{
       credentials:"include"
       };      
       const baseEndpoint = `${baseURL}/chat/${id}`
-      /* console.log("fetch blogs") */
 
       return async (dispatch, getState) =>{
 
@@ -87,6 +86,24 @@ export const getChatByIdWithThunk = (id) =>{
         dispatch(setActiveChat(data));            
       } else {
         dispatch(logOutWithThunk())
+      }             
+    }
+}
+export const deleteChatByIdWithThunk = (id) =>{
+  const baseURL = process.env.REACT_APP_SERVER_URL
+    const options = {
+      method: 'DELETE' ,
+      credentials:"include"
+      };      
+      const baseEndpoint = `${baseURL}/chat/${id}`
+      return async (dispatch, getState) =>{
+        const response = await fetch(baseEndpoint, options);
+       /*  console.log("delete chat by id: ", response); */
+      if (response.ok) {
+       /*  console.log("chat from ID: ", data); */
+        dispatch(setActiveChat({}));            
+      } else {
+        alert("Error Encountered While Trying to Delete")
       }             
     }
 }
