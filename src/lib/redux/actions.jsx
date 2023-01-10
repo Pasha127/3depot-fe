@@ -1,4 +1,4 @@
-import { emitLogOut } from "../../components/chat/Chat";
+import { emitLogOut } from "../../components/SocketManager/SocketManager";
 
 export const LOADING = "LOADING";
 export const SETTINGS = "SETTINGS";

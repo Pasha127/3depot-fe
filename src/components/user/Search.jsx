@@ -6,7 +6,7 @@ import {Container,Row,Col,Form,FormControl,ListGroup,Button} from "react-bootstr
 import UsersSidebar from "../user/UsersSidebar";
 import { getChatByIdWithThunk, getHistoryWithThunk, setOnline } from "../../lib/redux/actions";
 import "./styles.css"
-import { sendInitialMessage } from "../chat/Chat";
+import { sendInitialMessage } from "../SocketManager/SocketManager";
 
 
 const mapStateToProps = state => {

@@ -9,6 +9,7 @@ import GarageContainer from './components/GarageContainer/GarageContainer';
 import Search3D from "./components/search/Search3D";
 import ChatHome from "./components/chat/ChatHome";
 import PrivateRoutes from "./lib/tools/PrivateRoutes";
+import SocketManager from "./components/SocketManager/SocketManager";
 const mapStateToProps = state => {
   return {
   user: state.userInfo
@@ -31,6 +32,7 @@ function App(props) {
   },[])
   return (<>
     <Router>
+    <SocketManager/>
       <Routes>
         <Route element={<PrivateRoutes />}>
                 <Route element={<ChatHome/>} path="/Chat"/>

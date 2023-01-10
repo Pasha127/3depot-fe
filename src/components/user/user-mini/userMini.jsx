@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import "../styles.css";
 import { connect } from "react-redux";
-import { joinRoom } from "../../chat/Chat";
+import { joinRoom } from "../../SocketManager/SocketManager";
 import { deleteChatByIdWithThunk, setActiveChat, setChats, setLoading } from "../../../lib/redux/actions";
 import { Trash } from "react-bootstrap-icons";
 
@@ -51,7 +51,7 @@ const UserMini = (props) => {
    /*  console.log("onlineUsers",props.onlineUsers) */
     const users = props.onlineUsers.map(user => {return(user._id)})
     if(users.includes(props.person._id)){setIsOnline(true)}else{setIsOnline(false)}
-  },[props.onlineUsers, props.person._id])
+  },[props.onlineUsers])
 
 
 

@@ -28,7 +28,8 @@ export const initialState = {
   },
   chats: {
     active: {}, 
-    list: []
+    list: [],
+    history: []
   },
   onlineUsers:[],
   recentMessage:{}
