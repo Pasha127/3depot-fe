@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import "../styles.css";
 import { connect } from "react-redux";
-import { joinRoom } from "../../SocketManager/SocketManager";
+import { joinRoom, socket } from "../../SocketManager/SocketManager";
 import { deleteChatByIdWithThunk, setActiveChat, setChats, setLoading } from "../../../lib/redux/actions";
 import { Trash } from "react-bootstrap-icons";
-
 const defaultAvatar = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
 
 const mapStateToProps = state => {
@@ -48,14 +47,11 @@ const UserMini = (props) => {
   const [chatPreviewLine, setChatPreviewLine] = useState("");
   
   useEffect(()=>{
-   /*  console.log("onlineUsers",props.onlineUsers) */
+    /*  console.log("onlineUsers",props.onlineUsers) */
     const users = props.onlineUsers.map(user => {return(user._id)})
     if(users.includes(props.person._id)){setIsOnline(true)}else{setIsOnline(false)}
   },[props.onlineUsers])
 
-
-
-  
   const findRelevantChatWithRedux = () =>{
     const relevantChat = props.history.find(chat => {
       return chat.members.some(member=>{
@@ -71,11 +67,25 @@ const UserMini = (props) => {
     return messagePreview }
     else{return "..."}
   }
- 
+
+  useEffect(()=>{
+      if(props.recentMsg.members.find(member => member !== props.user._id) === props.thisChat.members.find(member => member !== props.user._id)) setChatPreviewLine(props.recentMsg.message?.content.text);    
+      console.log("recent Chat: ",props.recentMsg.members, props.user._id, props.person._id, props.thisChat.members);
+  },[props.recentMsg.message])
+  
+  
   useState(()=>{
     setChatPreviewLine(chatPreview())
     console.log("recent",props.recentMsg)
   })
+
+  useEffect(() => {
+    socket.on("newMessage", receivedMessage => {
+      const newEntry = {...receivedMessage, createdAt: new Date()}
+      props.person._id === newEntry.sender && setChatPreviewLine(newEntry.content.text)
+    });
+    
+  }, [socket]);
 
   return (
     <Row className="tab-body m-0"

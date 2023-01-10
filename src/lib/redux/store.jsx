@@ -32,7 +32,13 @@ export const initialState = {
     history: []
   },
   onlineUsers:[],
-  recentMessage:{}
+  recentMessage:{
+    members:[],
+    sender:"",
+    content:{
+      text:""
+    }
+  }
 } 
 
 export const store = configureStore({

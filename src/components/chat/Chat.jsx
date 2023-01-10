@@ -40,12 +40,23 @@ const mapStateToProps = state => {
 const Chat = (props) => {
   const anchor = useRef(null);
   const [message, setMessage] = useState("");
+  const [chatHistory, setChatHistory] = useState([]);
+  
+  useEffect(()=>{
+    /*     console.log('fire1', props.activeChat.messages ) */
+        props.activeChat.messages && setChatHistory(props.activeChat.messages) 
+        setTimeout(()=>scrollToBottom(),10) 
+      },[props.activeChat]);
    
   useEffect(() => {
     socket.on("newMessage", receivedMessage => {
+      const newEntry = {...receivedMessage, createdAt: new Date()}
+      console.log("NewMessage: ",newEntry,"chat window history: ",chatHistory);
+      chatHistory && setChatHistory(chatHistory =>[...chatHistory,newEntry]);
+      console.log("New history: ", chatHistory);
       scrollToBottom()
     });
-
+    
   }, [socket]);
 
     const scrollToBottom = () =>{
@@ -65,7 +76,8 @@ const Chat = (props) => {
           }      
         }
         socket.emit("sendMessage", { message: newMessage })
-        setMessage("")        
+        setMessage("")
+        props.setRecentMesg(newMessage);        
       }
       
       return (
@@ -86,11 +98,11 @@ const Chat = (props) => {
               />
           </Form>
               </Col>}
-       {props.messageHistory && <Row style={{ height: "95%" }} className="my-3 pe-none">
+       {chatHistory[0] && <Row style={{ height: "95%" }} className="my-3 pe-none">
         <Col md={12} className="chat-window">
-          <ListGroup> {props.activeChat.messages.map((element, i) => (
+          <ListGroup> {chatHistory.map((element, i) => (
               <div key={i}>
-              {element.sender === props.user._id? <div  className={"single-message from-me"}>{console.log(props.activeChat.messages)}<ListGroup.Item >
+              {element.sender === props.user._id? <div  className={"single-message from-me"}>{/* {console.log("mappedHistory", chatHistory)} */}<ListGroup.Item >
                 <div className="msg-content"> {element.content && element.content.text}</div>
                 <div className="user-time text-right">
                  at{" "}

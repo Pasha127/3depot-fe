@@ -85,20 +85,11 @@ const SocketManager = (props)=>{
         },[props.user._id])
 
         useEffect(() => {
-            socket.on("newMessage", receivedMessage => {
-              const newEntry = {...receivedMessage, createdAt: new Date()}
-                console.log("New MSG: ",newEntry, "active",props.activeChat, "history", props.messageHistory);
-              /* props.activeChat.messages && props.setReduxChatHistory(chatHistory =>[...chatHistory,newEntry]);
-              location.pathname === "/Chat" && scrollToBottom()
-              props.setRecentMesg(newEntry) */
-            });
             socket.on("listUpdate", onlineUsersList => {
                 console.log("New user online: ", onlineUsersList);
               props.setUsersRedux(onlineUsersList);
             });
         }, [socket]);
-        
-        
 
         return(<>
         

@@ -52,9 +52,9 @@ return(<>
         <Search getChat={getRelevantChatForPerson}/>          
         {props.history.map(chat =>{
             const person = chat.members.find(member => member._id !== props.user._id) 
-                return (<UserMini key={`${person._id} chat`} person={person} getChat={getRelevantChatForPerson} />)}
+                return (<UserMini key={`${person._id} chat`} person={person} thisChat={chat} getChat={getRelevantChatForPerson} />)}
         )}
-    </div>
+    </div> 
 </>)}
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersSidebar);
