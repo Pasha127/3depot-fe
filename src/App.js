@@ -27,9 +27,10 @@ const mapStateToProps = state => {
 
 
 function App(props) {
-  useEffect(()=>{
+/*   useEffect(()=>{
+    console.log("App.js getMe")
     props.getMe()
-  },[])
+  },[]) */
   return (<>
     <Router>
     <SocketManager/>

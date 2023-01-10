@@ -34,6 +34,7 @@ export const sendInitialMessage = (user, otherUser) => {
     }
 
 export const submitUsername = (userId, emailAddress) => {
+    console.log("Submission",userId,emailAddress);
     socket.emit("setUsername", {_id:userId, username: emailAddress.split("@")[0] })
 }
 
@@ -68,17 +69,20 @@ const mapStateToProps = state => {
 }; 
 
 const SocketManager = (props)=>{
-        const {_id,email} = props.user
         const location = useLocation()
         useEffect(() => {
+          props.getMe()
+        }, []);
+        useEffect(()=>{
+          const {_id,email} = props.user
             props.setUsersRedux(["TESING"]);
-            /* console.log('fire2') */
-            submitUsername(_id,email)   
+             console.log('sent userdata',_id,email) 
+            props.user._id && submitUsername(_id,email)   
             socket.on("welcome", welcomeMessage => {
-           /*    console.log(welcomeMessage); */
+             console.log(welcomeMessage); 
               
             });
-        }, []);
+        },[props.user._id])
 
         useEffect(() => {
             socket.on("newMessage", receivedMessage => {
@@ -89,7 +93,7 @@ const SocketManager = (props)=>{
               props.setRecentMesg(newEntry) */
             });
             socket.on("listUpdate", onlineUsersList => {
-                /* console.log("New user online: ", onlineUsersList); */
+                console.log("New user online: ", onlineUsersList);
               props.setUsersRedux(onlineUsersList);
             });
         }, [socket]);
