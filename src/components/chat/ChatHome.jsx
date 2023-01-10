@@ -9,12 +9,14 @@ import GeneralNavbar from "../navbar/GeneralNavbar";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FriendsTab from "../Buttons/GarageSideButtons/LeftSideButtons/FriendsTab/FriendsTab";
 
 const mapStateToProps = state => {
     return {
     user: state.userInfo,
     history: state.chats.list,
-    onlineUsers: state.onlineUsers
+    onlineUsers: state.onlineUsers,
+    activeChat: state.chats.active
     };
   };
   
@@ -33,6 +35,7 @@ const mapStateToProps = state => {
 }; 
 
 const ChatHome = (props) => {
+  const [showHide, setShowHide] = useState("Hide")
  /*  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate()
   
@@ -53,11 +56,13 @@ const ChatHome = (props) => {
       <GeneralNavbar/>
         <Container fluid className="home-container m-0 p-0" >
         <div className="d-flex w-100">
-            <div className="friend-space">
+            <div className={`friend-space-${showHide}`}>
               <UsersSidebar/>
+              <FriendsTab showHide={showHide} setShowHide={setShowHide}/>
             </div>
             <div className="chat-space">
-                <Chat />
+            {!props.activeChat?.members && <div className="splash-logo"></div>}
+                <Chat showHide={showHide} />
             </div>
         </div>       
         </Container>

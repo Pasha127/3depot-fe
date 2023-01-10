@@ -139,6 +139,7 @@ const Chat = (props) => {
       
       return (
         <Container fluid >
+          {props.activeChat && <div className={`convo-header-${props.showHide}`}><div className="convo-header-text">{props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]}</div></div>}
         {props.activeChat._id && <Col md={12} className={"chatbar"}  >
           <Form
             onSubmit={e => {
@@ -154,20 +155,21 @@ const Chat = (props) => {
               />
           </Form>
               </Col>}
-      {!chatHistory && <div className="splash-logo"></div>}
       {chatHistory[0] && <Row style={{ height: "95%" }} className="my-3 pe-none">
-        <Col md={12} className="d-flex flex-column justify-content-between pb-5">
+        <Col md={12} className="chat-window">
           <ListGroup> {chatHistory.map((element, i) => (
               <div key={i}>
               {element.sender === props.user._id? <div  className={"single-message from-me"}>{console.log(chatHistory)}<ListGroup.Item >
-                <strong>{element.sender === props.user._id? props.user.email.split("@")[0]:props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]} 
-                </strong> | {element.content && element.content.text} at{" "}
-                {new Date(element.createdAt).toLocaleTimeString("en-US")}
+                <div className="msg-content"> {element.content && element.content.text}</div>
+                <div className="user-time text-right">
+                 at{" "}
+                {new Date(element.createdAt).toLocaleTimeString("en-US")}</div>
               </ListGroup.Item></div>:
               <div  className={"single-message from-them"}><ListGroup.Item  >
-              <strong>{element.sender === props.user._id? props.user.email.split("@")[0]:props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]} 
-              </strong> | {element.content && element.content.text} at{" "}
-              {new Date(element.createdAt).toLocaleTimeString("en-US")}
+                <div className="msg-content"> {element.content && element.content.text}</div>
+                <div className="user-time text-left">
+               at{" "}
+              {new Date(element.createdAt).toLocaleTimeString("en-US")}</div>
             </ListGroup.Item></div>}
               </div>
             ))}

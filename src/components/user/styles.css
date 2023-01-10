@@ -4,7 +4,7 @@
 }
 .tab-body{
   position: relative;
-  border: 1px solid black;
+  border-bottom: 1px solid gray;
   height: 60px;
   width: 100%;
   display: flex;
@@ -41,9 +41,6 @@
   z-index: 1;
   border-radius: 50%;
   background-color: rgb(117, 117, 117);
-}
-.friendlist{
-  overflow-y:auto;
 }
 .truncate{
   text-overflow: ellipsis;

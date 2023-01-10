@@ -14,9 +14,54 @@
     flex-direction: column;
     width:250px;
     height: 100%;
-    left:0
+    left:0px;    
+    overflow-y:auto;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+    background-color: var(--holo-blue-alpha);
+    z-index: 2;
 }
+  .friendlist::-webkit-scrollbar {
+      display: none;
+  }
+  .convo-header-Hide{
+    position: fixed;
+    left: -0px;
+    width: 100%;
+    height: 38px;
+    background-color: var(--holo-blue);
+    z-index: 3;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .convo-header-Hide .convo-header-text{
+    position: relative;
+    left: 120px;
+    transition: left .3s;
+  }
+  .convo-header-Show{
+    position: fixed;
+    left: -0px;
+    width: 100%;
+    height: 38px;
+    background-color: var(--holo-blue);
+    z-index: 3;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .convo-header-Show .convo-header-text{
+    position: relative;
+    left: 120px;
+    transition: left .3s;
+  }
+
 .splash-logo{
+    position: absolute;
+    left: 0px;
     height: 100%;
     width: 100%;
     display: flex;
@@ -26,10 +71,12 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 30%;
+    z-index: 0;
 }
+
 .chatbar{
     width: calc(100vw - 250px);
-    position: absolute;
+    position: fixed;
     right:0px;
     bottom: 0px;
     padding-inline: 0;
@@ -58,42 +105,103 @@
 .chat-space{
     display: flex;
     position: relative;
-    border:1px solid grey;
     overflow-y: auto;
     right:0;
-    width: calc(100vw - 252px);
+    width: calc(100vw - 270px);
     height: 100%;
     bottom: 0;
     background-color: white;
+    z-index: 0;
 }
-.friend-space{
-    background-color: var(--holo-blue-alpha);
+.friend-space-Hide{
     display: flex;
     position: relative;
-    border:1px solid grey;
     overflow-y: auto;
-    width: 252px;
+    width: 270px;
     height: 100%;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+    left: 0px;
+    transition: left .3s;
 }
-@media(max-width:600px){
-.chat-space{
+.friend-space-Show{
     display: flex;
     position: relative;
-    border:1px solid grey;
+    overflow-y: auto;
+    width: 270px;
+    height: 100%;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+    left: 0px;
+    transition: left .3s;
+}
+.friend-space::-webkit-scrollbar{
+    display: none;
+}
+.chat-window{
+    padding-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 0px;
+    padding-top: 20px;
+}
+.msg-content{
+    font-size: 12pt;
+}
+.user-time{
+    font-size: 6pt;
+}
+@media(max-width:657px){
+ .chat-space{
+    display: flex;
+    position: absolute;
     overflow-y: auto;
     right:0;
     width: 100vw;
     height: 100%;
     bottom: 0;
     z-index: 0;
+    padding-left: 20px;
 }
 .friend-space{
     display: flex;
     position: absolute;
-    border:1px solid grey;
     overflow-y: auto;
-    width: 252px;
+    width: 270px;
     height: 100%;
     z-index: 5;
+    left: 0px;
+    background: none;
+} 
+  .chatbar{
+    width: calc(100vw);
 }
+.friend-space-Hide{
+    display: flex;
+    position: relative;
+    overflow-y: auto;
+    width: 270px;
+    height: 100%;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+    left: 0px;
+    transition: left .3s;
+}
+.friend-space-Show{
+    display: flex;
+    position: relative;
+    overflow-y: auto;
+    width: 270px;
+    height: 100%;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+    left: -250px;
+    transition: left .3s;
+}
+.convo-header-Show .convo-header-text{
+    position: relative;
+    left: 0px;
+    transition: left .3s;
+  }
 }

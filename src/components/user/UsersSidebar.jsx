@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getChatByIdWithThunk, getHistoryWithThunk, setOnline } from "../../lib/redux/actions";
 import "./styles.css"
 import Search from "./Search";
+import FriendsTab from "../Buttons/GarageSideButtons/LeftSideButtons/FriendsTab/FriendsTab";
 
 
 const mapStateToProps = state => {
@@ -46,14 +47,14 @@ const getRelevantChatForPerson = (targetPerson) =>{
         props.getChatById(relevantChat._id);
     }
 
-return(
+return(<>
     <div className="friendlist"> 
         <Search getChat={getRelevantChatForPerson}/>          
         {props.history.map(chat =>{
             const person = chat.members.find(member => member._id !== props.user._id) 
                 return (<UserMini key={`${person._id} chat`} person={person} getChat={getRelevantChatForPerson} />)}
-        )}  
+        )}
     </div>
-)}
+</>)}
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersSidebar);

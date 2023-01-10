@@ -7,9 +7,8 @@
   z-index: 2;
   pointer-events: all;
   font-size: 20pt;
-  border-radius: 50% 0px 0px 50% !important;
+  border-radius: 50% 0px 0px 50%;
   padding-inline: 30px;
-  border-radius: 0px 0px 4px 4px;
   transition: border-radius .3s, width .3s, right .3s;
   color: white;
   background-color: var(--holo-blue);
@@ -24,7 +23,7 @@
   right: -2px;
   transition: border-radius .3s, width .3s, right .3s;
   z-index: 2;
-  border-radius: 20px 0px 0px 20px !important;
+  border-radius: 20px 0px 0px 20px ;
 }
 .model-icon-container{
   position: absolute;
