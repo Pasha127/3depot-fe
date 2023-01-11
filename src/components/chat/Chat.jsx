@@ -55,8 +55,6 @@ const Chat = (props) => {
     socket.on("newMessage", receivedMessage => {
       const newEntry = {...receivedMessage, createdAt: new Date()}
       appendNewMsg(newEntry);
-      //const modifiedChat = props.messageHistory.find(chat => chat.members.some(member => member._id === props.user._id) &&  chat.members.some(member => member._id === newEntry.sender))
-      //props.setHistory([...props.messageHistory, ])
     });
   }, [socket, props.messageHistory, props.user._id]);
   
