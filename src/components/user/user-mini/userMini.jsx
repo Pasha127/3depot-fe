@@ -45,6 +45,7 @@ const UserMini = (props) => {
   
   const [isOnline, setIsOnline] = useState(false);
   const [chatPreviewLine, setChatPreviewLine] = useState("");
+  const [seenState, setSeenState] = useState("tab-body-seen");
   
   useEffect(()=>{
     joinRoom(props.person._id, props.thisChat);
@@ -65,7 +66,7 @@ const UserMini = (props) => {
     return relevantChat
   }
   
-  const chatPreview =() =>{
+  const chatPreview = () =>{
     const relevantChat = props.thisChat
     if(relevantChat.messages.length){const messagePreview = relevantChat.messages[relevantChat.messages.length - 1].content.text;
     return messagePreview }
@@ -87,18 +88,17 @@ const UserMini = (props) => {
     socket.on("newMessage", receivedMessage => {
       const newEntry = {...receivedMessage, createdAt: new Date()}
       props.person._id === newEntry.sender && setChatPreviewLine(newEntry.content.text)
-    });
-    socket.on("addNewChat", () => {
-      /* setNumberOfChats(numberOfChats => numberOfChats++) */
-      window.location.reload()
+      props.thisChat.members.some(member => member._id === newEntry.sender) && setSeenState("tab-body-unseen")
+      newEntry.sender === props.user._id && setSeenState("tab-body-seen")
     });
     
-  }, [socket]);
+  }, [socket, seenState, props.thisChat, props.user._id]);
+
   
 
   return (
-    <Row className="tab-body m-0"
-    onClick={()=>{props.getChat(props.person); /*joinRoom(props.person._id, props.thisChat);  setChathistoryOnClick() */}}>
+    <Row className={seenState}
+    onClick={()=>{props.getChat(props.person); setSeenState("tab-body-seen")}}>
       <Col xs={2}>
         <Image className="chat-head" src={props.person.avatar} onError={(e)=>{e.target.src = defaultAvatar}} alt={"UserAvatar"} roundedCircle />
         {isOnline && <div className="online"></div>}
