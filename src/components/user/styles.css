@@ -51,7 +51,10 @@
   color: red;
   display: none;
 }
-.tab-body:hover .delete-chat{
+.tab-body-seen:hover .delete-chat{
+  display: flex;
+}
+.tab-body-unseen:hover .delete-chat{
   display: flex;
 }
 .inactive-user{

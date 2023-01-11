@@ -33,17 +33,17 @@ const mapStateToProps = state => {
 
 
 const UsersSidebar = (props) => {
-  const [numberOfChats, setNumberOfChats] = useState(0)
+  const[refreshState,setRefreshState] = useState(false)
+
   useEffect(()=>{
     props.getHistory()
+
   },[])
   
   useEffect(() => {
-      socket.on("addNewChat", () => {
-        /* setNumberOfChats(numberOfChats => numberOfChats++) */
-        window.location.reload()
+      socket.on("newMessage", () => {
+        setRefreshState(prevState => !prevState);
       });
-      
     }, [socket]);
 
 const getRelevantChatForPerson = (targetPerson) =>{      
@@ -56,12 +56,21 @@ const getRelevantChatForPerson = (targetPerson) =>{
     }
 
 return(<>
-    <div className="friendlist"> 
+    <div className={`friendlist`}> 
         <Search getChat={getRelevantChatForPerson}/>          
-        {props.history.map(chat =>{
+        {/* {props.history.sort((a, b) => new Date(a.messages[a.messages.length-1].createdAt) - new Date(b.messages[b.messages.length-1].createdAt)).reverse().map(chat =>{
             const person = chat.members.find(member => member._id !== props.user._id) 
-                return (<UserMini key={`${person._id} chat`} person={person} thisChat={chat} getChat={getRelevantChatForPerson} />)}
-        )}
+                return (<UserMini key={`${person._id} chat`} person={person} thisChat={chat} getChat={getRelevantChatForPerson} refreshState={refreshState}/>)}
+        )} */}
+        {
+    props.history
+    .slice()
+    .sort((a, b) => new Date(b.messages[b.messages.length-1].createdAt) - new Date(a.messages[a.messages.length-1].createdAt))
+    .map(chat => {
+      const person = chat.members.find(member => member._id !== props.user._id) 
+      return (<UserMini key={`${person._id} chat`} person={person} thisChat={chat} getChat={getRelevantChatForPerson} refreshState={refreshState}/>)
+    })
+}
     </div> 
 </>)}
 

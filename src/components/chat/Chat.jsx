@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {Container,Row,Col,Form,FormControl,ListGroup} from "react-bootstrap";
-import { getMeWithThunk, setActiveChat, setLoading, setOnline, setRecentMsg } from "../../lib/redux/actions";
+import { getMeWithThunk, setActiveChat, setHistory, setLoading, setOnline, setRecentMsg } from "../../lib/redux/actions";
 import { connect } from "react-redux";
 import "./styles.css"
 import { useRef } from "react";
@@ -32,6 +32,9 @@ const mapDispatchToProps = dispatch => {
     },
     setLoading: (loadBool)=>{
       dispatch(setLoading(loadBool))
+    },
+    setHistory: (data)=>{
+      dispatch(setHistory(data))
     }                  
   };  
 }; 
@@ -52,8 +55,10 @@ const Chat = (props) => {
     socket.on("newMessage", receivedMessage => {
       const newEntry = {...receivedMessage, createdAt: new Date()}
       appendNewMsg(newEntry);
+      //const modifiedChat = props.messageHistory.find(chat => chat.members.some(member => member._id === props.user._id) &&  chat.members.some(member => member._id === newEntry.sender))
+      //props.setHistory([...props.messageHistory, ])
     });
-  }, [socket]);
+  }, [socket, props.messageHistory, props.user._id]);
   
   const scrollToBottom = () =>{
     anchor.current?.scrollIntoView()
@@ -79,7 +84,6 @@ const Chat = (props) => {
   const appendNewMsg = (newEntry)=>{
     console.log("NewMessage: ",newEntry,"chat window history: ",chatHistory);
       chatHistory && setChatHistory(chatHistory =>[...chatHistory,newEntry]);
-      console.log("New history: ", chatHistory);
       scrollToBottom()      
   }
 
@@ -106,7 +110,6 @@ const Chat = (props) => {
           {props.activeChat?.members && <ListGroup> {chatHistory.map((message, i) => (
             <div key={i+"Message"}>
               {props.activeChat.members.some(member => member._id === message.sender) && <div>
-                <div>{console.log("message.sender",message.sender,"props.activeChat.members",props.activeChat.members)}</div> 
               {message.sender === props.user._id? 
               <div  className={"single-message from-me"}>
                 <ListGroup.Item >

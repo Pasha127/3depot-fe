@@ -224,7 +224,7 @@ export const getHistoryWithThunk = () => {
   /* console.log("test get me", response); */
   if (response.ok) {
       const data = await response.json()
-      console.log("get all users", data);
+      console.log("get all chats", data);
       dispatch(setHistory(data))            
   } else {
       console.log("Error - Could not retrieve chats!") 

@@ -94,6 +94,9 @@ const UserMini = (props) => {
     
   }, [socket, seenState, props.thisChat, props.user._id]);
 
+  useEffect(()=>{
+    props.activeChat._id === props.thisChat._id && setSeenState("tab-body-seen");
+  },[props.activeChat, props.thisChat, seenState])
   
 
   return (
