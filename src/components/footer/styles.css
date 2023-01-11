@@ -9,9 +9,11 @@
     bottom: 0px;
     margin-bottom: 10px;
     padding-inline: 20px;
+    pointer-events: none;
 }
 .transparent-footer *{
     color: white;
+    pointer-events: all;
 }
 .garage-footer{
     width: 100%;
@@ -24,9 +26,11 @@
     bottom: 0px;
     margin-bottom: 10px;
     padding-inline: 20px;
+    pointer-events: none;
 }
 .garage-footer *{
     color: var(--holo-blue);
+    pointer-events: all;
 }
 .contact-icons a{
     margin-left: 12px;
@@ -42,9 +46,11 @@
     bottom: 0px;
     margin-bottom: 10px;
     padding-inline: 20px;
+    pointer-events: none;
 }
 .field-footer *{
     color: black;
+    pointer-events: all;
 }
 @media(max-width:599px){
     .garage-footer{

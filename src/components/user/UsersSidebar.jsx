@@ -6,6 +6,7 @@ import { getChatByIdWithThunk, getHistoryWithThunk, setOnline } from "../../lib/
 import "./styles.css"
 import Search from "./Search";
 import FriendsTab from "../Buttons/GarageSideButtons/LeftSideButtons/FriendsTab/FriendsTab";
+import { socket } from "../SocketManager/SocketManager";
 
 
 const mapStateToProps = state => {
@@ -32,11 +33,18 @@ const mapStateToProps = state => {
 
 
 const UsersSidebar = (props) => {
-    
-    useEffect(()=>{
-      props.getHistory()
-    },[])
-    
+  const [numberOfChats, setNumberOfChats] = useState(0)
+  useEffect(()=>{
+    props.getHistory()
+  },[])
+  
+  useEffect(() => {
+      socket.on("addNewChat", () => {
+        /* setNumberOfChats(numberOfChats => numberOfChats++) */
+        window.location.reload()
+      });
+      
+    }, [socket]);
 
 const getRelevantChatForPerson = (targetPerson) =>{      
     const relevantChat = props.history.find(chat => {

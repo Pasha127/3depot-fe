@@ -85,7 +85,7 @@ export const getChatByIdWithThunk = (id) =>{
        /*  console.log("chat from ID: ", data); */
         dispatch(setActiveChat(data));            
       } else {
-        dispatch(logOutWithThunk())
+       window.location.reload()
       }             
     }
 }

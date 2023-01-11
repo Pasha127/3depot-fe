@@ -52,11 +52,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
   }
-  .convo-header-Show .convo-header-text{
+  .convo-header-Hide .convo-header-text{
     position: relative;
     left: 120px;
     transition: left .3s;
+    color: white;
   }
 
 .splash-logo{

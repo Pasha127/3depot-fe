@@ -6,7 +6,7 @@ import "./styles.css"
 const TransparentFooter = (props) => {
   return (<>
      <div className="transparent-footer">
-        <div>{`${new Date().getFullYear()} - © Paul Levitsky`}</div>
+     <a href="https://drive.google.com/file/d/1ly4P8wFBSYvCIKboo-cqG25c9uPrcZ50/view?usp=share_link"  target="_blank"><div>{`${new Date().getFullYear()} - © Paul Levitsky`}</div></a>
         <div className="contact-icons">
         <a href="https://github.com/Pasha127"  target="_blank"><Github/></a> 
         <a href="https://drive.google.com/file/d/1ly4P8wFBSYvCIKboo-cqG25c9uPrcZ50/view?usp=share_link"  target="_blank"><FileEarmarkPersonFill/></a> 

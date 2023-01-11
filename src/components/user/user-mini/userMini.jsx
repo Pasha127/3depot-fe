@@ -31,14 +31,14 @@ const mapStateToProps = state => {
   };  
 }; 
 
-const JoinRelevantChat = (history, person)=>{
+/* const JoinRelevantChat = (history, person)=>{
   const relevantChat = history.find(chat => {
     return chat.members.some(member=>{
       return member._id === person._id
     })
   })
   joinRoom(person._id, relevantChat)
-}
+} */
 
 
 const UserMini = (props) => {
@@ -46,6 +46,10 @@ const UserMini = (props) => {
   const [isOnline, setIsOnline] = useState(false);
   const [chatPreviewLine, setChatPreviewLine] = useState("");
   
+  useEffect(()=>{
+    joinRoom(props.person._id, props.thisChat);
+  },[])
+
   useEffect(()=>{
     /*  console.log("onlineUsers",props.onlineUsers) */
     const users = props.onlineUsers.map(user => {return(user._id)})
@@ -62,7 +66,7 @@ const UserMini = (props) => {
   }
   
   const chatPreview =() =>{
-    const relevantChat = findRelevantChatWithRedux()
+    const relevantChat = props.thisChat
     if(relevantChat.messages.length){const messagePreview = relevantChat.messages[relevantChat.messages.length - 1].content.text;
     return messagePreview }
     else{return "..."}
@@ -84,21 +88,30 @@ const UserMini = (props) => {
       const newEntry = {...receivedMessage, createdAt: new Date()}
       props.person._id === newEntry.sender && setChatPreviewLine(newEntry.content.text)
     });
+    socket.on("addNewChat", () => {
+      /* setNumberOfChats(numberOfChats => numberOfChats++) */
+      window.location.reload()
+    });
     
   }, [socket]);
+  
 
   return (
     <Row className="tab-body m-0"
-    onClick={()=>{props.getChat(props.person); JoinRelevantChat(props.history, props.person);  /* setChathistoryOnClick() */}}>
+    onClick={()=>{props.getChat(props.person); /*joinRoom(props.person._id, props.thisChat);  setChathistoryOnClick() */}}>
       <Col xs={2}>
         <Image className="chat-head" src={props.person.avatar} onError={(e)=>{e.target.src = defaultAvatar}} alt={"UserAvatar"} roundedCircle />
         {isOnline && <div className="online"></div>}
         {!isOnline && <div className="offline"></div>}
       </Col>
-      <Col>
-        <h6 className="truncate m-0">{props.person.email.split("@")[0]}</h6>
-         <div className="truncate">"{`${chatPreviewLine}`}"</div> 
-      </Col>
+      {props.activeChat?._id !== props.thisChat._id ? 
+      <Col className="inactive-user">
+        <h6 className="truncate m-0 ">{props.person.email.split("@")[0]}</h6>
+           <div className="truncate">"{`${chatPreviewLine}`}"</div>
+      </Col>:
+      <Col className="highlighted-user">
+        <h6 className="truncate m-0 ">{props.person.email.split("@")[0]}</h6>
+      </Col>} 
       <Trash className="delete-chat" onClick={(e)=>{
         e.stopPropagation();
         props.deleteChat(findRelevantChatWithRedux()._id);

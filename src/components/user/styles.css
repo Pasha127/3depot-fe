@@ -24,6 +24,14 @@
 .tab-body:hover .delete-chat{
   display: flex;
 }
+.inactive-user{
+}
+.highlighted-user{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .online{
   height: 15px;
   width: 15px;

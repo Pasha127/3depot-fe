@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FriendsTab from "../Buttons/GarageSideButtons/LeftSideButtons/FriendsTab/FriendsTab";
 
+
 const mapStateToProps = state => {
     return {
     user: state.userInfo,
