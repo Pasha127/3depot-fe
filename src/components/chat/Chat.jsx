@@ -56,7 +56,7 @@ const Chat = (props) => {
       const newEntry = {...receivedMessage, createdAt: new Date()}
       appendNewMsg(newEntry);
     });
-  }, [socket, props.messageHistory, props.user._id]);
+  }, [socket]);
   
   const scrollToBottom = () =>{
     anchor.current?.scrollIntoView()
@@ -80,10 +80,13 @@ const Chat = (props) => {
   }
   
   const appendNewMsg = (newEntry)=>{
+    console.log("append new msg counter");
     console.log("NewMessage: ",newEntry,"chat window history: ",chatHistory);
-      chatHistory && setChatHistory(chatHistory =>[...chatHistory,newEntry]);
-      scrollToBottom()      
-  }
+    const duplicateMessage = chatHistory.find(message => message.createdAt === newEntry.createdAt && message.message === newEntry.message);
+    if(duplicateMessage) return;
+    chatHistory && setChatHistory(chatHistory =>[...chatHistory,newEntry]);
+    scrollToBottom()
+}
 
 
   return (
