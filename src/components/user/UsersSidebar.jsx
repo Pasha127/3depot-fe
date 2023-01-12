@@ -72,8 +72,8 @@ const UsersSidebar = (props) => {
       .sort((a, b) => new Date(b.messages[b.messages.length-1].createdAt) - new Date(a.messages[a.messages.length-1].createdAt))
       .map(chat => {
       const person = chat.members.find(member => member._id !== props.user._id) 
-      return (<div onClick={()=>{setAddFriendsClass("add-friends-show")}}>
-           <UserMini key={`${person._id} chat`} person={person} thisChat={chat} getChat={getRelevantChatForPerson} refreshState={refreshState}/>
+      return (<div  key={`${person._id} chat`} onClick={()=>{setAddFriendsClass("add-friends-show")}}>
+           <UserMini person={person} thisChat={chat} getChat={getRelevantChatForPerson} refreshState={refreshState}/>
       </div>)
     })
 }

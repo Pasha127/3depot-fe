@@ -126,14 +126,20 @@ const Chat = (props) => {
               {message.sender === props.user._id? 
               <div  className={"single-message from-me"}>
                 <ListGroup.Item >
-                <div className="msg-content"> {message.content && message.content.text}</div>
-                <div className="user-time text-right">
-                 at{" "}
-                {new Date(message.createdAt).toLocaleTimeString("en-US")}</div>
-              </ListGroup.Item>
+                  <div className="msg-img">
+                    <a href={message.content.media}>
+                      <img src={message.content.media} onError={(e)=>{e.target.className = "d-none"}}/>
+                    </a> 
+                  </div>
+                  <div className="msg-content text-right"> {message.content && message.content.text}</div>
+                  <div className="user-time text-right">
+                   at{" "}
+                  {new Date(message.createdAt).toLocaleTimeString("en-US")}</div>
+                </ListGroup.Item>
               </div>:
               <div  className={"single-message from-them"}>
                 <ListGroup.Item  >
+                <div className="msg-img">{message.content.media} </div>
                 <div className="msg-content"> {message.content && message.content.text}</div>
                 <div className="user-time text-left">
                at{" "}

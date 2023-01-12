@@ -157,6 +157,11 @@
 .msg-content{
     font-size: 12pt;
 }
+.msg-img{
+    font-size: 12pt;
+    display: flex;
+    justify-content: center;
+}
 .user-time{
     font-size: 6pt;
 }
