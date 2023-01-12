@@ -9,7 +9,7 @@ import GeneralNavbar from "../navbar/GeneralNavbar";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import FriendsTab from "../Buttons/GarageSideButtons/LeftSideButtons/FriendsTab/FriendsTab";
+import FriendsTab from "../Buttons/FriendsTab/FriendsTab";
 
 
 const mapStateToProps = state => {

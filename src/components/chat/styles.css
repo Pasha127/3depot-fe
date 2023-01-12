@@ -10,7 +10,7 @@
 .friendlist{
     display: flex;
     position: absolute;
-    border:1px solid grey;
+    border:1px solid var(--boot-gray);
     flex-direction: column;
     width:250px;
     height: 100%;
@@ -31,7 +31,7 @@
     height: 38px;
     background-color: var(--holo-blue);
     z-index: 3;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid var(--boot-gray);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +48,7 @@
     height: 38px;
     background-color: var(--holo-blue);
     z-index: 3;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid var(--boot-gray);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,6 +83,12 @@
     bottom: 0px;
     padding-inline: 0;
     z-index: 5;
+    
+}
+.chatbar .form-control{
+    border-radius: 0px;
+    border-right: none !important;
+    border-left: none !important;
 }
 .single-message{
     display: flex;
@@ -153,6 +159,47 @@
 }
 .user-time{
     font-size: 6pt;
+}
+.send-button{
+    height: 38px;
+    width: 38px;
+    position: relative;
+    background-color: var(--holo-blue);
+    border: 1px solid var(--boot-gray);
+    border-radius: 0px;
+    border-left: none;
+    border-right: none;
+
+}
+.send-button svg{
+    rotate: 45deg;
+    position: absolute;
+    top: 10px;
+    left: 9px;
+    color: white;
+}
+.add-pic-button{
+    height: 38px;
+    width: 38px;
+    position: relative;
+    background-color: var(--holo-blue);
+    border: 1px solid var(--boot-gray);
+    border-radius: 0px;
+    border-left: none;
+    border-right: none;
+}
+.add-pic-button .img-svg{
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    color: white;
+}
+.add-pic-button .plus-svg{
+    position: absolute;
+    top: 18px;
+    left: 19px;
+    font-size: 8pt;
+    color: white;
 }
 @media(max-width:657px){
  .chat-space{

@@ -5,6 +5,7 @@
   --holo-blue: rgb(99, 182, 202);
   --text-blue: #007bff; 
   --garage-beige: #c0b494;
+  --boot-gray: #ced4da;
 }
 body {
   margin: 0;

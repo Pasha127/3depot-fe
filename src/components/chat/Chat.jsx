@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import {Container,Row,Col,Form,FormControl,ListGroup} from "react-bootstrap";
+import {Container,Row,Col,Form,FormControl,ListGroup, Button} from "react-bootstrap";
 import { getMeWithThunk, setActiveChat, setHistory, setLoading, setOnline, setRecentMsg } from "../../lib/redux/actions";
 import { connect } from "react-redux";
 import "./styles.css"
 import { useRef } from "react";
 import { socket } from "../SocketManager/SocketManager";
+import { Image, PlusCircleFill, Send } from "react-bootstrap-icons";
 
 const mapStateToProps = state => {
   return {
@@ -93,17 +94,28 @@ const Chat = (props) => {
     <Container fluid >
           {props.activeChat && <div className={`convo-header-${props.showHide}`}><div className="convo-header-text">{props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]}</div></div>}
         {props.activeChat._id && <Col md={12} className={"chatbar"}  >
+          
           <Form
             onSubmit={e => {
               e.preventDefault();
               sendMessage();
             }}
             >
+            <Form.Group className="d-flex flex-row">
+              <Button className="add-pic-button" onClick={e => {
+              e.preventDefault();
+              sendMessage();
+            }}><Image className="img-svg"/><PlusCircleFill className="plus-svg"/></Button>
             <FormControl
               placeholder="Write your message here"
               value={message}
               onChange={e =>setMessage(e.target.value)}
               />
+              <Button className="send-button" onClick={e => {
+              e.preventDefault();
+              sendMessage();
+            }}><Send/></Button>
+          </Form.Group>
           </Form>
               </Col>}
        {chatHistory[0] && <Row style={{ height: "95%" }} className="my-3 pe-none">

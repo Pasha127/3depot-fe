@@ -55,7 +55,7 @@
     transition: border-radius .3s, width .3s, right .3s;
     color: black;
     background-color: var(--holo-blue-alpha);
-    border: 1px solid grey;  
+    border: 1px solid var(--boot-gray);  
     border-left: none;
     padding: 0px;
     display: flex;

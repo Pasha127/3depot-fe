@@ -2,10 +2,10 @@ import React from "react";
 import { Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
-import { logOutWithThunk } from "../../../../../lib/redux/actions";
+import { logOutWithThunk } from "../../../lib/redux/actions";
 import { ChevronDoubleLeft, InfoCircle, InfoCircleFill, X} from 'react-bootstrap-icons';
 import { useState } from "react";
-import useDragEffect from "../../../../../lib/hooks/useDragEffect";
+import useDragEffect from "../../../lib/hooks/useDragEffect";
 const mapStateToProps = state => {
   return {
   user: state.userInfo,

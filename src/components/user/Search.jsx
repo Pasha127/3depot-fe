@@ -89,8 +89,7 @@ const Search = (props) => {
               value={query}
               onChange={e => { setQuery(e.target.value)}}
               />
-          </Form>
-    
+          </Form>    
     );
 };
 

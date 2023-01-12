@@ -4,7 +4,7 @@
 }
 .tab-body-seen{
   position: relative;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--boot-gray);
   height: 60px;
   width: 100%;
   display: flex;
@@ -17,7 +17,7 @@
 }
 .tab-body-unseen{
   position: relative;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--boot-gray);
   height: 60px;
   width: 100%;
   display: flex;
@@ -89,4 +89,31 @@
   white-space: nowrap;
   overflow: hidden;
   width:170px;
+}
+.friendlist .form-control{
+  border-radius: 0px;
+  border: none;
+}
+.add-friends-show{
+  background-color: var(--holo-blue);
+  position: absolute;
+  width: 248px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--boot-gray);
+  pointer-events: none;
+}
+.add-friends-hide{
+  display: none;
+}
+.add-friend-button{
+position: absolute;
+right: 10px;
+top: 6px;
+pointer-events: all;
+cursor: pointer;
+font-size: 18pt;
+color: white;
 }
