@@ -71,11 +71,11 @@ const Chat = (props) => {
         {"sender": props.user._id,
         "content":{
           "text":message,
-          "media": "imageURLGoesHere"
+          "media": ""
         }
       }      
     }
-    socket.emit("sendMessage", { message: newMessage })
+    if(newMessage.message.content.text || newMessage.message.content.media) {socket.emit("sendMessage", { message: newMessage })}
     setMessage("")
     props.setRecentMesg(newMessage);        
   }
