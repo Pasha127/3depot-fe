@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import "./styles.css"
 import { useRef } from "react";
 import { socket } from "../SocketManager/SocketManager";
-import { Image, PlusCircleFill, Send } from "react-bootstrap-icons";
+import { Image, Link45deg, PlusCircleFill, Send } from "react-bootstrap-icons";
 
 const mapStateToProps = state => {
   return {
@@ -39,13 +39,59 @@ const mapDispatchToProps = dispatch => {
     }                  
   };  
 }; 
+/* 
+const postMessagePic = async (id) =>{ 
+  let formData = new FormData()
+  formData.append('image', avatar)
+  const options = {
+    method: 'POST',
+    credentials:"include",    
+    body: formData
+    };
+    const baseEndpoint = `${baseURL}/user/avatar`
+    try {    
+      const response = await fetch(baseEndpoint, options);
+      if (response.ok) {           
+        const data = await response.json() 
+        console.log(data)      
+     } else {
+       alert('Error Uploading picture')
+     } 
+    } catch (error) {
+      console.log(error)
+    }finally{console.log("Submitted Picture");}
+  }
 
-
+const readPreviewImage = (e)=>{
+  const file = e.target.files[0]
+  setPreviewImage(file);
+  let fileReader, isCancel = false;
+      if (file) {
+        fileReader = new FileReader();
+        fileReader.onload = (e) => {
+          const { result } = e.target;
+          if (result && !isCancel) {
+            setImageDataURL(result)
+          }
+        }
+        fileReader.readAsDataURL(file);
+      }
+      return () => {
+        isCancel = true;
+        if (fileReader && fileReader.readyState === 1) {
+          fileReader.abort();
+        }
+      }
+}
+ */
 const Chat = (props) => {
   const anchor = useRef(null);
   const [message, setMessage] = useState("");
+  const [media, setMedia] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
-  
+  const [chatImagePreview, setChatImagePreview] = useState("chat-image-preview-hide");
+  const [previewImage, setPreviewImage] = useState(null)
+  const [imageDataURL, setImageDataURL] = useState(null);
   useEffect(()=>{
     /*     console.log('fire1', props.activeChat.messages ) */
     props.activeChat.messages && setChatHistory(props.activeChat.messages) 
@@ -62,6 +108,17 @@ const Chat = (props) => {
   const scrollToBottom = () =>{
     anchor.current?.scrollIntoView()
   }
+
+  const showImagePreview = ()=>{
+    setChatImagePreview("chat-image-preview-show")
+  }
+
+  const sendImagePreview = ()=>{
+    setChatImagePreview("chat-image-preview-send")
+  }
+  const hideImagePreview = ()=>{
+    setChatImagePreview("chat-image-preview-hide")
+  }
   
   
   const sendMessage = () => {
@@ -71,12 +128,13 @@ const Chat = (props) => {
         {"sender": props.user._id,
         "content":{
           "text":message,
-          "media": ""
+          "media": media
         }
       }      
     }
     if(newMessage.message.content.text || newMessage.message.content.media) {socket.emit("sendMessage", { message: newMessage })}
     setMessage("")
+    setMedia("")
     props.setRecentMesg(newMessage);        
   }
   
@@ -89,25 +147,36 @@ const Chat = (props) => {
     scrollToBottom()
 }
 
+useEffect(()=>{
+  
+},[props.activeChat])
 
   return (
     <Container fluid >
           {props.activeChat && <div className={`convo-header-${props.showHide}`}><div className="convo-header-text">{props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]}</div></div>}
         {props.activeChat._id && <Col md={12} className={"chatbar"}  >
-          
-          <Form
-            onSubmit={e => {
+          <div className="chat-image-preview-container">
+            <img className={chatImagePreview} src={"https://placekitten.com/200/200"}/>
+          </div>
+          <Form onSubmit={e => {
               e.preventDefault();
               sendMessage();
-            }}
-            >
+            }}>
             <Form.Group className="d-flex flex-row">
               <Button className="add-pic-button" onClick={e => {
               e.preventDefault();
-              sendMessage();
+              showImagePreview();
+              setTimeout(()=>{sendImagePreview()},5000);
+              setTimeout(()=>{hideImagePreview()},6000);
             }}><Image className="img-svg"/><PlusCircleFill className="plus-svg"/></Button>
+              <Button className="add-link-pic-button" onClick={e => {
+              e.preventDefault();
+              showImagePreview();
+              setTimeout(()=>{sendImagePreview()},5000);
+              setTimeout(()=>{hideImagePreview()},6000);
+            }}><Image className="img-svg"/><Link45deg className="link-svg"/></Button>
             <FormControl
-              placeholder="Write your message here"
+              placeholder={`Message ${props.activeChat.members.find(member => member._id !== props.user._id).email.split("@")[0]}`}
               value={message}
               onChange={e =>setMessage(e.target.value)}
               />
@@ -128,7 +197,11 @@ const Chat = (props) => {
                 <ListGroup.Item >
                   <div className="msg-img">
                     <a href={message.content.media}>
-                      <img src={message.content.media} onError={(e)=>{e.target.className = "d-none"}}/>
+                      <img src={message.content.media} onError={(e)=>{
+                        if(message.content.media === ""){ e.target.className = "d-none";}
+                        else{e.target.src = "https://placekitten.com/200/200"}                        
+
+                        }}/>
                     </a> 
                   </div>
                   <div className="msg-content text-right"> {message.content && message.content.text}</div>
