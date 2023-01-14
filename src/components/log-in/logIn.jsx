@@ -62,7 +62,7 @@ const postAvatar = async (id) =>{
     credentials:"include",    
     body: formData
     };
-    const baseEndpoint = `${baseURL}/user/avatar`///must add cloudinary in backend
+    const baseEndpoint = `${baseURL}/user/avatar`
     try {    
       const response = await fetch(baseEndpoint, options);
       if (response.ok) {           

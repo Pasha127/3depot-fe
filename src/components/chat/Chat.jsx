@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import "./styles.css"
 import { useRef } from "react";
 import { socket } from "../SocketManager/SocketManager";
-import { Image, Link45deg, PlusCircleFill, Send } from "react-bootstrap-icons";
+import { Image, Link45deg, PlusCircleFill, Send, XCircle} from "react-bootstrap-icons";
 
 const mapStateToProps = state => {
   return {
@@ -90,6 +90,8 @@ const Chat = (props) => {
   const [media, setMedia] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [chatImagePreview, setChatImagePreview] = useState("chat-image-preview-hide");
+  const [chatImageLink, setChatImageLink] = useState("chat-image-link-hide");
+  const [formImageLink, setFormImageLink] = useState("");
   const [previewImage, setPreviewImage] = useState(null)
   const [imageDataURL, setImageDataURL] = useState(null);
   useEffect(()=>{
@@ -115,20 +117,37 @@ const Chat = (props) => {
 
   const sendImagePreview = ()=>{
     setChatImagePreview("chat-image-preview-send")
+    setTimeout(()=>{hideImagePreview()},1000);
   }
   const hideImagePreview = ()=>{
     setChatImagePreview("chat-image-preview-hide")
+    setPreviewImage(null);
+    setImageDataURL(null);
+  }
+  const showImageLink = ()=>{
+    setChatImageLink("chat-image-link-show")
+  }
+
+  const sendImageLink = ()=>{
+    setChatImageLink("chat-image-link-send")
+    setTimeout(()=>{hideImageLink()},1000);
+  }
+  const hideImageLink = ()=>{
+    setChatImageLink("chat-image-link-hide")
+    setFormImageLink("")
   }
   
   
   const sendMessage = () => {
+      sendImagePreview();
+      sendImageLink();
       const newMessage= {
         "members": [props.activeChat.members[0]._id,props.activeChat.members[1]._id],
         "message":
         {"sender": props.user._id,
         "content":{
-          "text":message,
-          "media": media
+          "text": message,
+          "media": formImageLink
         }
       }      
     }
@@ -156,7 +175,31 @@ useEffect(()=>{
           {props.activeChat && <div className={`convo-header-${props.showHide}`}><div className="convo-header-text">{props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]}</div></div>}
         {props.activeChat._id && <Col md={12} className={"chatbar"}  >
           <div className="chat-image-preview-container">
-            <img className={chatImagePreview} src={"https://placekitten.com/200/200"}/>
+            <div className={chatImagePreview}>
+              <img  src={"https://placekitten.com/200/200"}/>
+              <XCircle className="cancel-upload-x" onClick={(e)=>{
+              hideImagePreview();
+            }}/> 
+            </div>
+            <div className={chatImageLink}>
+              <img className="img-link-img"  src={formImageLink}
+              onError={(e)=>{
+                e.target.src = "/3DepotLogoMedium.png"
+                }}/>
+              <Form>
+              <Form.Control 
+              value={formImageLink} 
+              placeholder="Image URL"
+              className="link-form"
+              onChange={(e)=>{setFormImageLink(e.target.value)}}
+              ></Form.Control>
+              </Form>
+              <XCircle className="cancel-link-x" onClick={(e)=>{
+              hideImageLink();
+            }}/> 
+            </div>
+            
+            
           </div>
           <Form onSubmit={e => {
               e.preventDefault();
@@ -166,16 +209,13 @@ useEffect(()=>{
               <Button className="add-pic-button" onClick={e => {
               e.preventDefault();
               showImagePreview();
-              setTimeout(()=>{sendImagePreview()},5000);
-              setTimeout(()=>{hideImagePreview()},6000);
             }}><Image className="img-svg"/><PlusCircleFill className="plus-svg"/></Button>
               <Button className="add-link-pic-button" onClick={e => {
               e.preventDefault();
-              showImagePreview();
-              setTimeout(()=>{sendImagePreview()},5000);
-              setTimeout(()=>{hideImagePreview()},6000);
+              showImageLink();
             }}><Image className="img-svg"/><Link45deg className="link-svg"/></Button>
-            <FormControl
+            <Form.Control
+              className="message-input"
               placeholder={`Message ${props.activeChat.members.find(member => member._id !== props.user._id).email.split("@")[0]}`}
               value={message}
               onChange={e =>setMessage(e.target.value)}
@@ -196,8 +236,8 @@ useEffect(()=>{
               <div  className={"single-message from-me"}>
                 <ListGroup.Item >
                   <div className="msg-img">
-                    <a href={message.content.media}>
-                      <img src={message.content.media} onError={(e)=>{
+                    <a href={message.content.media} target="_blank">
+                      <img src={message.content.media} className="img-link-img" onError={(e)=>{
                         if(message.content.media === ""){ e.target.className = "d-none";}
                         else{e.target.src = "https://placekitten.com/200/200"}                        
 
@@ -212,7 +252,15 @@ useEffect(()=>{
               </div>:
               <div  className={"single-message from-them"}>
                 <ListGroup.Item  >
-                <div className="msg-img">{message.content.media} </div>
+                <div className="msg-img">
+                    <a href={message.content.media} target="_blank">
+                      <img src={message.content.media} className="img-link-img" onError={(e)=>{
+                        if(message.content.media === ""){ e.target.className = "d-none";}
+                        else{e.target.src = "https://placekitten.com/200/200"}                        
+
+                        }}/>
+                    </a> 
+                  </div>
                 <div className="msg-content"> {message.content && message.content.text}</div>
                 <div className="user-time text-left">
                at{" "}
