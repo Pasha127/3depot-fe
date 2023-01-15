@@ -60,7 +60,61 @@
     transition: left .3s;
     color: white;
   }
-
+  .convo-header-Show .convo-header-text{
+    position: relative;
+    left: 120px;
+    transition: left .3s;
+    color: white;
+  }
+  .typing-indicator-show{
+    position: absolute;
+    left: 10px;
+    top: -25px;
+    color: #495057;
+    opacity: 1;
+    transition: opacity 0s;
+  }
+  .typing-indicator-hide{
+    position: absolute;
+    left: 10px;
+    top: -25px;
+    color: #495057;
+    opacity: 0;
+    transition: opacity 4s;
+  }
+.pic-loader{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    left: -3px;
+    scale: .97;
+    animation: 3s linear 0s infinite normal rotateLoader;
+}
+.dot-spacer01{
+    top: 0px;
+    position: absolute;
+    animation: 3s ease-in-out 0s infinite normal shrinkNgrow;
+}
+.dot-spacer02{
+    top: 0px;
+    position: absolute;
+    animation: 2s ease-in-out 0s infinite normal shrinkNgrow;
+}
+.dot-spacer03{
+    top: 0px;
+    position: absolute;
+    animation: 1s ease-in-out 0s infinite normal shrinkNgrow;
+}
+@keyframes rotateLoader{
+    0%{rotate: 0deg;}
+    100%{rotate: 360deg;}
+}
+@keyframes shrinkNgrow{
+    0%{right: -5px;}
+    50%{right: -15px;}
+    100%{right: -5px;}
+}
 .splash-logo{
     position: absolute;
     left: 0px;
@@ -166,6 +220,7 @@
     max-width: 200px;
     max-height: 200px;
     overflow: hidden;
+    border-radius: 20px;
 }
 .user-time{
     font-size: 6pt;
@@ -410,6 +465,11 @@
     left: -250px;
     transition: left .3s;
 }
+.convo-header-Hide .convo-header-text{
+    position: relative;
+    left: 124px;
+    transition: left .3s;
+  }
 .convo-header-Show .convo-header-text{
     position: relative;
     left: 0px;
