@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Container,Row,Col,Form,FormControl,ListGroup, Button} from "react-bootstrap";
+import {Container,Row,Col,Form,ListGroup, Button} from "react-bootstrap";
 import { getMeWithThunk, setActiveChat, setHistory, setLoading, setOnline, setRecentMsg } from "../../lib/redux/actions";
 import { connect } from "react-redux";
 import "./styles.css"
@@ -39,55 +39,15 @@ const mapDispatchToProps = dispatch => {
     }                  
   };  
 }; 
-/* 
-const postMessagePic = async (id) =>{ 
-  let formData = new FormData()
-  formData.append('image', avatar)
-  const options = {
-    method: 'POST',
-    credentials:"include",    
-    body: formData
-    };
-    const baseEndpoint = `${baseURL}/user/avatar`
-    try {    
-      const response = await fetch(baseEndpoint, options);
-      if (response.ok) {           
-        const data = await response.json() 
-        console.log(data)      
-     } else {
-       alert('Error Uploading picture')
-     } 
-    } catch (error) {
-      console.log(error)
-    }finally{console.log("Submitted Picture");}
-  }
 
-const readPreviewImage = (e)=>{
-  const file = e.target.files[0]
-  setPreviewImage(file);
-  let fileReader, isCancel = false;
-      if (file) {
-        fileReader = new FileReader();
-        fileReader.onload = (e) => {
-          const { result } = e.target;
-          if (result && !isCancel) {
-            setImageDataURL(result)
-          }
-        }
-        fileReader.readAsDataURL(file);
-      }
-      return () => {
-        isCancel = true;
-        if (fileReader && fileReader.readyState === 1) {
-          fileReader.abort();
-        }
-      }
-}
- */
+
+
 const Chat = (props) => {
+  const baseURL = process.env.REACT_APP_SERVER_URL;
   const anchor = useRef(null);
+  const linkForm = useRef(null);
+  const inputRef = useRef(null);
   const [message, setMessage] = useState("");
-  const [media, setMedia] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [chatImagePreview, setChatImagePreview] = useState("chat-image-preview-hide");
   const [chatImageLink, setChatImageLink] = useState("chat-image-link-hide");
@@ -126,6 +86,8 @@ const Chat = (props) => {
   }
   const showImageLink = ()=>{
     setChatImageLink("chat-image-link-show")
+    linkForm.current.focus()
+
   }
 
   const sendImageLink = ()=>{
@@ -136,9 +98,60 @@ const Chat = (props) => {
     setChatImageLink("chat-image-link-hide")
     setFormImageLink("")
   }
+
+
+
+  const postMessagePic = async (id) =>{ 
+    let formData = new FormData()
+    formData.append('image', previewImage)
+    const options = {
+      method: 'POST',
+      credentials:"include",    
+      body: formData
+      };
+      const baseEndpoint = `${baseURL}/message/pic`
+      try {    
+        const response = await fetch(baseEndpoint, options);
+        if (response.ok) {           
+          const data = await response.json()
+          setFormImageLink(data.imgURL) 
+          sendMessage(data.imgURL)   
+       } else {
+         alert('Error Uploading picture')
+       } 
+      } catch (error) {
+        console.log(error)
+      }finally{console.log("Submitted Picture");}
+    }
   
+  const readPreviewImage = (e)=>{
+    const file = e.target.files[0]
+    setPreviewImage(file);
+    let fileReader, isCancel = false;
+        if (file) {
+          fileReader = new FileReader();
+          fileReader.onload = (e) => {
+            const { result } = e.target;
+            if (result && !isCancel) {
+              setImageDataURL(result)
+            }
+          }
+          fileReader.readAsDataURL(file);
+        }
+        return () => {
+          isCancel = true;
+          if (fileReader && fileReader.readyState === 1) {
+            fileReader.abort();
+          }
+        }
+  }
   
-  const sendMessage = () => {
+  const handleImgAndTxt = ()=>{
+    if(previewImage){postMessagePic()}
+    else{sendMessage()};
+  }
+
+  const sendMessage = (imgURL = formImageLink) => {
       sendImagePreview();
       sendImageLink();
       const newMessage= {
@@ -147,13 +160,12 @@ const Chat = (props) => {
         {"sender": props.user._id,
         "content":{
           "text": message,
-          "media": formImageLink
+          "media": imgURL
         }
       }      
     }
     if(newMessage.message.content.text || newMessage.message.content.media) {socket.emit("sendMessage", { message: newMessage })}
     setMessage("")
-    setMedia("")
     props.setRecentMesg(newMessage);        
   }
   
@@ -166,32 +178,49 @@ const Chat = (props) => {
     scrollToBottom()
 }
 
-useEffect(()=>{
-  
-},[props.activeChat])
+const handleClick = e => {
+  e.preventDefault();
+  inputRef.current.click();
+  showImagePreview();
+}
+
 
   return (
     <Container fluid >
           {props.activeChat && <div className={`convo-header-${props.showHide}`}><div className="convo-header-text">{props.activeChat.members?.find(user => user._id !== props.user._id).email.split("@")[0]}</div></div>}
         {props.activeChat._id && <Col md={12} className={"chatbar"}  >
           <div className="chat-image-preview-container">
-            <div className={chatImagePreview}>
-              <img  src={"https://placekitten.com/200/200"}/>
-              <XCircle className="cancel-upload-x" onClick={(e)=>{
-              hideImagePreview();
-            }}/> 
-            </div>
-            <div className={chatImageLink}>
-              <img className="img-link-img"  src={formImageLink}
+             <div className={chatImagePreview}>
+              <img  
+              alt="uploaded preview"
+              src={imageDataURL} 
+              className="img-link-img"
               onError={(e)=>{
                 e.target.src = "/3DepotLogoMedium.png"
                 }}/>
-              <Form>
+              <XCircle className="cancel-upload-x" onClick={(e)=>{
+              hideImagePreview();
+            }}/> 
+            </div> 
+            <div className={chatImageLink}>
+              <img 
+              alt="linked preview"
+              className="img-link-img"  
+              src={formImageLink}
+              onError={(e)=>{
+                e.target.src = "/3DepotLogoMedium.png"
+                }}/>
+              <Form
+              onSubmit={(e)=>{e.preventDefault();
+              sendMessage()
+              }}>
               <Form.Control 
+              ref={linkForm}
               value={formImageLink} 
               placeholder="Image URL"
               className="link-form"
-              onChange={(e)=>{setFormImageLink(e.target.value)}}
+              onChange={(e)=>{
+                setFormImageLink(e.target.value)}}
               ></Form.Control>
               </Form>
               <XCircle className="cancel-link-x" onClick={(e)=>{
@@ -203,13 +232,25 @@ useEffect(()=>{
           </div>
           <Form onSubmit={e => {
               e.preventDefault();
-              sendMessage();
+              handleImgAndTxt();
             }}>
             <Form.Group className="d-flex flex-row">
-              <Button className="add-pic-button" onClick={e => {
-              e.preventDefault();
-              showImagePreview();
-            }}><Image className="img-svg"/><PlusCircleFill className="plus-svg"/></Button>
+              <input 
+                type="file" 
+                id="imgUploadBtn" 
+                ref={inputRef}
+                onChange={(e)=>{readPreviewImage(e)}} 
+                style={{ display: "none" }} 
+              />
+              <label htmlFor="imgUploadBtn" onClick={handleClick}>
+                   <Button className="add-pic-button">
+                    <Image className="img-svg"/>
+                    <PlusCircleFill className="plus-svg"/>
+                  </Button>
+              </label>
+              <input type="file" className="d-none" id="imgUploadBtn" 
+                  onChange={(e)=>{readPreviewImage(e)}}></input>
+              
               <Button className="add-link-pic-button" onClick={e => {
               e.preventDefault();
               showImageLink();
@@ -222,7 +263,7 @@ useEffect(()=>{
               />
               <Button className="send-button" onClick={e => {
               e.preventDefault();
-              sendMessage();
+              handleImgAndTxt();
             }}><Send/></Button>
           </Form.Group>
           </Form>
@@ -236,11 +277,10 @@ useEffect(()=>{
               <div  className={"single-message from-me"}>
                 <ListGroup.Item >
                   <div className="msg-img">
-                    <a href={message.content.media} target="_blank">
-                      <img src={message.content.media} className="img-link-img" onError={(e)=>{
-                        if(message.content.media === ""){ e.target.className = "d-none";}
-                        else{e.target.src = "https://placekitten.com/200/200"}                        
-
+                    <a href={message.content.media} rel="noreferrer" target="_blank">
+                      <img src={message.content.media} alt="msg"  className="img-link-img" onError={(e)=>{
+                        /* if(message.content.media === ""){ */ e.target.className = "d-none";/* } */
+                       /*  else{e.target.src = "https://cdn-icons-png.flaticon.com/512/25/25284.png"}    */                     
                         }}/>
                     </a> 
                   </div>
@@ -253,11 +293,10 @@ useEffect(()=>{
               <div  className={"single-message from-them"}>
                 <ListGroup.Item  >
                 <div className="msg-img">
-                    <a href={message.content.media} target="_blank">
-                      <img src={message.content.media} className="img-link-img" onError={(e)=>{
-                        if(message.content.media === ""){ e.target.className = "d-none";}
-                        else{e.target.src = "https://placekitten.com/200/200"}                        
-
+                    <a href={message.content.media} rel="noreferrer" target="_blank">
+                      <img src={message.content.media} alt="msg" className="img-link-img" onError={(e)=>{
+                        e.target.className = "d-none";
+                                             
                         }}/>
                     </a> 
                   </div>

@@ -319,6 +319,9 @@
     top: 100px;
     transition: left .3s, top .3s, scale .3s, opacity .3s;
     scale: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 .img-link-img{
     height: 200px;
