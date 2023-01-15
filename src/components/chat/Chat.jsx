@@ -48,12 +48,13 @@ const Chat = (props) => {
   const linkForm = useRef(null);
   const inputRef = useRef(null);
   const [message, setMessage] = useState("");
+  const [picLoading, setPicLoading] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [chatImagePreview, setChatImagePreview] = useState("chat-image-preview-hide");
   const [chatImageLink, setChatImageLink] = useState("chat-image-link-hide");
   const [formImageLink, setFormImageLink] = useState("");
   const [previewImage, setPreviewImage] = useState(null)
-  const [imageDataURL, setImageDataURL] = useState(null);
+  const [imageDataURL, setImageDataURL] = useState("/3DepotLogoMedium.png");
   useEffect(()=>{
     /*     console.log('fire1', props.activeChat.messages ) */
     props.activeChat.messages && setChatHistory(props.activeChat.messages) 
@@ -102,6 +103,7 @@ const Chat = (props) => {
 
 
   const postMessagePic = async (id) =>{ 
+    setPicLoading(true)
     let formData = new FormData()
     formData.append('image', previewImage)
     const options = {
@@ -121,7 +123,7 @@ const Chat = (props) => {
        } 
       } catch (error) {
         console.log(error)
-      }finally{console.log("Submitted Picture");}
+      }finally{console.log("Submitted Picture");setPicLoading(false); }
     }
   
   const readPreviewImage = (e)=>{
@@ -191,6 +193,11 @@ const handleClick = e => {
         {props.activeChat._id && <Col md={12} className={"chatbar"}  >
           <div className="chat-image-preview-container">
              <div className={chatImagePreview}>
+              {picLoading && <img 
+              alt="loader"
+              src="/3DepotLogoMedium.png"
+              className="pic-loader"
+              />}
               <img  
               alt="uploaded preview"
               src={imageDataURL} 
@@ -208,7 +215,7 @@ const handleClick = e => {
               className="img-link-img"  
               src={formImageLink}
               onError={(e)=>{
-                e.target.src = "/3DepotLogoMedium.png"
+                e.target.src = "./3DepotLogoMedium.png"
                 }}/>
               <Form
               onSubmit={(e)=>{e.preventDefault();

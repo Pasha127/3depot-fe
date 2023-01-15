@@ -60,7 +60,26 @@
     transition: left .3s;
     color: white;
   }
+  .convo-header-Show .convo-header-text{
+    position: relative;
+    left: 120px;
+    transition: left .3s;
+    color: white;
+  }
+.pic-loader{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    left: -3px;
+    scale: .97;
+    animation: 3s linear 0s infinite normal rotateLoader;
 
+}
+@keyframes rotateLoader{
+    0%{rotate: 0deg;}
+    100%{rotate: 360deg;}
+}
 .splash-logo{
     position: absolute;
     left: 0px;
@@ -166,6 +185,7 @@
     max-width: 200px;
     max-height: 200px;
     overflow: hidden;
+    border-radius: 20px;
 }
 .user-time{
     font-size: 6pt;
@@ -410,6 +430,11 @@
     left: -250px;
     transition: left .3s;
 }
+.convo-header-Hide .convo-header-text{
+    position: relative;
+    left: 124px;
+    transition: left .3s;
+  }
 .convo-header-Show .convo-header-text{
     position: relative;
     left: 0px;
