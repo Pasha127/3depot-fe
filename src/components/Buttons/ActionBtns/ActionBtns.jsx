@@ -5,9 +5,11 @@ import downloadButton from "../../../assets/Download.svg"
 import shareButton from "../../../assets/Share.svg" */
 import "./styles.css"
 import { ChevronDoubleDown, Download, Share, Trash, Upload } from "react-bootstrap-icons";
+import UploadModal from "../../UploadModal/UploadModal";
 
 
 const ActionBtns = (props)=>{
+    const [showUpload, setShowUpload] = useState(false)
     const [actionClass, setActionClass] = useState("action-toggle-square")
     const [deleteClass, setDeleteClass] = useState("delete-button-hide")
     const [uploadClass, setUploadClass] = useState("upload-button-hide")
@@ -58,7 +60,7 @@ return(<>
             <div className="initial-action-text">Delete Model</div>
         </div>
     </div>
-    <div className={uploadClass }>
+    <div className={uploadClass } onClick={(e)=>{setShowUpload(true)}}>
         <div className="upload-icon-action"><Upload/></div>
          <div className="upload-button-circle">
             <p className="initial-action-text">Upload Model</p>
@@ -78,7 +80,8 @@ return(<>
        </div>
     </div>
     
-    </div>        
+    </div> 
+    <UploadModal show={showUpload} setShowUpload={setShowUpload}/>       
 </>)
 }
 export default ActionBtns;
