@@ -278,15 +278,10 @@ function SearchCanvas(props) {
 },[])
     const [activeBox,setActiveBox] = useState(1.5);
    /*  const [camVector,setCamVector] = useState(0); */
-
-  const navigate = useNavigate();
-  const goToLogIn = () => navigate('/LogIn');
-    const goToGarage = () => navigate('/Garage');
   
   const ScrollController = () =>{
     const { camera, gl } = useThree();
     useFrame(({ clock }) => {
-      const elapsedTime = clock.getElapsedTime();
       camera.position.lerp(new Vector3(props.searchSettings.cameraPos, 1,10), 0.1);
     });
   }

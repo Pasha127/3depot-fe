@@ -60,7 +60,7 @@ return(<>
             <div className="initial-action-text">Delete Model</div>
         </div>
     </div>
-    <div className={uploadClass } onClick={(e)=>{setShowUpload(true)}}>
+    <div className={uploadClass } onClick={(e)=>{setShowUpload(true); console.log("click in event")}}>
         <div className="upload-icon-action"><Upload/></div>
          <div className="upload-button-circle">
             <p className="initial-action-text">Upload Model</p>
@@ -69,7 +69,7 @@ return(<>
     <div className={downloadClass }>
     <a className="action-btn-text" href="https://res.cloudinary.com/dirwjcohx/raw/upload/v1670880728/3DepotProducts/Sci-fi_Rifle_2_qu1tv8.fbx">
         <div className="download-icon-action"><Download/></div></a>
-         <div className="download-button-circle">
+         <div className="download-button-circle" >
             <p className="initial-action-text">Download Model</p>
          </div>
     </div>
