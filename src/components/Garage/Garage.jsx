@@ -83,8 +83,10 @@ function FBXAsset() {
 
 function Loader() {
   const {progress} = useProgress()
-  return <Html center>
+  return <Html>
+    <div className='garage-loader-container'>
     <Loader2D/>
+    </div>
   </Html>
 }
 

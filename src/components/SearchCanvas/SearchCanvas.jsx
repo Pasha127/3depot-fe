@@ -31,11 +31,12 @@ THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 let objectsArray =[] 
 
 function Loader() {
-    return <Html center>
+  return <Html>
+    <div className='search-loader-container'>
     <Loader2D/>
+    </div>
   </Html>
 }
-
 const CameraController = () => {
   const { camera, gl } = useThree();
     useEffect(

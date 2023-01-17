@@ -1,13 +1,33 @@
+import { set } from "date-fns";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Upload, XCircleFill } from "react-bootstrap-icons";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setLoading } from "../../lib/redux/actions";
+import Loader2D from "../loader/Loader2D";
 import "./styles.css"
-
+const mapStateToProps = state => {
+    return {
+    isLoading: state.isLoading,
+    user: state.userInfo
+    };
+  };
+   const mapDispatchToProps = dispatch => {
+    return {
+       setIsLoading: (bool)=> {
+        dispatch(setLoading(bool));
+      }    
+    };  
+  };
+  
 
 const UploadModal = (props)=>{
     const tenMB = 10485760;
+    const navigate = useNavigate();
+    const goToLogin = () => navigate("/LogIn");
     const [show, setShow] = useState(false);
     const [tooLarge, setTooLarge] = useState("d-none");
     const [fileType, setFileType] = useState("");
@@ -22,21 +42,23 @@ const UploadModal = (props)=>{
     const objBtn = useRef(null)
     const gltfBtn = useRef(null)
     const [uploadedModel, setUploadedModel] = useState(null);
+
+    const handleUpload = () =>{
+        props.setIsLoading(true);
+        handleClose();  
+        
+    }
+  
+
     const handleClose = () => {
         setShow(false);
         props.setShowUpload(false) 
         window.scrollTo(0,0);         
     };
 
-    const showModal = ()=>{
-        if(props.show){
-            return true    
-        }
-        return false
-    }
-    
 
 const handleShow = () => setShow(true);
+
 
 const handleFileTypes = (e)=>{
     if(e.target === fbxBtn.current){
@@ -60,7 +82,7 @@ const handleFileTypes = (e)=>{
 }
 
 useEffect(()=>{
-    showModal() && handleShow();
+    props.show && handleShow()
 },[props.show])
 
 useEffect(()=>{
@@ -73,7 +95,10 @@ useEffect(()=>{
 },[uploadedModel])
 
 useEffect(()=>{
-    
+    if(!props.user?._id){
+        setFormCoverPosition('form-cover0');
+        return;
+    }
     if(!fileType){
         setFormCoverPosition('form-cover1');
         return;
@@ -94,7 +119,7 @@ useEffect(()=>{
         setFormCoverPosition('d-none');
         return;
     };
-},[fileType, uploadedModel, modelName, keywords])
+},[fileType, uploadedModel, modelName, keywords, props.user])
 
 return(<>
 <Modal  show={show} onHide={()=>{handleClose(); localStorage.setItem('acceptedCookies','true');}} >
@@ -124,13 +149,14 @@ return(<>
             <p className="mt-3">Model Description:</p>
             <textarea placeholder="Additional info.." className="model-description" value={modelDescription} onChange={(e)=>{setModelDescription(e.target.value)}}/>
             <div className="send-file-container">
-                <div className="upload-button-back">
+                <div className="upload-button-back" onClick={handleUpload}>
                     <Upload/>⠀Upload
                 </div>
             </div>
             <div className={formCoverPosition}></div>
+            {!props.user?._id && <h3 className="log-in-msg" onClick={goToLogin}>Log-in Required </h3>}
     </Modal.Body>  
   </Modal>
-</>)
+ </>)
 }
-export default UploadModal;
+export default connect(mapStateToProps, mapDispatchToProps)(UploadModal);
