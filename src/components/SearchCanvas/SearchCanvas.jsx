@@ -125,7 +125,7 @@ function Box(props) {
       if(props.settings.cameraPos !== props.xPos && boxOpen){closeBox()}
     },[props.settings.cameraPos])
     useEffect(()=>{
-      setTimeout(()=>{setCanClick(true)},2400)
+      setTimeout(()=>{setCanClick(true)},2400);
     },[])
     objectsArray.push(this);
 
@@ -271,6 +271,14 @@ const mapStateToProps = state => {
 } */
 
 function SearchCanvas(props) {
+
+  useEffect(()=>{
+    let vw = window.innerWidth;
+     console.log(vw) 
+     if(vw < 500){props.setSearchSettings({cameraPos: 0})}
+    else if(vw < 1000){props.setSearchSettings({cameraPos: 2})}
+    else{props.setSearchSettings({cameraPos: 4})}
+  },[])
   
 
   useEffect(()=>{

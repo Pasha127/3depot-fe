@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-/* import deleteButton from "../../../assets/Delete.svg"
-import uploadButton from "../../../assets/Upload.svg"
-import downloadButton from "../../../assets/Download.svg"
-import shareButton from "../../../assets/Share.svg" */
 import "./styles.css"
 import { ChevronDoubleDown, Download, Share, Trash, Upload } from "react-bootstrap-icons";
 import UploadModal from "../../UploadModal/UploadModal";

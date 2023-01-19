@@ -141,7 +141,6 @@ export const getMeWithThunk = () =>{
       credentials:"include"
       };      
       const baseEndpoint = `${baseURL}/user/me`
-      /* console.log("fetch blogs") */
 
       return async (dispatch, getState) =>{
 
@@ -154,6 +153,31 @@ export const getMeWithThunk = () =>{
         localStorage.setItem("loggedIn", true)            
       } else {
         dispatch(logOutWithThunk())
+      }             
+    }
+}
+
+export const getSearchResultsWithThunk = (query) =>{
+  const baseURL = process.env.REACT_APP_SERVER_URL
+    const options = {
+      method: 'GET' ,
+      credentials:"include"
+      };
+      let baseEndpoint = "";      
+      if(query) baseEndpoint = `${baseURL}/assets/${query}`
+      if(!query) baseEndpoint = `${baseURL}/assets/`
+
+      return async (dispatch, getState) =>{
+
+        const response = await fetch(baseEndpoint, options);
+       /*  console.log("test get me", response); */
+      if (response.ok) {
+        const data = await response.json()
+        /* console.log("test resp", data); */
+        dispatch(setUserInfo(data[0]));
+        localStorage.setItem("loggedIn", true)            
+      } else {
+        alert("Error while searching. Please try again.")
       }             
     }
 }

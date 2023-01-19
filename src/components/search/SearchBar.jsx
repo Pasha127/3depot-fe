@@ -20,13 +20,10 @@ const SearchBar = (props) =>{
 
     return(
         <Form className="search-form-container">
-        <Form.Group className="mb-3" controlId="SearchForm">
+        <Form.Group className="search-bar-group" controlId="SearchForm">
           <InputGroup className="search-custom">
           <Form.Control className="search-field-placeholder"  placeholder="🔍" />
           <Button className="search-btn" variant="primary">Search</Button>
-          <Button className="filters-btn" variant="primary" 
-          onClick={()=>props.setFilters(!props.filterState)}
-          ></Button>
           </InputGroup>
         </Form.Group>
       </Form>
