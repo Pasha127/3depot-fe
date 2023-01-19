@@ -71,6 +71,7 @@
   z-index: 1;
   border-radius: 50%;
   background-color: greenyellow;
+  border: 2px solid var(--holo-blue )
 }
 .offline{
   height: 15px;
@@ -80,6 +81,7 @@
   z-index: 1;
   border-radius: 50%;
   background-color: rgb(117, 117, 117);
+  border: 2px solid var(--holo-blue )
 }
 .truncate{
   text-overflow: ellipsis;

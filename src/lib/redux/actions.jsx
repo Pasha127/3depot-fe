@@ -1,3 +1,4 @@
+import { Navigate, useNavigate } from "react-router-dom";
 import { emitLogOut } from "../../components/SocketManager/SocketManager";
 
 export const LOADING = "LOADING";
@@ -185,6 +186,7 @@ export const logInWithThunk =  (email, password) =>{
     }
     dispatch(setUserInfo({}));            
 }}
+
 export const registerWithThunk =  (newUserData) =>{
   
   const baseURL = process.env.REACT_APP_SERVER_URL
@@ -214,19 +216,55 @@ export const registerWithThunk =  (newUserData) =>{
 export const getHistoryWithThunk = () => {
   const baseURL = process.env.REACT_APP_SERVER_URL
   const options = {
-      method: 'GET' ,
-      credentials:"include"
+    method: 'GET' ,
+    credentials:"include"
   };      
   const baseEndpoint = `${baseURL}/chat/me/history`
   /* console.log("fetch blogs") */
   return async (dispatch, getState) =>{
-  const response = await fetch(baseEndpoint, options);
-  /* console.log("test get me", response); */
-  if (response.ok) {
+    const response = await fetch(baseEndpoint, options);
+    /* console.log("test get me", response); */
+    if (response.ok) {
       const data = await response.json()
       console.log("get all chats", data);
       dispatch(setHistory(data))            
-  } else {
+    } else {
       console.log("Error - Could not retrieve chats!") 
-  }             
-}}
+    }             
+  }}
+  
+  export const uploadAssetWithThunk =  (assetData) =>{
+
+    const baseURL = process.env.REACT_APP_SERVER_URL
+    let formData = new FormData();
+    formData.append('model', assetData.model);
+    formData.append('name', assetData.name);
+    formData.append('type', assetData.type);
+    formData.append('poster', assetData.poster);
+    formData.append('description', assetData.description);
+    formData.append('keywords', assetData.keywords);
+    
+    const options = {
+    method: 'POST',
+    credentials:"include",    
+    body: formData
+    };   
+    
+    const assetEndpoint = `${baseURL}/asset`
+        
+    return async (dispatch, getState) =>{
+      try {    
+        const response = await fetch(assetEndpoint, options);
+        if (response.ok) {           
+          const data = await response.json() 
+          console.log("Uploaded Asset: ", data)
+          window.location= `http://localhost:3000/Garage?${data}`
+       } else {
+         alert('Error Uploading Asset')
+       } 
+      } catch (error) {
+        console.log(error)
+      }finally{}
+     ;            
+  }}
+  

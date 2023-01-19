@@ -6,7 +6,7 @@ import { Button, Modal } from "react-bootstrap";
 import { Upload, XCircleFill } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setLoading } from "../../lib/redux/actions";
+import { setLoading, uploadAssetWithThunk} from "../../lib/redux/actions";
 import Loader2D from "../loader/Loader2D";
 import "./styles.css"
 const mapStateToProps = state => {
@@ -19,6 +19,9 @@ const mapStateToProps = state => {
     return {
        setIsLoading: (bool)=> {
         dispatch(setLoading(bool));
+      },    
+       uploadAsset: (assetData)=> {
+        dispatch(uploadAssetWithThunk(assetData));
       }    
     };  
   };
@@ -45,6 +48,15 @@ const UploadModal = (props)=>{
 
     const handleUpload = () =>{
         props.setIsLoading(true);
+        props.uploadAsset({
+            name: modelName,
+            type: fileType,
+            poster: props.user._id,
+            file: {},
+            description: modelDescription,
+            keywords: keywords,
+            model: uploadedModel
+        })
         handleClose();  
         
     }
@@ -139,7 +151,7 @@ return(<>
                 <div className="upload-filename">
                 <div className={tooLarge}>File too large</div>
               <input type="file" className="" id="modelUploadBtn" 
-                  onChange={(e)=>{setUploadedModel(e.target.files[0]); setTooLarge("d-none")}}></input>
+                  onChange={(e)=>{setUploadedModel(e.target.files[0]); setTooLarge("d-none"); setModelName(`${e.target.files[0].name.split(".")[0]}`)}}></input>
                 </div>
             </div>
             <p className="mt-3">Model Name:</p>
