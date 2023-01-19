@@ -1,7 +1,8 @@
 import React from "react";
+import { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { connect } from "react-redux";
-import { setFilters } from "../../lib/redux/actions";
+import { getSearchResultsWithThunk, setFilters } from "../../lib/redux/actions";
 import "./styles.css"
 const mapStateToProps = state => {
   return {
@@ -12,18 +13,32 @@ const mapStateToProps = state => {
   return {
     setFilters: (filterState)=> {
       dispatch(setFilters(filterState));
-    }     
+    },
+    search: (query) =>{
+      dispatch(getSearchResultsWithThunk(query)) 
+    }   
   };  
 }; 
 
 const SearchBar = (props) =>{
+  const [formQuery, setFormQuery] = useState("")
 
     return(
-        <Form className="search-form-container">
-        <Form.Group className="search-bar-group" controlId="SearchForm">
+        <Form className="search-form-container" onSubmit={(e)=>{
+          e.preventDefault();
+          formQuery && props.search(formQuery);
+        }
+        }>
+        <Form.Group className="search-bar-group" controlId="SearchForm" >
           <InputGroup className="search-custom">
-          <Form.Control className="search-field-placeholder"  placeholder="🔍" />
-          <Button className="search-btn" variant="primary">Search</Button>
+          <Form.Control className="search-field-placeholder" value={formQuery} placeholder="🔍" onChange={(e)=>{setFormQuery(e.target.value)}} />
+          <Button className="search-btn" variant="primary"
+          onClick={(e)=>{
+            e.preventDefault();
+            formQuery && props.search(formQuery)
+          }
+          }
+          >Search</Button>
           </InputGroup>
         </Form.Group>
       </Form>
