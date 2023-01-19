@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getSearchResultsWithThunk, setFilters } from "../../lib/redux/actions";
 import "./styles.css"
 const mapStateToProps = state => {
@@ -21,12 +22,15 @@ const mapStateToProps = state => {
 }; 
 
 const SearchBar = (props) =>{
-  const [formQuery, setFormQuery] = useState("")
+  const [formQuery, setFormQuery] = useState("");
+  const navigate = useNavigate();
+  const goToSearch = () => navigate("/")
 
     return(
         <Form className="search-form-container" onSubmit={(e)=>{
           e.preventDefault();
           formQuery && props.search(formQuery);
+          goToSearch()
         }
         }>
         <Form.Group className="search-bar-group" controlId="SearchForm" >
@@ -36,6 +40,7 @@ const SearchBar = (props) =>{
           onClick={(e)=>{
             e.preventDefault();
             formQuery && props.search(formQuery)
+            goToSearch()
           }
           }
           >Search</Button>
