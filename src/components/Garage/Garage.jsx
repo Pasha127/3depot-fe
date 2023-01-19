@@ -3,7 +3,7 @@ import { Canvas, useLoader, useThree } from '@react-three/fiber';
 import { Environment, Html, useProgress} from '@react-three/drei';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import {Mesh} from 'three'
+import {Mesh, Vector3} from 'three'
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { DDSLoader } from "three-stdlib";
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
@@ -30,6 +30,8 @@ const CameraController = () => {
       const controls = new OrbitControls(camera, gl.domElement);
       controls.minDistance = .5;
       controls.maxDistance = 20;
+      camera.position.set(1,1,3);
+      camera.lookAt(0,0,0);
       return () => {
         controls.dispose();
       };

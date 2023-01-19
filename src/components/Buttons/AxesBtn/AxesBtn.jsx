@@ -41,7 +41,9 @@ return(<>
     onClick={(e)=>{
         handleToggle();
         e.stopPropagation();
-        props.setShowAxes(!props.showAxes);
+        if(props.settings?.axes === true) {
+            props.setSettings({axes: false});
+        }else(props.setSettings({axes: true}))
         console.log("click");
     }}>
         <div className="svg-container">
