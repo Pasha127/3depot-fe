@@ -21,6 +21,7 @@ export const initialState = {
   isGarage: true,
   showFilters: false,
   query: "",
+  searchResults:[],
   userInfo: {
     _id: "",
     username: "",

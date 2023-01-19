@@ -14,6 +14,7 @@ export const SET_HISTORY = "SET_HISTORY";
 export const NEW_MESSAGE = "NEW_MESSAGE";
 export const SET_ONLINE = "SET_ONLINE";
 export const SET_RECENT_MSG = "SET_RECENT_MSG";
+export const SET_RESULTS = "SET_RESULTS";
 
 export const setLoading =isLoading =>({
     type:LOADING,
@@ -42,6 +43,10 @@ export const setFilters = showFilters =>({
 export const setSearch =query =>({
     type:SEARCH,
     payload: query
+  });
+export const setSearchResults =result =>({
+    type:SET_RESULTS,
+    payload: result
   });
 export const setUserInfo = user =>({
     type: SET_USER_INFO,
@@ -157,15 +162,15 @@ export const getMeWithThunk = () =>{
     }
 }
 
-export const getSearchResultsWithThunk = (query) =>{
+export const getSearchResultsWithThunk = (query, queryOptions="limit=6&skip=0") =>{
   const baseURL = process.env.REACT_APP_SERVER_URL
     const options = {
       method: 'GET' ,
       credentials:"include"
       };
       let baseEndpoint = "";      
-      if(query) baseEndpoint = `${baseURL}/assets/${query}`
-      if(!query) baseEndpoint = `${baseURL}/assets/`
+      if(query) baseEndpoint = `${baseURL}/asset/search/${query}?${queryOptions}`
+      if(!query) baseEndpoint = `${baseURL}/asset?sort=createdAt`
 
       return async (dispatch, getState) =>{
 
@@ -173,9 +178,9 @@ export const getSearchResultsWithThunk = (query) =>{
        /*  console.log("test get me", response); */
       if (response.ok) {
         const data = await response.json()
-        /* console.log("test resp", data); */
-        dispatch(setUserInfo(data[0]));
-        localStorage.setItem("loggedIn", true)            
+        console.log("returned search results:", data)
+        dispatch(setSearchResults(data))
+                   
       } else {
         alert("Error while searching. Please try again.")
       }             
