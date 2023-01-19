@@ -16,6 +16,7 @@ export const initialState = {
     axes:false,
     axesSize:1
   },
+  activeAsset: {},
   isLoading: false,
   isGarage: true,
   showFilters: false,

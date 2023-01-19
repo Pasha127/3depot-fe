@@ -110,7 +110,8 @@ useEffect(()=>{
   },[sendMsg, props.activeChat.members])
 
 useEffect(()=>{
-    setCurrentURL(`https://3Depot.org${location.pathname}`)
+  const currentUrl = new URL(window.location.href);
+    setCurrentURL(currentUrl)
   },[location])
 
 return(<>

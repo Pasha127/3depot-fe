@@ -1,5 +1,5 @@
 import { initialState } from "./store";
-import {LOADING, SETTINGS, SEARCH_SETTINGS, GARAGE, FILTERS, SEARCH,SET_USER_INFO,SET_CHATS,SET_ACTIVE_CHAT,SET_HISTORY,NEW_MESSAGE, SET_ONLINE, SET_RECENT_MSG } from "./actions";
+import {LOADING, SETTINGS, SET_ASSET, SEARCH_SETTINGS, GARAGE, FILTERS, SEARCH,SET_USER_INFO,SET_CHATS,SET_ACTIVE_CHAT,SET_HISTORY,NEW_MESSAGE, SET_ONLINE, SET_RECENT_MSG } from "./actions";
 const reducer = (state = initialState, action) => {
     switch (action.type) {
       case LOADING:
@@ -41,6 +41,11 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           chats: {active:state.chats.active, list:action.payload}        
+        };        
+      case SET_ASSET:
+        return {
+          ...state,
+          activeAsset: action.payload        
         };        
         
       case SET_ACTIVE_CHAT:

@@ -1,4 +1,3 @@
-import { Navigate, useNavigate } from "react-router-dom";
 import { emitLogOut } from "../../components/SocketManager/SocketManager";
 
 export const LOADING = "LOADING";
@@ -8,6 +7,7 @@ export const GARAGE = "GARAGE";
 export const FILTERS = "FILTERS";
 export const SEARCH = "SEARCH";
 export const SET_USER_INFO = "SET_USER_INFO";
+export const SET_ASSET = "SET_ASSET";
 export const SET_CHATS = "SET_CHATS";
 export const SET_ACTIVE_CHAT = "SET_ACTIVE_CHAT";
 export const SET_HISTORY = "SET_HISTORY";
@@ -18,6 +18,10 @@ export const SET_RECENT_MSG = "SET_RECENT_MSG";
 export const setLoading =isLoading =>({
     type:LOADING,
     payload: isLoading
+  });
+export const setAsset = asset =>({
+    type:SET_ASSET,
+    payload:  asset
   });
 export const setSettings =settingsData =>({
     type:SETTINGS,
@@ -87,6 +91,27 @@ export const getChatByIdWithThunk = (id) =>{
         dispatch(setActiveChat(data));            
       } else {
        window.location.reload()
+      }             
+    }
+}
+export const getAssetByIdWithThunk = (id) =>{
+  const baseURL = process.env.REACT_APP_SERVER_URL
+    const options = {
+      method: 'GET' ,
+      credentials:"include"
+      };      
+      const baseEndpoint = `${baseURL}/asset/${id}`
+
+      return async (dispatch, getState) =>{
+
+        const response = await fetch(baseEndpoint, options);
+       /*  console.log("get asset by id: ", response); */
+      if (response.ok) {
+        const data = await response.json()
+         console.log("asset from ID: ", data); 
+        dispatch(setAsset(data));            
+      } else {
+        dispatch(setAsset({}))
       }             
     }
 }
@@ -226,7 +251,7 @@ export const getHistoryWithThunk = () => {
     /* console.log("test get me", response); */
     if (response.ok) {
       const data = await response.json()
-      console.log("get all chats", data);
+      /* console.log("get all chats", data); */
       dispatch(setHistory(data))            
     } else {
       console.log("Error - Could not retrieve chats!") 
@@ -258,7 +283,7 @@ export const getHistoryWithThunk = () => {
         if (response.ok) {           
           const data = await response.json() 
           console.log("Uploaded Asset: ", data)
-          window.location= `http://localhost:3000/Garage?${data}`
+          window.location= `http://localhost:3000/Garage?asset=${data}`
        } else {
          alert('Error Uploading Asset')
        } 
