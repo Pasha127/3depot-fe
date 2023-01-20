@@ -171,7 +171,7 @@ ref={ref} >
         <planeBufferGeometry attach="geometry" args={[1,1]}/>
         <meshStandardMaterial attach="material" map={texture2} color="black" transparent/>
     </mesh>
-    <PreviewAsset asset={props.asset}/>
+    <PreviewAsset boxOpen={boxOpen} asset={props.asset}/>
   </mesh>
 
   
@@ -185,10 +185,9 @@ function PreviewAsset(props){
 const rotatingMesh = useRef();
 const navigate = useNavigate();
 const goToGarage = () => navigate('/Garage');
- const [displayable,setDisplayable] =useState(true)
  const [unzippedModel, setUnzippedModel] = useState("");
  const [unzipped, setUnzipped] = useState(false);
- setTimeout(()=>{setDisplayable(false)},1)
+
 
   useEffect(()=>{
     console.log("use effect fires");
@@ -231,26 +230,56 @@ useFrame(({ clock }) => {
     rotatingMesh.current.rotation.y = elapsedTime;
   });
 
-   if(unzipped){ return(<>
+   
+    return(<>
         <mesh ref={rotatingMesh} position={[0,0,1]} rotation={[pi/2,0,0]} 
         onClick={goToGarage}>
           <boxBufferGeometry  attach="geometry" args={[.01,.01,.01]}/>
           <meshStandardMaterial attach="material" opacity={0} color={"rgba(0,0,0,0)"} transparent/>
-            {(displayable || props.activeAsset) && <FBXAsset model={unzippedModel}/>}
+           {unzippedModel && <FBXAsset boxOpen={props.boxOpen} unzipped={unzipped} model={unzippedModel}/>}
         </mesh>
-    </>);}
+    </>);
 }
-
 const FBXAsset = (props) => {
-  const fbx = useLoader(FBXLoader, props.model) 
-  const newMesh = <mesh >
-  <primitive scale={.01} object={fbx} />
-  </mesh>
-  return (
-    newMesh
-    )
-    
-}
+  const [fbx, setFbx] = useState();
+  const fbxLoaderRef = useRef(new FBXLoader());
+  const fbxLoader = fbxLoaderRef.current;
+
+  useEffect(() => {
+    fbxLoader.load(props.model, (object) => {
+      object.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.visible = false;
+        }
+      });
+      setFbx(object);
+    });
+  }, [props.model]);
+
+  useEffect(() => {
+    if (fbx) {
+      if (props.boxOpen) {
+        setTimeout(() => {
+          fbx.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.visible = true;
+          }
+        });
+        }, 2000);
+      } else {
+        fbx.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.visible = false;
+          }
+        });
+      }
+    }
+  }, [props.boxOpen, fbx]);
+
+  return fbx ? <mesh>
+    <primitive scale={.01} object={fbx} />
+  </mesh> : null;
+};
 
 
 

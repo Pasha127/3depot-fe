@@ -28,7 +28,9 @@ const DropdownSign = (props) => {
   return (<>      
     <div className={signboardState} >
        <img src={signboard} className="signboard" alt="signboard"/>
+       <div className="sign-text-box">
        <div className="signboard-text">{props.searchSettings.activeAsset}</div>
+       </div>
     </div>        
         </>);
 };

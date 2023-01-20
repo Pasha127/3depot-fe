@@ -24,12 +24,19 @@ align-items: center;
 width:260px;
 height: 260px;
 }
-.signboard-text{
+.sign-text-box{
     position: absolute;
-    top:158px;
-    left: 16px;
-    line-height: 90%;
+    top:160px;
+    left: 13px;
+    height: 98px;
+    width: 235px;
     z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.signboard-text{
+    line-height: 90%;
     font-family: Allerta Stencil;
     font-size: 28pt;
 }
