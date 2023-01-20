@@ -28,7 +28,6 @@ const CommentTab = (props) => {
   const [sentComment, setSentComment] = useState("")
   const [commentEntries, setCommentEntries] = useState([])
 
-
   useEffect(()=>{
     let commentArray = []
      if(props.activeAsset.comments)props.activeAsset.comments.map((comment, i)=>{      
@@ -48,9 +47,6 @@ const CommentTab = (props) => {
       setTrayState("comment-tray-closed")
     }
   }
-
-
-
 
   return (<>      
         <Button onClick={(e)=>{
