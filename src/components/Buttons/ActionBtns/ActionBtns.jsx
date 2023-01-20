@@ -81,7 +81,8 @@ return(<>
             <p className="initial-action-text">Upload Model</p>
          </div>
     </div>}
-    {props.activeAsset?.file && <a className="action-btn-text" href={props.activeAsset.file.link}><div className={downloadClass }>
+    {console.log("comment test",props.activeAsset)}
+    {props.activeAsset?.file && <a className="action-btn-text" href={props.activeAsset.file ? props.activeAsset.file.link: "#"}><div className={downloadClass }>
     
         <div className="download-icon-action"><Download/></div>
          <div className="download-button-circle" >

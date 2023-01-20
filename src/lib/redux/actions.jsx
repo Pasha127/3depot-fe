@@ -365,6 +365,7 @@ export const getHistoryWithThunk = () => {
         const response = await fetch(baseEndpoint, options);
         if (response.ok) {
           const data = await response.json()
+          console.log(data);
           dispatch(setAsset(data));
         } else {
           console.log("error uploading comment")
