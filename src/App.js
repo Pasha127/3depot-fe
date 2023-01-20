@@ -10,9 +10,11 @@ import Search3D from "./components/search/Search3D";
 import ChatHome from "./components/chat/ChatHome";
 import PrivateRoutes from "./lib/tools/PrivateRoutes";
 import SocketManager from "./components/SocketManager/SocketManager";
+import Loader2D from "./components/loader/Loader2D";
 const mapStateToProps = state => {
   return {
-  user: state.userInfo
+  user: state.userInfo,
+  isLoading: state.isLoading
   };
 };
  const mapDispatchToProps = dispatch => {
@@ -43,6 +45,7 @@ function App(props) {
         <Route path="/Garage" exact element={<GarageContainer/>} />
       </Routes>
     </Router>
+    {props.isLoading && <Loader2D/>}
      </>);
 }
 

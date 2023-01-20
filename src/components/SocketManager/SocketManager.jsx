@@ -18,7 +18,7 @@ export const emitLogOut = ()=>{
   }
 
 export const sendInitialMessage = (user, otherUser) => {
-    console.log("initial members",[user,otherUser])
+    /* console.log("initial members",[user,otherUser]) */
     socket.emit("setUsername", {_id:user._id, username: user.email.split("@")[0] })
     const newMessage= {
     "members": [user._id,otherUser._id],
@@ -34,7 +34,7 @@ export const sendInitialMessage = (user, otherUser) => {
     }
 
 export const submitUsername = (userId, emailAddress) => {
-    console.log("Submission",userId,emailAddress);
+   /*  console.log("Submission",userId,emailAddress); */
     socket.emit("setUsername", {_id:userId, username: emailAddress.split("@")[0] })
 }
 
@@ -76,17 +76,17 @@ const SocketManager = (props)=>{
         useEffect(()=>{
           const {_id,email} = props.user
             props.setUsersRedux(["TESING"]);
-             console.log('sent userdata',_id,email) 
+             /* console.log('sent userdata',_id,email)  */
             props.user._id && submitUsername(_id,email)   
             socket.on("welcome", welcomeMessage => {
-             console.log(welcomeMessage); 
+             /* console.log(welcomeMessage);  */
               
             });
         },[props.user._id])
 
         useEffect(() => {
             socket.on("listUpdate", onlineUsersList => {
-                console.log("New user online: ", onlineUsersList);
+                /* console.log("New user online: ", onlineUsersList); */
               props.setUsersRedux(onlineUsersList);
             });
         }, [socket]);

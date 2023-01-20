@@ -324,7 +324,11 @@ const handleClick = e => {
                         }}/>
                     </a> 
                   </div>
-                  <div className="msg-content text-right"> {message.content && message.content.text}</div>
+                  <div className="msg-content text-right"> 
+                  {message.content.text?.split("//")[0] === "https:" || message.content.text?.split("//")[0] === "http:"? 
+                  <a href={message.content.text.split(" ")[0]}><div>{message.content.text}</div></a> 
+                  : <div>{message.content.text}</div> }                   
+                  </div>
                   <div className="user-time text-right">
                    at{" "}
                   {new Date(message.createdAt).toLocaleTimeString("en-US")}</div>

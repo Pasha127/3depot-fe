@@ -27,21 +27,18 @@
   background: rgb(99,182,202);
   background: linear-gradient(117deg, rgba(99,182,202,1) 0%, rgba(99,182,202,1) 41%, rgba(185,250,255,1) 52%, rgba(99,182,202,1) 63%, rgba(99,182,202,1) 100%);
   background-repeat: repeat-x;
-  background-size: 400px, 60px;
+  background-size: 4000px, 60px;
   background-position: 160%, 50%;
   color: black;
   margin: 0;
-  animation: 2s infinite normal linear notification;
+  animation: 6s infinite normal linear notification;
 }
 @keyframes notification{
   0%{
-    background-position: 160%, 50%;
-  }
-  50%{
-    background-position: 60%, 50%;
+    background-position: 100%, 50%;
   }
   100%{
-    background-position: -60%, 50%;
+    background-position: -100%, 50%;
   }
 }
 .delete-chat{
@@ -74,6 +71,7 @@
   z-index: 1;
   border-radius: 50%;
   background-color: greenyellow;
+  border: 2px solid var(--holo-blue )
 }
 .offline{
   height: 15px;
@@ -83,12 +81,13 @@
   z-index: 1;
   border-radius: 50%;
   background-color: rgb(117, 117, 117);
+  border: 2px solid var(--holo-blue )
 }
 .truncate{
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width:170px;
+  width: 175px;
 }
 .friendlist .form-control{
   border-radius: 0px;

@@ -1,32 +1,55 @@
 import React from "react";
+import { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { connect } from "react-redux";
-import { setFilters } from "../../lib/redux/actions";
+import { useNavigate } from "react-router-dom";
+import { getSearchResultsWithThunk, setFilters, setSearch } from "../../lib/redux/actions";
 import "./styles.css"
 const mapStateToProps = state => {
   return {
-  filterState: state.showFilters
+  filterState: state.showFilters,
+  query: state.query
   };
 };
  const mapDispatchToProps = dispatch => {
   return {
     setFilters: (filterState)=> {
       dispatch(setFilters(filterState));
-    }     
+    },
+    search: (query) =>{
+      dispatch(getSearchResultsWithThunk(query)) 
+    },
+    setSearch: (query) =>{
+      dispatch(setSearch(query))
+    }   
   };  
 }; 
 
 const SearchBar = (props) =>{
+  const [formQuery, setFormQuery] = useState("");
+  const navigate = useNavigate();
+  const goToSearch = () => navigate("/")
 
     return(
-        <Form className="search-form-container">
-        <Form.Group className="mb-3" controlId="SearchForm">
+        <Form className="search-form-container" onSubmit={(e)=>{
+          e.preventDefault();
+          props.setSearch(formQuery)
+          formQuery && props.search(formQuery);
+          goToSearch()
+        }
+        }>
+        <Form.Group className="search-bar-group" controlId="SearchForm" >
           <InputGroup className="search-custom">
-          <Form.Control className="search-field-placeholder"  placeholder="🔍" />
-          <Button className="search-btn" variant="primary">Search</Button>
-          <Button className="filters-btn" variant="primary" 
-          onClick={()=>props.setFilters(!props.filterState)}
-          ></Button>
+          <Form.Control className="search-field-placeholder" value={formQuery} placeholder="🔍" onChange={(e)=>{setFormQuery(e.target.value)}} />
+          <Button className="search-btn" variant="primary"
+          onClick={(e)=>{
+            e.preventDefault();
+            props.setSearch(formQuery)
+            formQuery && props.search(formQuery)
+            goToSearch()
+          }
+          }
+          >Search</Button>
           </InputGroup>
         </Form.Group>
       </Form>

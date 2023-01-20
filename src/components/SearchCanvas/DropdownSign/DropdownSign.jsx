@@ -8,7 +8,8 @@ import signboard from "../../../assets/signboard.png"
 
 const mapStateToProps = state => {
   return {
-    searchSettings: state.searchSettings
+    searchSettings: state.searchSettings,
+    activeAsset: state.activeAsset
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -21,13 +22,15 @@ const mapDispatchToProps = dispatch => {
 const DropdownSign = (props) => {
   const [signboardState,setSignboardState] = useState("sign-container-up")
   useEffect(()=>{
-    if(props.searchSettings.activeAsset){setSignboardState("sign-container-down")}
+    if(props.searchSettings?.activeAsset){setSignboardState("sign-container-down")}
     else(setSignboardState("sign-container-up"))
   },[props.searchSettings.activeAsset])
   return (<>      
     <div className={signboardState} >
-       <img src={signboard} className="signboard" />
-       <div className="signboard-text">Example Rifle 001</div>
+       <img src={signboard} className="signboard" alt="signboard"/>
+       <div className="sign-text-box">
+       <div className="signboard-text">{props.searchSettings.activeAsset}</div>
+       </div>
     </div>        
         </>);
 };

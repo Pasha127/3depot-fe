@@ -55,3 +55,8 @@
         min-width: 4rem !important;
     }
 }
+@media(min-width: 660px){
+    .hide-when-big{
+        display: none;
+    }
+}

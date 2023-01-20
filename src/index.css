@@ -2,6 +2,7 @@
 :root{
   --bg-color: #B99182;
   --holo-blue-alpha: rgba(185, 250, 255, 0.6);
+  --holo-blue-light: rgba(185, 250, 255, 1);
   --holo-blue: rgb(99, 182, 202);
   --text-blue: #007bff; 
   --garage-beige: #c0b494;

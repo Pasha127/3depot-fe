@@ -1,13 +1,12 @@
 .loaderContainer{
     display: flex;
-    z-index: 0;
+    z-index: 1051;
     background-color: rgba(0,0,0,0.2);
     height: 100vh;
     width: 100vw;
     border: 1px solid black;
-    justify-content: center;
-    align-items: center;
-    padding: 4px
+    padding: 4px;
+    position: fixed;
 }
 .threeDLoader{
 background-image: url("../../assets/3DepotLogoCompressed.gif");
@@ -22,10 +21,14 @@ background-image: url("/public/3DepotLogoBig.png");
 height: 260px;
 width: 260px;
 opacity: 1;
+position: absolute;
+top: calc(50vh - 130px);
+left: calc(50vw - 130px);
 background-repeat: no-repeat;
 background-position: center;
 background-size: 256px,256px;
 animation: rotate 20s linear 0s infinite normal none;
+
 }
 
 @keyframes rotate{

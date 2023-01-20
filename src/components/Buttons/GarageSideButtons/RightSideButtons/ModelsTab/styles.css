@@ -48,6 +48,7 @@
   border-radius: 10px;
   background-color:  var(--holo-blue-alpha);
   cursor: grab;
+ 
 }
 .model-tray-close-icon{
   color: white;
@@ -70,6 +71,8 @@ cursor:pointer;
   background-color: var(--holo-blue);
   border-radius: 10px;
   cursor: default;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .model-tray-closed{

@@ -5,7 +5,8 @@ import reducer from './reducer';
 export const initialState = {
   searchSettings:{
     activeAsset:"",
-    cameraPos: 0
+    cameraPos: 0,
+    page: 0
   },
   garageSettings: {
     red: 255,
@@ -16,10 +17,12 @@ export const initialState = {
     axes:false,
     axesSize:1
   },
+  activeAsset: {},
   isLoading: false,
   isGarage: true,
   showFilters: false,
   query: "",
+  searchResults:[],
   userInfo: {
     _id: "",
     username: "",

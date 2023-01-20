@@ -3,6 +3,7 @@ import { Button, Container, Navbar } from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
 import { logOutWithThunk } from "../../lib/redux/actions";
+import SearchBar from "../search/SearchBar";
 const mapStateToProps = state => {
   return {
   user: state.userInfo,
@@ -19,12 +20,12 @@ const mapStateToProps = state => {
 const FiltersBar = (props) => {
   return (<>
     {props.showFilters? <Navbar expand="lg" className="filter-navbar-show" fixed="top">
-      <Container className="nav-container">       
-      </Container>
+      <div className="filter-nav-container"> 
+      <SearchBar/>      
+      </div>
     </Navbar>
     :<Navbar expand="lg" className="filter-navbar" fixed="top">
-    <Container className="nav-container">       
-    </Container>
+    
   </Navbar>}
   </>
   );
