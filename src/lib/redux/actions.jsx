@@ -120,6 +120,29 @@ export const getAssetByIdWithThunk = (id) =>{
       }             
     }
 }
+
+/* export const getMyAssetsWithThunk = () =>{
+  const baseURL = process.env.REACT_APP_SERVER_URL
+    const options = {
+      method: 'GET' ,
+      credentials:"include"
+      };      
+      const baseEndpoint = `${baseURL}/asset/me?sort=createdAt`
+
+      return async (dispatch, getState) =>{
+
+        const response = await fetch(baseEndpoint, options);
+
+      if (response.ok) {
+        const data = await response.json()
+         console.log("GetMyAssets: ", data); 
+        dispatch(setMyAssets(data));            
+      } else {
+        dispatch(setMyAssets({}))
+      }             
+    }
+} */
+
 export const deleteChatByIdWithThunk = (id) =>{
   const baseURL = process.env.REACT_APP_SERVER_URL
     const options = {

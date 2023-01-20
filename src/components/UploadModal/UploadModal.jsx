@@ -142,9 +142,9 @@ return(<>
     <Modal.Body>
             <p>File type:</p>
         <div className="filetype-buttons">
-        <Button ref={objBtn} className={`filetype-btn ${objClick}`} variant="outline-dark" onClick={(e)=>{handleFileTypes(e)}}>OBJ</Button>
+        <Button ref={objBtn} className={`filetype-btn ${objClick}`} variant="outline-dark" onClick={(e)=>{/* handleFileTypes(e) */ alert("OBJ support coming soon!")}}>OBJ</Button>
         <Button ref={fbxBtn} className={`filetype-btn ${fbxClick}`} variant="outline-dark" onClick={(e)=>{handleFileTypes(e)}}>FBX</Button>
-        <Button ref={gltfBtn} className={`filetype-btn ${gltfClick}`} variant="outline-dark" onClick={(e)=>{handleFileTypes(e)}}>GLTF</Button>
+        <Button ref={gltfBtn} className={`filetype-btn ${gltfClick}`} variant="outline-dark" onClick={(e)=>{/* handleFileTypes(e) */ alert("GLTF support coming soon!")}}>GLTF</Button>
         </div>
             <p className="mt-3">Upload Zip:</p>
             <div className="upload-zip-section">

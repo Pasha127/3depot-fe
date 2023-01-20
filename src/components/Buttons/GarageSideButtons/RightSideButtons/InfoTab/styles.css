@@ -70,6 +70,8 @@ cursor:pointer;
   background-color: var(--holo-blue);
   border-radius: 10px;
   cursor: default;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .info-tray-closed{
