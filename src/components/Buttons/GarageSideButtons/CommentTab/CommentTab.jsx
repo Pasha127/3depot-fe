@@ -7,6 +7,7 @@ import { useState } from "react";
 import SingleComment from "./SingleComment/SingleComment";
 import useDragEffect from "../../../../lib/hooks/useDragEffect";
 import { sendCommentWithThunk } from "../../../../lib/redux/actions";
+import { useEffect } from "react";
 const mapStateToProps = state => {
   return {
   user: state.userInfo,
@@ -23,6 +24,21 @@ const mapStateToProps = state => {
 }; 
 const CommentTab = (props) => {
   const [commentValue, setCommentValue] = useState("")
+  const [sentComment, setSentComment] = useState("")
+  const [commentEntries, setCommentEntries] = useState([])
+
+/* useEffect(()=>{
+  appendNewComment(commentValue)
+},[sentComment])
+ */
+  useEffect(()=>{
+    let commentArray = []
+    props.activeAsset.comments?.map((comment, i)=>{      
+        commentArray.push(<SingleComment key={`SingleComment${i}`} sender={comment.sender} content={comment.content}/>)
+      setCommentEntries(commentArray);
+})
+  },[props.activeAsset.comments])
+
 
   useDragEffect("comment-tray"); 
   const [trayState,setTrayState] = useState("comment-tray-closed")
@@ -33,6 +49,18 @@ const CommentTab = (props) => {
       setTrayState("comment-tray-closed")
     }
   }
+
+
+/*   const appendNewComment = (newComment) =>{
+      setCommentEntries(commentEntries => [...commentEntries, 
+        {sender: props.user._id,
+        content: {
+          text: newComment,
+          media: ""
+  }}])
+  } */
+
+
   return (<>      
         <Button onClick={(e)=>{
           e.stopPropagation();
@@ -48,14 +76,10 @@ const CommentTab = (props) => {
         <div className="comment-tray-details"
           onClick={(e)=>{e.stopPropagation()}}
           >
-            {props.activeAsset && props.activeAsset.comments?.map((comment, i)=>{
-                    console.log("props.activeAsset.comments: ",props.activeAsset.comments)
-                    return(
-                <SingleComment key={`SingleComment${i}`} sender={comment.sender} content={comment.content}/>
-              )
-            })}
+            {props.activeAsset && commentEntries}
             <Form onSubmit={(e)=>{
               e.preventDefault();
+              /* setSentComment(commentValue); */
               props.sendComment({text:commentValue, media: ""}, props.activeAsset._id);
             }}>
             <Form.Group >

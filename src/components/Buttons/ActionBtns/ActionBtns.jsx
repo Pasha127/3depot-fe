@@ -4,7 +4,22 @@ import { ChevronDoubleDown, Download, Share, Trash, Upload } from "react-bootstr
 import UploadModal from "../../UploadModal/UploadModal";
 import DeleteModal from "../../DeleteModelModal/DeleteModelModal";
 import ShareModal from "../../ShareModal/ShareModal";
+import { connect } from "react-redux";
 
+const mapStateToProps = state => {
+    return {
+    user: state.userInfo,
+    showGarage: state.isGarage,
+    activeAsset: state.activeAsset
+    };
+  };
+   const mapDispatchToProps = dispatch => {
+    return {
+      /* logOut: ()=> {
+        dispatch(logOutWithThunk());
+      }   */   
+    };  
+  }; 
 
 const ActionBtns = (props)=>{
     const [showUpload, setShowUpload] = useState(false);
@@ -66,13 +81,13 @@ return(<>
             <p className="initial-action-text">Upload Model</p>
          </div>
     </div>
-    <div className={downloadClass }>
-    <a className="action-btn-text" href="https://res.cloudinary.com/dirwjcohx/raw/upload/v1670880728/3DepotProducts/Sci-fi_Rifle_2_qu1tv8.fbx">
-        <div className="download-icon-action"><Download/></div></a>
+    {props.activeAsset.file && <a className="action-btn-text" href={props.activeAsset.file.link}><div className={downloadClass }>
+    
+        <div className="download-icon-action"><Download/></div>
          <div className="download-button-circle" >
             <p className="initial-action-text">Download Model</p>
          </div>
-    </div>
+    </div></a>}
     <div className={shareClass } onClick={(e)=>{setShowShare(true)}}>
         <div className="share-icon-action"><Share/></div>
        <div className="share-button-circle">
@@ -86,4 +101,4 @@ return(<>
     <ShareModal show={showShare} setShowShare={setShowShare}/>      
 </>)
 }
-export default ActionBtns;
+export default connect(mapStateToProps, mapDispatchToProps)(ActionBtns);

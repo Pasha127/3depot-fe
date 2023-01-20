@@ -160,7 +160,7 @@ export const deleteAssetByIdWithThunk = (id) =>{
       }}
       catch(error){
         console.log(error)
-      }finally{dispatch(setLoading(false))}             
+      }finally{dispatch(setLoading(false)); window.location.reload()}             
     }
 }
 
