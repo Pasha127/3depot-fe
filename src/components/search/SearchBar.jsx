@@ -3,11 +3,12 @@ import { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getSearchResultsWithThunk, setFilters } from "../../lib/redux/actions";
+import { getSearchResultsWithThunk, setFilters, setSearch } from "../../lib/redux/actions";
 import "./styles.css"
 const mapStateToProps = state => {
   return {
-  filterState: state.showFilters
+  filterState: state.showFilters,
+  query: state.query
   };
 };
  const mapDispatchToProps = dispatch => {
@@ -17,6 +18,9 @@ const mapStateToProps = state => {
     },
     search: (query) =>{
       dispatch(getSearchResultsWithThunk(query)) 
+    },
+    setSearch: (query) =>{
+      dispatch(setSearch(query))
     }   
   };  
 }; 
@@ -29,6 +33,7 @@ const SearchBar = (props) =>{
     return(
         <Form className="search-form-container" onSubmit={(e)=>{
           e.preventDefault();
+          props.setSearch(formQuery)
           formQuery && props.search(formQuery);
           goToSearch()
         }
@@ -39,6 +44,7 @@ const SearchBar = (props) =>{
           <Button className="search-btn" variant="primary"
           onClick={(e)=>{
             e.preventDefault();
+            props.setSearch(formQuery)
             formQuery && props.search(formQuery)
             goToSearch()
           }

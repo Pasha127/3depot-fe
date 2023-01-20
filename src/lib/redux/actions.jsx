@@ -121,27 +121,6 @@ export const getAssetByIdWithThunk = (id) =>{
     }
 }
 
-/* export const getMyAssetsWithThunk = () =>{
-  const baseURL = process.env.REACT_APP_SERVER_URL
-    const options = {
-      method: 'GET' ,
-      credentials:"include"
-      };      
-      const baseEndpoint = `${baseURL}/asset/me?sort=createdAt`
-
-      return async (dispatch, getState) =>{
-
-        const response = await fetch(baseEndpoint, options);
-
-      if (response.ok) {
-        const data = await response.json()
-         console.log("GetMyAssets: ", data); 
-        dispatch(setMyAssets(data));            
-      } else {
-        dispatch(setMyAssets({}))
-      }             
-    }
-} */
 
 export const deleteChatByIdWithThunk = (id) =>{
   const baseURL = process.env.REACT_APP_SERVER_URL
@@ -185,7 +164,7 @@ export const getMeWithThunk = () =>{
     }
 }
 
-export const getSearchResultsWithThunk = (query, queryOptions="limit=6&skip=0") =>{
+export const getSearchResultsWithThunk = (query, queryOptions="limit=10&skip=0") =>{
   const baseURL = process.env.REACT_APP_SERVER_URL
     const options = {
       method: 'GET' ,
@@ -343,5 +322,33 @@ export const getHistoryWithThunk = () => {
         console.log(error)
       }finally{}
      ;            
+  }}
+
+  export const sendCommentWithThunk =  (comment,id) =>{
+  
+    const baseURL = process.env.REACT_APP_SERVER_URL
+      const options = {
+        method: 'POST' ,
+        credentials:"include",
+         headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',         
+          } ,
+          body:JSON.stringify(comment)
+        };      
+        const baseEndpoint = `${baseURL}/comment/${id}`
+        return async (dispatch, getState) =>{try{
+          console.log("sentComment",comment,id)
+        const response = await fetch(baseEndpoint, options);
+        if (response.ok) {
+          const data = await response.json()
+          dispatch(setAsset(data));
+        } else {
+          console.log("error uploading comment")
+        }
+      }catch(error){
+        console.log(error)
+      }
+               
   }}
   

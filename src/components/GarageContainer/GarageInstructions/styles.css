@@ -31,7 +31,7 @@
     height: 300px;
     z-index: 1;
     position: absolute;
-    top: calc(50vh - 200px);
+    top: 385px;
     left: 100vw;
     scale:.1;
     opacity: 0;

@@ -16,6 +16,7 @@ import Loader2D from "../loader/Loader2D";
 import TransparentFooter from "../footer/TransparentFooter";
 import GarageFooter from "../footer/GarageFooter";
 import { useEffect } from "react";
+import CommentTab from "../Buttons/GarageSideButtons/CommentTab/CommentTab";
 const mapStateToProps = state => {
     return {
     settings: state.garageSettings
@@ -44,6 +45,7 @@ return(<div className="garage-container">
     <TogglesTab />
     <InfoTab/>
     <ModelsTab/>
+    <CommentTab/>
     <InstructionsTab/>
     <Garage/>
     <GarageInstructions/>

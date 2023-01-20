@@ -21,11 +21,9 @@ import ScrollLeftTab from './ScrollTabs/ScrollLeftTab/ScrollLeftTab';
 import DropdownSign from './DropdownSign/DropdownSign';
 import InstructionHolograms from './InstructionHolograms/InstructionHolograms';
 import JSZip from 'jszip';
+import LoadMoreTab from './ScrollTabs/LoadMoreTab/LoadMoreTab';
 
 const pi= Math.PI;
-
-const assetSourceName= "Sci-fi_Rifle_2_uykpuo"
-const assetURL=`https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20;right_-35;zoom_1;env_pillars;exposure_1.4/b_transparent/v1670880755/3DepotProducts/${assetSourceName}.png`
 
 THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
@@ -38,26 +36,6 @@ function Loader() {
     </div>
   </Html>
 }
-//const CameraController = () => {
-//  const { camera, gl } = useThree();
-//    useEffect(
-//        () => {
-//            const controls = new OrbitControls(camera, gl.domElement);
-//            controls.minDistance = .5;
-//      controls.maxDistance = 20;
-///*       controls.enableZoom = false;
-//      controls.enableRotate = false; */
-//
-//      
-//      return () => {
-//        controls.dispose();
-//      };
-//    },
-//    [camera, gl]
-//  );
-//  return null;
-//};
-
 
 
 function ObjToPrimitive({ url, mat }) {
@@ -103,7 +81,7 @@ function Box(props) {
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set( 1, 1);
     texture.rotation=(pi)
-    let link= props.asset?.file.link;
+    let link= props.asset.file.link;
     let fileId = link.split("/").pop()
     const assetImage = ` https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20;right_-35;zoom_1;env_pillars;exposure_1.4/v1670880755/3DepotProducts/${fileId.split(".")[0]}.png` 
     const texture2 = new THREE.TextureLoader().load(assetImage );
@@ -173,13 +151,7 @@ ref={ref} >
     </mesh>
     <PreviewAsset boxOpen={boxOpen} asset={props.asset}/>
   </mesh>
-
-  
-    </>);
-  }
-
-
-
+    </>);}
 
 function PreviewAsset(props){
 const rotatingMesh = useRef();
@@ -324,39 +296,31 @@ const mapStateToProps = state => {
 };
 
 function SearchCanvas(props) {
+  const [activeBox,setActiveBox] = useState(1.5);
 
   useEffect(()=>{
     let vw = window.innerWidth;
      console.log(vw) 
+     props.setSearchSettings({activeAsset:""});
      if(vw < 500){props.setSearchSettings({cameraPos: 0})}
     else if(vw < 1000){props.setSearchSettings({cameraPos: 2})}
     else{props.setSearchSettings({cameraPos: 4})}
   },[])
-  
-
   useEffect(()=>{
-    props.setSearchSettings({activeAsset:""});
-   /*  document.addEventListener('mousemove', onDocumentMouseMove) */
-},[])
-    const [activeBox,setActiveBox] = useState(1.5);
-   /*  const [camVector,setCamVector] = useState(0); */
+     if(props.searchResults?.length === 1){props.setSearchSettings({cameraPos: 0})}
+     if(props.searchResults?.length === 2){props.setSearchSettings({cameraPos: 2})}
+    },[props.searchResults])  
   
-  const ScrollController = () =>{
+    const ScrollController = () =>{
     const { camera } = useThree();
     useFrame(({ clock }) => {
       camera.position.lerp(new Vector3(props.searchSettings.cameraPos, 1,10), 0.1);
     });
   }
-  
-
-
-  let choicesLength = 5;
-
   return (<>
     <div className="canvas-container">
       <Canvas camera={{fov:30, position: [0,0,10]}}>
         <Suspense fallback={<Loader/>}>
-        {/* <CameraController/> */}
         <ScrollController/>
         <Physics>
         <RearPlane xPos={0} />
@@ -373,28 +337,22 @@ function SearchCanvas(props) {
                   setSearchSettings={props.setSearchSettings} 
                   xPos={boxIndex}
                   asset={asset}
-                  />
-                  )
+                  />)
           })}
         </Physics>
         <ambientLight intensity={.3}/>
         <spotLight position={[200,800,500]} angle={0.3} />
         <spotLight position={[-600,800,500]} angle={0.3}/>
-        {/* <primitive object={new THREE.AxesHelper(1)}></primitive> */}
         </Suspense>
       </Canvas>
 
     </div>
     <DropdownSign/>
-    <ScrollRightTab listLength={choicesLength}/>
+    {props.searchResults && <ScrollRightTab listLength={props.searchResults?.length}/>}
+   {/*  {props.searchResults && <LoadMoreTab listLength={props.searchResults?.length}/>} */}
     <div className="ui-container">
       <ScrollLeftTab/>
       <InstructionHolograms/>
-      {/* <div className="view-btn" onClick={()=>
-          goToGarage()
-      }>
-        <div className="btn-interior-txt">View in 3D</div>
-      </div> */}
     </div>
     </>);
 }

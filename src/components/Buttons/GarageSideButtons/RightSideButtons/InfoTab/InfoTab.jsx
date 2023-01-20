@@ -45,6 +45,7 @@ const InfoTab = (props) => {
           <div className="info-tray-details"
           onClick={(e)=>{e.stopPropagation()}}
           >
+            {props.activeAsset.name && <h3>{props.activeAsset.name}</h3> }
             {props.activeAsset.description && <div>{props.activeAsset.description}</div> }
             {!props.activeAsset.description && <div>{"Welcome to the 3Depot Garage! If you choose a model from the search page or from the list of your models (in the tab below this) the model will appear in the 3D viewer. The 3D model's description will be shown here."}</div>}
           </div>

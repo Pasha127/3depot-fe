@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css"
 import { connect } from "react-redux";
-import { getMeWithThunk, getSearchResultsWithThunk } from "../../lib/redux/actions";
+import { getMeWithThunk, getSearchResultsWithThunk, setSearchSettings } from "../../lib/redux/actions";
 import CookieModal from "../CookieModal/CookieModal";
 import { useEffect } from "react";
 import GeneralNavbar from "../navbar/GeneralNavbar";
@@ -21,6 +21,9 @@ const mapStateToProps = state => {
     },
     search: (query) =>{
       dispatch(getSearchResultsWithThunk(query)) 
+    },
+    setSearchSettings: (settings) =>{
+      dispatch(setSearchSettings(settings))
     }     
   };  
 }; 
@@ -28,8 +31,12 @@ const mapStateToProps = state => {
 const Search = (props)=>{
   useEffect(()=>{
   props.getMe();
-  /* props.search(props.query) */
-  },[])
+},[])
+
+  useEffect(()=>{
+    !props.query && props.search("fbx");
+    !props.query && props.setSearchSettings({page: 0})
+},[props.query])
 
 
 

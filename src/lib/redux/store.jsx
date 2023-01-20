@@ -5,7 +5,8 @@ import reducer from './reducer';
 export const initialState = {
   searchSettings:{
     activeAsset:"",
-    cameraPos: 0
+    cameraPos: 0,
+    page: 0
   },
   garageSettings: {
     red: 255,

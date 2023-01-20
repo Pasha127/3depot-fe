@@ -165,7 +165,7 @@ function Garage(props) {
     const searchParams = new URLSearchParams(currentUrl.search);
     const assetId = searchParams.get('asset');
     /* console.log("url_id",assetId) */
-    props.getAsset(assetId)
+    assetId && props.getAsset(assetId)
     setUnzippedModel("https://res.cloudinary.com/dirwjcohx/raw/upload/v1674126029/3DepotProducts/3DepotTextBlue_cv6yq6.fbx")
   },[])
 
