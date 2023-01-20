@@ -154,3 +154,18 @@
     top: 0px;
     left: 0px;
 }
+.delete-log-in-msg{
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    bottom:-3px;
+    right: 5px;
+    background-color: var(--holo-blue);
+    border-radius: 10px;
+    height: 60px;
+    width: 240px;
+    cursor: pointer;
+}

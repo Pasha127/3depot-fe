@@ -27,7 +27,7 @@ const CommentTab = (props) => {
   useDragEffect("comment-tray"); 
   const [trayState,setTrayState] = useState("comment-tray-closed")
   const handleToggle= ()=>{
-    if(trayState === "comment-tray-closed"){
+    if(trayState === "comment-tray-closed"){  
       setTrayState("comment-tray")
     }else{
       setTrayState("comment-tray-closed")
@@ -49,6 +49,7 @@ const CommentTab = (props) => {
           onClick={(e)=>{e.stopPropagation()}}
           >
             {props.activeAsset && props.activeAsset.comments?.map((comment, i)=>{
+                    console.log("props.activeAsset.comments: ",props.activeAsset.comments)
                     return(
                 <SingleComment key={`SingleComment${i}`} sender={comment.sender} content={comment.content}/>
               )

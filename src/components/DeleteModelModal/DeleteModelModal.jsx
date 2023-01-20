@@ -6,19 +6,25 @@ import { Button, Modal } from "react-bootstrap";
 import { Upload, XCircleFill } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setLoading } from "../../lib/redux/actions";
+import { deleteAssetByIdWithThunk, setLoading } from "../../lib/redux/actions";
 import Loader2D from "../loader/Loader2D";
 import "./styles.css"
 const mapStateToProps = state => {
     return {
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    user: state.userInfo,
+    activeAsset: state.activeAsset
     };
   };
    const mapDispatchToProps = dispatch => {
     return {
        setIsLoading: (bool)=> {
         dispatch(setLoading(bool));
-      }    
+      },
+       deleteAsset: (id)=> {
+        dispatch(deleteAssetByIdWithThunk(id));
+      }
+
     };  
   };
   
@@ -29,7 +35,8 @@ const DeleteModelModal = (props)=>{
     const goToLogin = () => navigate("/LogIn");
     
     const handleDelete = () =>{
-        props.setIsLoading(true); 
+        if(props.user?._id === props.activeAsset?.poster){props.deleteAsset(props.activeAsset._id)}
+        else{alert("You must be logged in, an admin, or the owner of the model to delete it.")}
         handleClose();
     }
 
@@ -64,7 +71,7 @@ return(<>
         <Button variant="danger" onClick={handleDelete}>Delete</Button>
     </Modal.Footer> 
     <div className={"form-cover-0"}></div>
-    {!props.user?._id && <h3 className="log-in-msg" onClick={goToLogin}>Log-in Required </h3>} 
+    {!props.user?._id && <h3 className="delete-log-in-msg" onClick={goToLogin}>Log-in Required </h3>} 
   </Modal>
  </>)
 }

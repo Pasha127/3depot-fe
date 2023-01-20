@@ -36,14 +36,15 @@ const mapStateToProps = state => {
 
 
 const SingleComment = (props) => {
+  console.log("comment props",props.content, props.sender)
   const navigate = useNavigate()
   return (
     <Row className="uploaded-item"
     onClick={()=>{navigate(`/Garage?asset=${props._id}`); props.getAsset(props._id) }}>
-      <Image className="chat-head" src={props.person.avatar} onError={(e)=>{e.target.src = defaultAvatar}} alt={"UserAvatar"} roundedCircle />
+      <Image className="chat-head" src={props.sender?.avatar} onError={(e)=>{e.target.src = defaultAvatar}} alt={"UserAvatar"} roundedCircle />
       <Col className="inactive-user">
-        <h6 className="truncate m-0 ">{props.content.text}</h6>
-           <div>"{props.sender.email.split("@")[0]}"</div>
+        <h6 className="truncate m-0 ">{props.content?.text}</h6>
+           <div>{props.sender?.email.split("@")[0]}</div>
       </Col>
       <Trash className="delete-tab" onClick={(e)=>{
         e.stopPropagation();

@@ -140,6 +140,29 @@ export const deleteChatByIdWithThunk = (id) =>{
       }             
     }
 }
+export const deleteAssetByIdWithThunk = (id) =>{
+  const baseURL = process.env.REACT_APP_SERVER_URL
+    const options = {
+      method: 'DELETE' ,
+      credentials:"include"
+      };      
+      const baseEndpoint = `${baseURL}/asset/${id}`
+      return async (dispatch, getState) =>{
+        dispatch(setLoading(true))
+        try{
+        const response = await fetch(baseEndpoint, options);
+       /*  console.log("delete chat by id: ", response); */
+      if (response.ok) {
+       /*  console.log("chat from ID: ", data); */
+        dispatch(setAsset({}));            
+      } else {
+        alert("Error Encountered While Trying to Delete")
+      }}
+      catch(error){
+        console.log(error)
+      }finally{dispatch(setLoading(false))}             
+    }
+}
 
 export const getMeWithThunk = () =>{
   const baseURL = process.env.REACT_APP_SERVER_URL
