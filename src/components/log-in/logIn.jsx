@@ -272,7 +272,7 @@ const handleLogIn = async (e) =>{
       </Form>}
     
     <div className="d-flex flex-wrap justify-content-center mt-5">
-    <a href="http://localhost:3001/user/googleLogin">
+    <a href={`${process.env.REACT_APP_SERVER_URL}/user/googleLogin`}>
     <Button
             onClick={()=>{
               /* props.getMe(); */

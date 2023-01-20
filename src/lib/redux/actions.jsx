@@ -330,14 +330,13 @@ export const getHistoryWithThunk = () => {
     };   
     
     const assetEndpoint = `${baseURL}/asset`
-        
     return async (dispatch, getState) =>{
       try {    
         const response = await fetch(assetEndpoint, options);
         if (response.ok) {           
           const data = await response.json() 
           console.log("Uploaded Asset: ", data)
-          window.location= `http://localhost:3000/Garage?asset=${data}`
+          window.location= `http://www.3Depot.org/Garage?asset=${data}`
        } else {
          alert('Error Uploading Asset')
        } 
