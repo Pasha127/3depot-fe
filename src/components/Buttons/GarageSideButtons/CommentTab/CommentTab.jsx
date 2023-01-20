@@ -12,7 +12,8 @@ const mapStateToProps = state => {
   return {
   user: state.userInfo,
   showGarage: state.isGarage,
-  activeAsset: state.activeAsset
+  activeAsset: state.activeAsset,
+  comments: state
   };
 };
  const mapDispatchToProps = dispatch => {
@@ -27,17 +28,15 @@ const CommentTab = (props) => {
   const [sentComment, setSentComment] = useState("")
   const [commentEntries, setCommentEntries] = useState([])
 
-/* useEffect(()=>{
-  appendNewComment(commentValue)
-},[sentComment])
- */
+
   useEffect(()=>{
     let commentArray = []
-    props.activeAsset.comments?.map((comment, i)=>{      
+     if(props.activeAsset.comments)props.activeAsset.comments.map((comment, i)=>{      
         commentArray.push(<SingleComment key={`SingleComment${i}`} sender={comment.sender} content={comment.content}/>)
       setCommentEntries(commentArray);
-})
-  },[props.activeAsset.comments])
+});
+    sentComment && setSentComment(false)
+  },[props.activeAsset.comments, sentComment])
 
 
   useDragEffect("comment-tray"); 
@@ -51,14 +50,6 @@ const CommentTab = (props) => {
   }
 
 
-/*   const appendNewComment = (newComment) =>{
-      setCommentEntries(commentEntries => [...commentEntries, 
-        {sender: props.user._id,
-        content: {
-          text: newComment,
-          media: ""
-  }}])
-  } */
 
 
   return (<>      
@@ -76,10 +67,11 @@ const CommentTab = (props) => {
         <div className="comment-tray-details"
           onClick={(e)=>{e.stopPropagation()}}
           >
-            {props.activeAsset && commentEntries}
-            <Form onSubmit={(e)=>{
+            {props.activeAsset._id ? commentEntries : <div>Load up a model from the search or from your device and you can join the community conversation here!</div>}
+          </div>
+            {props.user?._id && <Form onSubmit={(e)=>{
               e.preventDefault();
-              /* setSentComment(commentValue); */
+              setSentComment(true)
               props.sendComment({text:commentValue, media: ""}, props.activeAsset._id);
             }}>
             <Form.Group >
@@ -89,8 +81,7 @@ const CommentTab = (props) => {
 
           </Form.Control>
         </Form.Group>
-        </Form>
-          </div>
+        </Form>}
           <X className="comment-tray-close-icon" 
           onClick={(e)=>{
             e.stopPropagation();

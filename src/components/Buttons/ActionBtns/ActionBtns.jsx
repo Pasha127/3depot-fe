@@ -69,19 +69,19 @@ return(<>
         <ChevronDoubleDown/>
         </div>
     </button>
-    <div className={deleteClass} onClick={(e)=>{setShowDelete(true)}}>       
+    {props.user?._id === props.activeAsset?.poster && <div className={deleteClass} onClick={(e)=>{setShowDelete(true)}}>       
         <div className="trash-icon-action"><Trash/></div>
         <div className="delete-button-circle">
             <div className="initial-action-text">Delete Model</div>
         </div>
-    </div>
-    <div className={uploadClass } onClick={(e)=>{setShowUpload(true); console.log("click in event")}}>
+    </div>}
+    {props.user?._id && <div className={uploadClass } onClick={(e)=>{setShowUpload(true); console.log("click in event")}}>
         <div className="upload-icon-action"><Upload/></div>
          <div className="upload-button-circle">
             <p className="initial-action-text">Upload Model</p>
          </div>
-    </div>
-    {props.activeAsset.file && <a className="action-btn-text" href={props.activeAsset.file.link}><div className={downloadClass }>
+    </div>}
+    {props.activeAsset?.file && <a className="action-btn-text" href={props.activeAsset.file.link}><div className={downloadClass }>
     
         <div className="download-icon-action"><Download/></div>
          <div className="download-button-circle" >

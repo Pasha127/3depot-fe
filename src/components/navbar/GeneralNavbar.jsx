@@ -49,9 +49,9 @@ const GeneralNavBar = (props) => {
         <Button className="chat-btn holo-nav-btn" variant="primary" 
           onClick={goToChat}
           >Chat</Button>
-        <Button className="request-btn holo-nav-btn" variant="primary" 
+        {/* <Button className="request-btn holo-nav-btn" variant="primary" 
           onClick={goToRequests}
-          >Requests</Button>
+          >Requests</Button> */}
           </div>}
           </div>
         <div className="hamburger-zone">

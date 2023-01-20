@@ -348,7 +348,7 @@ function SearchCanvas(props) {
 
     </div>
     <DropdownSign/>
-    {props.searchResults && <ScrollRightTab listLength={props.searchResults?.length}/>}
+    {props.searchResults && <ScrollRightTab listLength={(props.searchResults.length)}/>}
    {/*  {props.searchResults && <LoadMoreTab listLength={props.searchResults?.length}/>} */}
     <div className="ui-container">
       <ScrollLeftTab/>

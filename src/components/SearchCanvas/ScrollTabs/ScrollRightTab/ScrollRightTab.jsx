@@ -21,14 +21,12 @@ const mapDispatchToProps = dispatch => {
 const ScrollRightTab = (props) => {
   const [visibility,setVisibility] = useState("right-tab")
   useEffect(()=>{
-    if((props.searchSettings.cameraPos > (props.listLength + 1.5)) && window.innerWidth > 1050 )
+    console.log(props.searchSettings.cameraPos, props.listLength)
+    if((props.searchSettings.cameraPos > ((props.listLength*2)-2.05)))
     {
       setVisibility("d-none")
-    }else if((props.searchSettings.cameraPos > (props.listLength + 3.5)) )
+    }else 
     {
-      setVisibility("d-none")
-    }
-    else{
       setVisibility("right-tab")
     }
   },[props.searchSettings.cameraPos])

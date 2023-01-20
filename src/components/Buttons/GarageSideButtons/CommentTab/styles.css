@@ -18,8 +18,9 @@
 .comment-form{
   z-index: 6;
   position: absolute;
-  bottom: 0px;
-  left: 0px;
+  bottom: 12px;
+  left: 10px;
+  width: calc(100% - 20px);
 }
 .comment-tab:hover{
   color: white;
@@ -49,7 +50,7 @@
   top: 195px;
   right: calc(135px);
   width: 270px;
-  height:400px;
+  height:438px;
   z-index: 5;
   border-radius: 10px;
   background-color:  var(--holo-blue-alpha);
@@ -71,7 +72,7 @@ cursor:pointer;
   top: 20px;
   left: 10px;
   width: calc(100% - 20px);
-  height:calc(100% - 30px);
+  height:380px;
   z-index: 3;
   color: white;
   background-color: var(--holo-blue);

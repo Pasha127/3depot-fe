@@ -43,15 +43,9 @@ const SingleComment = (props) => {
     onClick={()=>{navigate(`/Garage?asset=${props._id}`); props.getAsset(props._id) }}>
       <Image className="chat-head" src={props.sender?.avatar} onError={(e)=>{e.target.src = defaultAvatar}} alt={"UserAvatar"} roundedCircle />
       <Col className="inactive-user">
-        <h6 className="truncate m-0 ">{props.content?.text}</h6>
-           <div>{props.sender?.email.split("@")[0]}</div>
+          <div className="model-comment">{`${props.sender?.email.split("@")[0]}: ${props.content?.text}`}</div>
       </Col>
-      <Trash className="delete-tab" onClick={(e)=>{
-        e.stopPropagation();
-        //open delete modal
-      }
-      }/>
-    </Row>
+      </Row>
   );
 };
 

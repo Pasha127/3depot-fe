@@ -66,10 +66,10 @@ title={<div className="drop-container">
   <Dropdown.Divider className="responsive dropdown-custom-item" />
 {props.user?._id &&<Dropdown.Item className="hide-when-big dropdown-custom-item" eventKey="2"onClick={handleGarageButton}>My Garage</Dropdown.Item>}
 {props.user?._id &&<Dropdown.Item className="hide-when-big dropdown-custom-item" eventKey="6"onClick={handleChatButton}>Chat</Dropdown.Item>}
-{props.user?._id &&<Dropdown.Item className="hide-when-big dropdown-custom-item" eventKey="6"onClick={handleChatButton}>Requests</Dropdown.Item>}
+{/* {props.user?._id &&<Dropdown.Item className="hide-when-big dropdown-custom-item" eventKey="6"onClick={handleChatButton}>Requests</Dropdown.Item>} */}
 {props.user?.role === "Admin" && <Dropdown.Divider className="hide-when-big" />}
-{props.user?.role === "Admin" && <Dropdown.Item className="dropdown-custom-item" eventKey="4">Back Office</Dropdown.Item> }
-{props.user?._id && <Dropdown.Divider />}
+{/* {props.user?.role === "Admin" && <Dropdown.Item className="dropdown-custom-item" eventKey="4">Back Office</Dropdown.Item> }
+{props.user?._id && <Dropdown.Divider />} */}
 {props.user?._id && <Dropdown.Item className="dropdown-custom-item" eventKey="1" onClick={handlelogOut}>Log Out</Dropdown.Item>}
 {!props.user?._id && <Dropdown.Item className="dropdown-custom-item" eventKey="1" onClick={goToLogin}>Log In</Dropdown.Item>}
 </DropdownButton>
