@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import {io} from "socket.io-client";
 import { getMeWithThunk, setActiveChat, setLoading, setOnline, setRecentMsg } from "../../lib/redux/actions";
-export const socket = io("http://localhost:3001", {transports:["websocket"], withCredentials:true})
+export const socket = io(process.env.REACT_APP_SERVER_URL, {transports:["websocket"], withCredentials:true})
 socket.connect()
 
 
