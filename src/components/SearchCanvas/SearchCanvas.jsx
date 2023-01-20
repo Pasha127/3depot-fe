@@ -233,7 +233,7 @@ useFrame(({ clock }) => {
    
     return(<>
         <mesh ref={rotatingMesh} position={[0,0,1]} rotation={[pi/2,0,0]} 
-        onClick={goToGarage}>
+        onClick={()=>{navigate(`/Garage?asset=${props.asset._id}`)}}>
           <boxBufferGeometry  attach="geometry" args={[.01,.01,.01]}/>
           <meshStandardMaterial attach="material" opacity={0} color={"rgba(0,0,0,0)"} transparent/>
            {unzippedModel && <FBXAsset boxOpen={props.boxOpen} unzipped={unzipped} model={unzippedModel}/>}

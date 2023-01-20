@@ -9,12 +9,13 @@ import ActionBtns from "../Buttons/ActionBtns/ActionBtns";
 import TogglesTab from "../Buttons/GarageSideButtons/RightSideButtons/Toggles/TogglesTab";
 import InfoTab from "../Buttons/GarageSideButtons/RightSideButtons/InfoTab/InfoTab";
 import ModelsTab from "../Buttons/GarageSideButtons/RightSideButtons/ModelsTab/ModelsTab";
-import { setSettings } from "../../lib/redux/actions";
+import { setFilters, setSettings } from "../../lib/redux/actions";
 import { connect } from "react-redux";
 import InstructionsTab from "../Buttons/GarageSideButtons/RightSideButtons/InstructionsTab/InstructionsTab";
 import Loader2D from "../loader/Loader2D";
 import TransparentFooter from "../footer/TransparentFooter";
 import GarageFooter from "../footer/GarageFooter";
+import { useEffect } from "react";
 const mapStateToProps = state => {
     return {
     settings: state.garageSettings
@@ -24,10 +25,18 @@ const mapStateToProps = state => {
     return {
       logOut: (settings)=> {
         dispatch(setSettings(settings));
-      }     
+      },
+      setFilters: (filterState)=> {
+        dispatch(setFilters(filterState));
+      }      
     };  
   };
 const GarageContainer = (props)=>{
+useEffect(()=>{
+  props.setFilters(false)
+},[])
+
+
 return(<div className="garage-container">
     <GeneralNavbar/>
 <Suspense>
