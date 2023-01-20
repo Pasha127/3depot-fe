@@ -32,13 +32,11 @@ showModal() && handleShow();
 return(<>
 <Modal show={show} onHide={()=>{handleClose(); localStorage.setItem('acceptedCookies','true');}} centered>
     <Modal.Header closeButton className="bg-dark text-light">
-      <Modal.Title>Cookies! 🍪 </Modal.Title>
+      <Modal.Title>3Depot.org  </Modal.Title>
       <XCircleFill className="modal-close-x"/>
     </Modal.Header>
     <Modal.Body>
-        This site uses cookies to keep you logged in and authorize requests to the server. 
-        There are no third-party ad services connected to this site. 
-        By staying on 3Depot you agree to the use of cookies required for functionality.  
+        {"Welcome to 3Depot (Alpha Release). We will be rolling out support for STL, OBJ and GLTF files shortly. This site uses cookies to keep you logged in and authorize requests to the server.  There are no third-party ad services connected to this site. "}         
     </Modal.Body>  
   </Modal>
 </>)
