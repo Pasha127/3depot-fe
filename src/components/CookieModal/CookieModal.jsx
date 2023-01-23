@@ -36,7 +36,7 @@ return(<>
       <XCircleFill className="modal-close-x"/>
     </Modal.Header>
     <Modal.Body>
-        {"Welcome to 3Depot (Alpha Release). We will be rolling out support for STL, OBJ and GLTF files shortly. This site uses cookies to keep you logged in and authorize requests to the server.  There are no third-party ad services connected to this site. "}         
+        {"Welcome to 3Depot (Alpha Release). We will be rolling out support for STL, OBJ and GLTF files shortly. This site uses cookies to keep you logged in and authorize requests to the server."}         
     </Modal.Body>  
   </Modal>
 </>)
