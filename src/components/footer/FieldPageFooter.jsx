@@ -1,6 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-import { Controller, Envelope, EnvelopeFill, FileEarmarkPersonFill, Github, Linkedin } from "react-bootstrap-icons";
+import { Controller, EnvelopeFill, FileEarmarkPersonFill, Github, Linkedin } from "react-bootstrap-icons";
 import "./styles.css"
 
 const FieldPageFooter = (props) => {

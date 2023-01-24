@@ -2,10 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import UserMini from "../user/user-mini/userMini";
 import { useEffect, useState } from "react";
-import { getChatByIdWithThunk, getHistoryWithThunk, setOnline } from "../../lib/redux/actions";
+import { getChatByIdWithThunk, getHistoryWithThunk} from "../../lib/redux/actions";
 import "./styles.css"
 import Search from "./Search";
-import FriendsTab from "../Buttons/FriendsTab/FriendsTab";
 import { socket } from "../SocketManager/SocketManager";
 import { PersonAdd } from "react-bootstrap-icons";
 

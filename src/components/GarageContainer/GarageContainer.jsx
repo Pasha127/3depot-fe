@@ -12,8 +12,6 @@ import ModelsTab from "../Buttons/GarageSideButtons/RightSideButtons/ModelsTab/M
 import { setFilters, setSettings } from "../../lib/redux/actions";
 import { connect } from "react-redux";
 import InstructionsTab from "../Buttons/GarageSideButtons/RightSideButtons/InstructionsTab/InstructionsTab";
-import Loader2D from "../loader/Loader2D";
-import TransparentFooter from "../footer/TransparentFooter";
 import GarageFooter from "../footer/GarageFooter";
 import { useEffect } from "react";
 import CommentTab from "../Buttons/GarageSideButtons/CommentTab/CommentTab";

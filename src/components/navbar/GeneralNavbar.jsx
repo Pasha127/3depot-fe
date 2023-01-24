@@ -1,11 +1,10 @@
 import React from "react";
-import { Button, Container, Navbar } from "react-bootstrap";
+import { Button, Navbar } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/3DepotLogoSmall.png";
 import { connect } from "react-redux";
 import "./styles.css";
 import { logOutWithThunk, setFilters } from "../../lib/redux/actions";
-import SearchBar from "../search/SearchBar";
 import UserDropdown from "../Buttons/UserDropdown/UserDropdown";
 import FiltersBar from "./FiltersBar";
 const mapStateToProps = state => {

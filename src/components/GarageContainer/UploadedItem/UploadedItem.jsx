@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import "./styles.css";
 import { connect } from "react-redux";
-import { joinRoom, socket } from "../../SocketManager/SocketManager";
 import { deleteChatByIdWithThunk, getAssetByIdWithThunk, setActiveChat, setChats, setLoading } from "../../../lib/redux/actions";
 import { Trash } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";

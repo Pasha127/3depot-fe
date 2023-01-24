@@ -9,7 +9,6 @@ import CookieModal from "../CookieModal/CookieModal";
 import { useNavigate } from "react-router-dom";
 import Loader2D from "../loader/Loader2D";
 import { useEffect } from "react";
-import TransparentFooter from "../footer/TransparentFooter";
 import FieldPageFooter from "../footer/FieldPageFooter";
 
 const mapStateToProps = state => {

@@ -4,8 +4,8 @@ import "./styles.css";
 import { useState } from "react";
 import { setSearchSettings } from "../../../lib/redux/actions";
 import { useEffect } from "react";
-import { HandIndex, HandIndexFill } from "react-bootstrap-icons";
-import { click } from "@testing-library/user-event/dist/click";
+import { HandIndexFill } from "react-bootstrap-icons";
+
 
 
 

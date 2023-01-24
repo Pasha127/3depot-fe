@@ -1,4 +1,3 @@
-import { set } from "date-fns";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
@@ -7,7 +6,6 @@ import { Upload, XCircleFill } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLoading, uploadAssetWithThunk} from "../../lib/redux/actions";
-import Loader2D from "../loader/Loader2D";
 import "./styles.css"
 const mapStateToProps = state => {
     return {

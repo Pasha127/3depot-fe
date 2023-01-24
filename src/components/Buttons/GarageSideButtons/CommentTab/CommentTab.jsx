@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
-import {Boxes, ChatRightText, X} from 'react-bootstrap-icons';
+import {ChatRightText, X} from 'react-bootstrap-icons';
 import { useState } from "react";
 import SingleComment from "./SingleComment/SingleComment";
 import useDragEffect from "../../../../lib/hooks/useDragEffect";

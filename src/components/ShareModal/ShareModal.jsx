@@ -1,13 +1,10 @@
-import { set } from "date-fns";
 import React, { useState } from "react";
-import { useRef } from "react";
 import { useEffect } from "react";
-import { Button, Modal } from "react-bootstrap";
-import { Envelope, Facebook, Instagram, Messenger, Signal, Telegram, Upload, Whatsapp, XCircleFill } from "react-bootstrap-icons";
+import { Modal } from "react-bootstrap";
+import { Facebook, Instagram, Messenger, Signal, Telegram, Upload, Whatsapp, XCircleFill } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getChatByIdWithThunk, getHistoryWithThunk, setLoading } from "../../lib/redux/actions";
-import Loader2D from "../loader/Loader2D";
 import UserMini from "../user/user-mini/userMini";
 import { socket } from "../SocketManager/SocketManager";
 import "./styles.css"

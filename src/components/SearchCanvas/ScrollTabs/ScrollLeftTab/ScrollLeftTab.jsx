@@ -2,7 +2,7 @@ import React from "react";
 import { Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
-import { CaretLeftFill, ChevronLeft} from 'react-bootstrap-icons';
+import { CaretLeftFill} from 'react-bootstrap-icons';
 import { useState } from "react";
 import { setSearchSettings } from "../../../../lib/redux/actions";
 import { useEffect } from "react";

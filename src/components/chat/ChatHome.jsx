@@ -7,7 +7,6 @@ import "./styles.css"
 import UsersSidebar from "../user/UsersSidebar";
 import GeneralNavbar from "../navbar/GeneralNavbar";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FriendsTab from "../Buttons/FriendsTab/FriendsTab";
 

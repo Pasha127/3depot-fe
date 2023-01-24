@@ -10,7 +10,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import "./styles.css"
 import Loader2D from "../loader/Loader2D"
 import { connect } from 'react-redux';
-import { getAssetByIdWithThunk, setGarage, setSettings } from '../../lib/redux/actions';
+import { getAssetByIdWithThunk, setSettings } from '../../lib/redux/actions';
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/3DepotLogoBig.png';
 import imgAlpha from '../../assets/3DepotLogoAlpha.png';

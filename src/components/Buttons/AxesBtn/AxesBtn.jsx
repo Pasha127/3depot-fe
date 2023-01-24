@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DashLg, Plus, PlusLg } from "react-bootstrap-icons";
+import { DashLg, PlusLg } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import axesWhiteSVG from "../../../assets/axesWhite.svg"
 import { setSettings } from "../../../lib/redux/actions";

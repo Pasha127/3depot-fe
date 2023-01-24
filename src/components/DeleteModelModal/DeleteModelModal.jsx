@@ -1,13 +1,10 @@
-import { set } from "date-fns";
 import React, { useState } from "react";
-import { useRef } from "react";
 import { useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { Upload, XCircleFill } from "react-bootstrap-icons";
+import { XCircleFill } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteAssetByIdWithThunk, setLoading } from "../../lib/redux/actions";
-import Loader2D from "../loader/Loader2D";
 import "./styles.css"
 const mapStateToProps = state => {
     return {

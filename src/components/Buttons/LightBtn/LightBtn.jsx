@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import {  ArrowCounterclockwise, BrightnessHigh, Lightbulb, LightbulbFill, LightbulbOffFill, Sliders } from "react-bootstrap-icons";
+import {  BrightnessHigh, Lightbulb, LightbulbFill, LightbulbOffFill, Sliders } from "react-bootstrap-icons";
 import { connect } from "react-redux";
 import ReactSlider from "react-slider";
 import { setSettings } from "../../../lib/redux/actions";
