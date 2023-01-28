@@ -42,7 +42,7 @@ const CameraController = () => {
 };
 
 
-/* function ObjToPrimitive({ url, mat }) {
+ function ObjToPrimitive({ url, mat }) {
   const [obj, setObj] = useState();
   useMemo(() => new OBJLoader().load(url, setObj), [url]);
   if (obj) {
@@ -55,8 +55,8 @@ const CameraController = () => {
   }
   return null;
 }
- */
-/*  const OBJAsset = () => {
+
+const OBJAsset = () => {
   const mat = new THREE.MeshPhysicalMaterial({
     map: new THREE.TextureLoader().load("url"),                   //--color--
     metalnessMap:new THREE.TextureLoader().load("url"),           //--metalness--
@@ -72,7 +72,7 @@ const CameraController = () => {
       {ObjToPrimitive({ url: "astronaut002/z2_spacesuit.obj", mat })}
     </mesh>
   );
-}; */
+}; 
 
 
 function FBXAsset(props) {
