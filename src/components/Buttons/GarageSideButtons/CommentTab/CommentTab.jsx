@@ -39,9 +39,9 @@ const CommentTab = (props) => {
       setCommentEntries(commentArray);
   },[props.activeAsset.comments])
 
-  useEffect(()=>{
+/*   useEffect(()=>{
     props.activeAsset._id && props.getAsset(props.activeAsset._id)
-  },[props.activeAsset._id, sentComment])
+  },[props.activeAsset._id, sentComment]) */
 
 
   useDragEffect("comment-tray"); 
