@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import "./styles.css";
@@ -30,6 +30,7 @@ const CommentTab = (props) => {
   const [commentValue, setCommentValue] = useState("")
   const [sentComment, setSentComment] = useState("")
   const [commentEntries, setCommentEntries] = useState([])
+  const commentSectionRef = useRef(null);
 
   useEffect(()=>{
     let commentArray = []
@@ -61,6 +62,7 @@ const CommentTab = (props) => {
     });
     commentArray.push(<SingleComment key={new Date()} sender={props.user} content={newComment}/>)
     setCommentEntries(commentArray);
+    commentSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (<>      
@@ -79,6 +81,7 @@ const CommentTab = (props) => {
           onClick={(e)=>{e.stopPropagation()}}
           >
             {props.activeAsset._id ? commentEntries : <div>Load up a model from the search or from your device and you can join the community conversation here!</div>}
+            <div ref={commentSectionRef}>{commentSectionRef.current?.scrollIntoView({ behavior: 'smooth' })}</div>
           </div>
             {props.user?._id && <Form 
             onSubmit={(e)=>{
