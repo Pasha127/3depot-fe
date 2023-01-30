@@ -34,7 +34,7 @@ const ScrollLeftTab = (props) => {
           e.stopPropagation();
           const currentCamPos = props.searchSettings.cameraPos
           props.setSearchSettings({cameraPos: currentCamPos - 2})
-          console.log("click");}} className={visibility}  variant="outline-secondary">
+          }} className={visibility}  variant="outline-secondary">
             <div className="left-icon-container">
               <CaretLeftFill/>
               </div>

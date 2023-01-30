@@ -81,14 +81,11 @@ function Box(props) {
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set( 1, 1);
     texture.rotation=(pi)
-    let link= props.asset.file.link;
-    let fileId = link.split("/").pop()
-    const assetImage = ` https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20;right_-35;zoom_1;env_pillars;exposure_1.4/v1670880755/3DepotProducts/${fileId.split(".")[0]}.png` 
-    const texture2 = new THREE.TextureLoader().load(assetImage );
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set( 1, 1);
-    texture.rotation=(pi)
+    if(props.asset.file?.link){var link= props.asset.file.link;
+    var fileId = link.split("/").pop()
+    var assetImage = ` https://res.cloudinary.com/dirwjcohx/image/upload/e_camera:up_20;right_-35;zoom_1;env_pillars;exposure_1.4/v1670880755/3DepotProducts/${fileId.split(".")[0]}.png` 
+    var texture2 = new THREE.TextureLoader().load(assetImage );}
+    else{var texture2 = texture}
     useEffect(()=>{
       if(props.settings.cameraPos !== props.xPos && boxOpen){closeBox()}
     },[props.settings.cameraPos, props.xPos])
@@ -162,12 +159,12 @@ const goToGarage = () => navigate('/Garage');
 
 
   useEffect(()=>{
-    console.log("use effect fires");
+/*     console.log("use effect fires"); */
     if(props.asset.file){
       fetch(props.asset.file.link)
       .then((response) => {
         if (response.ok) {
-          console.log("has asset")
+          /* console.log("has asset") */
         return Promise.resolve(response.blob());
       } else {
             return Promise.reject(new Error(response.statusText));
@@ -349,7 +346,7 @@ function SearchCanvas(props) {
     </div>
     <DropdownSign/>
     {props.searchResults && <ScrollRightTab listLength={(props.searchResults.length)}/>}
-   {/*  {props.searchResults && <LoadMoreTab listLength={props.searchResults?.length}/>} */}
+    {props.searchResults && <LoadMoreTab listLength={props.searchResults?.length}/>}
     <div className="ui-container">
       <ScrollLeftTab/>
       <InstructionHolograms/>

@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
 const ScrollRightTab = (props) => {
   const [visibility,setVisibility] = useState("right-tab")
   useEffect(()=>{
-    console.log(props.searchSettings.cameraPos, props.listLength)
+    /* console.log(props.searchSettings.cameraPos, props.listLength) */
     if((props.searchSettings.cameraPos > ((props.listLength*2)-2.05)))
     {
       setVisibility("d-none")
@@ -37,7 +37,7 @@ const ScrollRightTab = (props) => {
           e.stopPropagation();
           const currentCamPos = props.searchSettings.cameraPos
           props.setSearchSettings({cameraPos: currentCamPos + 2})
-          console.log("clickR");}} className={visibility} variant="outline-secondary">
+          }} className={visibility} variant="outline-secondary">
             <div className="right-icon-container">
               <CaretRightFill/>
               </div>

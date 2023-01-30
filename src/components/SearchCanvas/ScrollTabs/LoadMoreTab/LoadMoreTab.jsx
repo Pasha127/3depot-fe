@@ -25,14 +25,14 @@ const mapDispatchToProps = dispatch => {
 const LoadMoreTab = (props) => {
   const [visibility,setVisibility] = useState("right-tab")
   useEffect(()=>{
-    if((props.searchSettings.cameraPos > (props.listLength + 3.5)) )
+    if((props.searchSettings.cameraPos > ((props.listLength*2)-2.05) && props.searchSettings.cameraPos > 13))
     {
       setVisibility("right-tab")
+    }else 
+    {
+       setVisibility("d-none")
     }
-    else{
-      setVisibility("d-none")
-    }
-  },[props.searchSettings.cameraPos])
+  },[props.searchSettings.cameraPos, props.listLength])
  
   
   return (<>      
@@ -40,9 +40,9 @@ const LoadMoreTab = (props) => {
           e.stopPropagation();
           const currentCamPos = props.searchSettings.cameraPos;
           const currentPage = props.searchSettings.page;
-          props.setSearchSettings({cameraPos: currentCamPos + 2, page: currentPage + 1})
+          props.setSearchSettings({cameraPos: .5, page: currentPage + 1})
           props.search(props.query, `limit=5&skip=${(currentPage+1)*5}`)
-          console.log("clickLoad");}} 
+          }} 
           className={visibility} variant="outline-secondary">
             <div className="right-icon-container">
               <PlusCircleFill/>
