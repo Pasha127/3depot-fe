@@ -29,8 +29,9 @@ const ScrollRightTab = (props) => {
     {
       setVisibility("right-tab")
     }
-  },[props.searchSettings.cameraPos])
-  
+  },[props.searchSettings.cameraPos, props.listLength])
+
+
   return (<>      
         <Button onClick={(e)=>{
           e.stopPropagation();
