@@ -1,17 +1,17 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./styles.css"
+import "./styles.css";
 
-
-const LogInBtn = (props)=>{
-    const navigate = useNavigate();
-    const handleNavigate = () => navigate('/LogIn');
-return(<>
-    <Button variant="outline-secondary end-button"
-    onClick={handleNavigate}>
+const LogInBtn = (props) => {
+  const navigate = useNavigate();
+  const handleNavigate = () => navigate("/LogIn");
+  return (
+    <>
+      <Button variant="outline-secondary end-button" onClick={handleNavigate}>
         Log In
-    </Button>
-</>)
-}
+      </Button>
+    </>
+  );
+};
 export default LogInBtn;

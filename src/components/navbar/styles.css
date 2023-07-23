@@ -1,20 +1,19 @@
 .blog-navbar-brand {
   width: 50px;
 }
-.nav-container{
+.nav-container {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 100%;
   margin-inline: 20px;
 }
-.hamburger-zone{
+.hamburger-zone {
   display: flex;
   align-items: center;
 }
 
 .search-navbar {
-
   padding-top: 25px;
   padding-bottom: 25px;
   background-color: var(--bg-color);
@@ -35,7 +34,7 @@
   z-index: 20;
   flex-wrap: nowrap;
   display: flex;
-  transition: margin-top .2s;
+  transition: margin-top 0.2s;
 }
 .filter-navbar-show {
   padding-top: 25px;
@@ -47,23 +46,21 @@
   z-index: 20;
   flex-wrap: nowrap;
   display: flex;
-  transition: margin-top .2s;
+  transition: margin-top 0.2s;
 }
-.filter-nav-container{
+.filter-nav-container {
   margin-left: 87px;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
-.logoContainer{
-
+.logoContainer {
   background-color: var(--bg-color);
-  height:50px;
+  height: 50px;
 }
 
-.logo{
+.logo {
   background-image: url("../../assets/3DepotLogoSmall.png");
   height: 50px;
   width: 50px;
@@ -71,72 +68,68 @@
   background-size: contain;
 }
 
-.page-nav{
+.page-nav {
   display: flex;
   justify-content: left;
   align-items: center;
   margin-right: auto;
   flex-shrink: 0;
 }
-.buttons-container{
+.buttons-container {
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 38px;
 }
-.nav-left{
+.nav-left {
   display: flex;
   flex-direction: row;
 }
-.navbar-brand{
+.navbar-brand {
   display: flex;
   align-items: center;
- }
- .holo-nav-btn:hover{
+}
+.holo-nav-btn:hover {
   background-color: var(--holo-blue-light);
   color: var(--holo-blue);
   border: none;
- }
- .holo-nav-btn:active{
+}
+.holo-nav-btn:active {
   background-color: var(--holo-blue-light);
-  color:white;
+  color: white;
   border: 4px solid gray;
- }
+}
 
- 
- .filters-btn{
-   background-color: var(--holo-blue);
-   border-radius: 0px 4px 4px 0px;
-   border-width: 1px 1px 1px 0px;
-   border-color: var(--holo-blue);
-   height: 38px;
-  }
-  .filters-btn:before{
-    content:"Search";
-  }
-  @media(max-width: 290px){
-   .navbar-brand{
+.filters-btn {
+  background-color: var(--holo-blue);
+  border-radius: 0px 4px 4px 0px;
+  border-width: 1px 1px 1px 0px;
+  border-color: var(--holo-blue);
+  height: 38px;
+}
+.filters-btn:before {
+  content: "Search";
+}
+@media (max-width: 290px) {
+  .navbar-brand {
     display: none;
-   }
-   .user-only-nav .holo-nav-btn{
+  }
+  .user-only-nav .holo-nav-btn {
     display: none;
-   }
   }
-@media (max-width: 660px){
-  .search-form-container{
-      width: 100%;
-      margin-top: 15px;
-      justify-content: left;
-  
+}
+@media (max-width: 660px) {
+  .search-form-container {
+    width: 100%;
+    margin-top: 15px;
+    justify-content: left;
   }
-  .filter-nav-container{
+  .filter-nav-container {
     margin-left: 10px;
     width: 428px;
   }
-  .user-only-nav{
+  .user-only-nav {
     display: none;
   }
-  
 }
-  

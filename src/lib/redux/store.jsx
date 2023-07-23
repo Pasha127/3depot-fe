@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
-import reducer from './reducer';
+import { configureStore } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
+import reducer from "./reducer";
 
 export const initialState = {
-  searchSettings:{
-    activeAsset:"",
+  searchSettings: {
+    activeAsset: "",
     cameraPos: 0,
-    page: 0
+    page: 0,
   },
   garageSettings: {
     red: 255,
@@ -14,39 +14,39 @@ export const initialState = {
     blue: 255,
     intensity: 1,
     light: true,
-    axes:false,
-    axesSize:1
+    axes: false,
+    axesSize: 1,
   },
   activeAsset: {},
   isLoading: false,
   isGarage: true,
   showFilters: false,
   query: "",
-  searchResults:[],
+  searchResults: [],
   userInfo: {
     _id: "",
     username: "",
     email: "",
-    avatar: ""
+    avatar: "",
   },
   chats: {
-    active: {}, 
+    active: {},
     list: [],
-    history: []
+    history: [],
   },
-  onlineUsers:[],
-  recentMessage:{
-    members:[],
-    sender:"",
-    content:{
-      text:""
-    }
-  }
-} 
+  onlineUsers: [],
+  recentMessage: {
+    members: [],
+    sender: "",
+    content: {
+      text: "",
+    },
+  },
+};
 
 export const store = configureStore({
   /* reducer: persistedReducer, */
   reducer: reducer,
-  devTools: process.env.NODE_ENV !== 'production',
-  middleware: [thunk]
-})
+  devTools: process.env.NODE_ENV !== "production",
+  middleware: [thunk],
+});

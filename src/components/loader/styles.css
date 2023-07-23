@@ -1,42 +1,41 @@
-.loaderContainer{
-    display: flex;
-    z-index: 1051;
-    background-color: rgba(0,0,0,0.2);
-    height: 100vh;
-    width: 100vw;
-    border: 1px solid black;
-    padding: 4px;
-    position: fixed;
+.loaderContainer {
+  display: flex;
+  z-index: 1051;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  width: 100vw;
+  border: 1px solid black;
+  padding: 4px;
+  position: fixed;
 }
-.threeDLoader{
-background-image: url("../../assets/3DepotLogoCompressed.gif");
-height: 260px;
-width: 260px;
-background-repeat: no-repeat;
-background-position: center;
-background-size: 256px,256px;
+.threeDLoader {
+  background-image: url("../../assets/3DepotLogoCompressed.gif");
+  height: 260px;
+  width: 260px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 256px, 256px;
 }
-.twoDLoader{
-background-image: url("/public/3DepotLogoBig.png");
-height: 260px;
-width: 260px;
-opacity: 1;
-position: absolute;
-top: calc(50vh - 130px);
-left: calc(50vw - 130px);
-background-repeat: no-repeat;
-background-position: center;
-background-size: 256px,256px;
-animation: rotate 20s linear 0s infinite normal none;
+.twoDLoader {
+  background-image: url("/public/3DepotLogoBig.png");
+  height: 260px;
+  width: 260px;
+  opacity: 1;
+  position: absolute;
+  top: calc(50vh - 130px);
+  left: calc(50vw - 130px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 256px, 256px;
+  animation: rotate 20s linear 0s infinite normal none;
+}
 
-}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
 
-@keyframes rotate{
-    from {
-        transform:rotate(0deg);
-      }
-    
-      to {
-        transform:rotate(3600deg);
-      }
+  to {
+    transform: rotate(3600deg);
+  }
 }

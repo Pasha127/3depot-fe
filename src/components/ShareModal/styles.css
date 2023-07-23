@@ -1,80 +1,87 @@
-.modal-header .close{
-    opacity: 0;
+.modal-header .close {
+  opacity: 0;
 }
-.modal-header:hover .close{
-    opacity: 0!important;
+.modal-header:hover .close {
+  opacity: 0 !important;
 }
-.modal-section-head{
-    margin-bottom: 0px;
-    margin-top: 15px;
+.modal-section-head {
+  margin-bottom: 0px;
+  margin-top: 15px;
 }
-.share-link-icon:hover{
-    text-decoration: none;
+.share-link-icon:hover {
+  text-decoration: none;
 }
-.share-link-icon{
-    color: var(--holo-blue);
-    font-size: 20pt;
-    margin-left: 5px;
+.share-link-icon {
+  color: var(--holo-blue);
+  font-size: 20pt;
+  margin-left: 5px;
 }
-.tDepot-convo-container{
-    display: flex;
-    border: 1px solid var(--boot-gray);
-    border-radius: 10px;
-    justify-content: left;
-    width: calc(100% - 20px);
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    flex-direction: column;
-    max-height: 300px;
-overflow: hidden;
-overflow-y: auto;
+.tDepot-convo-container {
+  display: flex;
+  border: 1px solid var(--boot-gray);
+  border-radius: 10px;
+  justify-content: left;
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  flex-direction: column;
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
 }
-.tDepot-convo-container svg *{
-    display: none;
+.tDepot-convo-container svg * {
+  display: none;
 }
-.tDepot-convo-container .tab-body-seen{
-    position: relative;
-    border-bottom: 1px solid var(--boot-gray);
-    height: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    cursor: pointer;
-    background-color: var(--holo-blue);
-    color: black;
-    margin: 0;
+.tDepot-convo-container .tab-body-seen {
+  position: relative;
+  border-bottom: 1px solid var(--boot-gray);
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--holo-blue);
+  color: black;
+  margin: 0;
+}
+.tDepot-convo-container .tab-body-unseen {
+  position: relative;
+  border-bottom: 1px solid var(--boot-gray);
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  cursor: pointer;
+  background: rgb(99, 182, 202);
+  background: linear-gradient(
+    117deg,
+    rgba(99, 182, 202, 1) 0%,
+    rgba(99, 182, 202, 1) 41%,
+    rgba(185, 250, 255, 1) 52%,
+    rgba(99, 182, 202, 1) 63%,
+    rgba(99, 182, 202, 1) 100%
+  );
+  background-repeat: repeat-x;
+  background-size: 4000px, 60px;
+  background-position: 160%, 50%;
+  color: black;
+  margin: 0;
+  animation: 8s infinite normal linear notification;
+}
+@keyframes notification {
+  0% {
+    background-position: 100%, 50%;
   }
-  .tDepot-convo-container .tab-body-unseen{
-    position: relative;
-    border-bottom: 1px solid var(--boot-gray);
-    height: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    cursor: pointer;
-    background: rgb(99,182,202);
-    background: linear-gradient(117deg, rgba(99,182,202,1) 0%, rgba(99,182,202,1) 41%, rgba(185,250,255,1) 52%, rgba(99,182,202,1) 63%, rgba(99,182,202,1) 100%);
-    background-repeat: repeat-x;
-    background-size: 4000px, 60px;
-    background-position: 160%, 50%;
-    color: black;
-    margin: 0;
-    animation: 8s infinite normal linear notification;
+  100% {
+    background-position: -100%, 50%;
   }
-  @keyframes notification{
-    0%{
-      background-position: 100%, 50%;
-    }
-    100%{
-      background-position: -100%, 50%;
-    }
-  }
-  .tDepot-convo-container .truncate{
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 140px;
-  }
+}
+.tDepot-convo-container .truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 140px;
+}

@@ -1,42 +1,41 @@
-.sign-container-up{
-
-display: flex;
-justify-content: center;
-position: absolute;
-top: -200px;
-left: calc(50vw - 130px);
-z-index: 5;
-transition: top .3s;
+.sign-container-up {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: -200px;
+  left: calc(50vw - 130px);
+  z-index: 5;
+  transition: top 0.3s;
 }
-.sign-container-down{
-transition: top .3s;
-    width:260px;
-    height: 260px;
-    position: absolute;
-    top: 10px;
-    left: calc(50vw - 130px);
-    z-index: 5;
-display: flex;
-justify-content: center;
-align-items: center;
+.sign-container-down {
+  transition: top 0.3s;
+  width: 260px;
+  height: 260px;
+  position: absolute;
+  top: 10px;
+  left: calc(50vw - 130px);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.signboard{
-width:260px;
-height: 260px;
+.signboard {
+  width: 260px;
+  height: 260px;
 }
-.sign-text-box{
-    position: absolute;
-    top:160px;
-    left: 13px;
-    height: 98px;
-    width: 235px;
-    z-index: 6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.sign-text-box {
+  position: absolute;
+  top: 160px;
+  left: 13px;
+  height: 98px;
+  width: 235px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.signboard-text{
-    line-height: 90%;
-    font-family: Allerta Stencil;
-    font-size: 28pt;
+.signboard-text {
+  line-height: 90%;
+  font-family: Allerta Stencil;
+  font-size: 28pt;
 }

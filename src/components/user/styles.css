@@ -2,7 +2,7 @@
   width: 40px;
   height: 40px;
 }
-.tab-body-seen{
+.tab-body-seen {
   position: relative;
   border-bottom: 1px solid var(--boot-gray);
   height: 60px;
@@ -15,7 +15,7 @@
   color: black;
   margin: 0;
 }
-.tab-body-unseen{
+.tab-body-unseen {
   position: relative;
   border-bottom: 1px solid var(--boot-gray);
   height: 60px;
@@ -24,8 +24,15 @@
   justify-content: left;
   align-items: center;
   cursor: pointer;
-  background: rgb(99,182,202);
-  background: linear-gradient(117deg, rgba(99,182,202,1) 0%, rgba(99,182,202,1) 41%, rgba(185,250,255,1) 52%, rgba(99,182,202,1) 63%, rgba(99,182,202,1) 100%);
+  background: rgb(99, 182, 202);
+  background: linear-gradient(
+    117deg,
+    rgba(99, 182, 202, 1) 0%,
+    rgba(99, 182, 202, 1) 41%,
+    rgba(185, 250, 255, 1) 52%,
+    rgba(99, 182, 202, 1) 63%,
+    rgba(99, 182, 202, 1) 100%
+  );
   background-repeat: repeat-x;
   background-size: 4000px, 60px;
   background-position: 160%, 50%;
@@ -33,37 +40,37 @@
   margin: 0;
   animation: 6s infinite normal linear notification;
 }
-@keyframes notification{
-  0%{
+@keyframes notification {
+  0% {
     background-position: 100%, 50%;
   }
-  100%{
+  100% {
     background-position: -100%, 50%;
   }
 }
-.delete-chat{
+.delete-chat {
   position: absolute;
-  top:5px;
+  top: 5px;
   right: 5px;
   color: red;
   display: none;
 }
-.tab-body-seen:hover .delete-chat{
+.tab-body-seen:hover .delete-chat {
   display: flex;
 }
-.tab-body-unseen:hover .delete-chat{
+.tab-body-unseen:hover .delete-chat {
   display: flex;
 }
-.inactive-user{
- margin: 0;
+.inactive-user {
+  margin: 0;
 }
-.highlighted-user{
+.highlighted-user {
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.online{
+.online {
   height: 15px;
   width: 15px;
   position: absolute;
@@ -71,9 +78,9 @@
   z-index: 1;
   border-radius: 50%;
   background-color: greenyellow;
-  border: 2px solid var(--holo-blue )
+  border: 2px solid var(--holo-blue);
 }
-.offline{
+.offline {
   height: 15px;
   width: 15px;
   position: absolute;
@@ -81,19 +88,19 @@
   z-index: 1;
   border-radius: 50%;
   background-color: rgb(117, 117, 117);
-  border: 2px solid var(--holo-blue )
+  border: 2px solid var(--holo-blue);
 }
-.truncate{
+.truncate {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   width: 175px;
 }
-.friendlist .form-control{
+.friendlist .form-control {
   border-radius: 0px;
   border: none;
 }
-.add-friends-show{
+.add-friends-show {
   background-color: var(--holo-blue);
   position: absolute;
   width: 248px;
@@ -104,15 +111,15 @@
   border-bottom: 1px solid var(--boot-gray);
   pointer-events: none;
 }
-.add-friends-hide{
+.add-friends-hide {
   display: none;
 }
-.add-friend-button{
-position: absolute;
-right: 10px;
-top: 6px;
-pointer-events: all;
-cursor: pointer;
-font-size: 18pt;
-color: white;
+.add-friend-button {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+  pointer-events: all;
+  cursor: pointer;
+  font-size: 18pt;
+  color: white;
 }

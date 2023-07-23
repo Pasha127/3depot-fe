@@ -1,216 +1,227 @@
-.lights-toggle{
-    border: none;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    background-color: var(--holo-blue);
-    transition: border-radius .3s;
+.lights-toggle {
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  background-color: var(--holo-blue);
+  transition: border-radius 0.3s;
 }
-.lights-toggle-off{
-    border: none;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    background-color: black;
-    transition: border-radius .3s;
-    
+.lights-toggle-off {
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  transition: border-radius 0.3s;
 }
-.lights-toggle:hover{
-    border: none;
-    border-radius: 20px 20px 100% 100%;
-    transition: border-radius .3s;    
+.lights-toggle:hover {
+  border: none;
+  border-radius: 20px 20px 100% 100%;
+  transition: border-radius 0.3s;
 }
-.lights-toggle-off:hover{
-    border: none;
-    border-radius: 20px 20px 100% 100%;
-    transition: border-radius .3s;    
+.lights-toggle-off:hover {
+  border: none;
+  border-radius: 20px 20px 100% 100%;
+  transition: border-radius 0.3s;
 }
-.lights-toggle-container{
-    position: absolute;
-    top:0px;
-    left: 0px;
-    z-index: 1; 
+.lights-toggle-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
 }
-.lights-settings{
-    background-color: var(--holo-blue);
-    font-weight: 800;
-    position: absolute;
-    width: 80px;
-    height: 40px;
-    border: none;
-    border-radius: 0% 0% 80px 80px;
-    border-width: 1px 2px 2px 2px;
-    top: 40px;
-    right:0px;
-    z-index: 1;
-    transition: border-radius .3s, height .3s;
-    overflow: hidden;
-    color: #ffffff;
+.lights-settings {
+  background-color: var(--holo-blue);
+  font-weight: 800;
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  border: none;
+  border-radius: 0% 0% 80px 80px;
+  border-width: 1px 2px 2px 2px;
+  top: 40px;
+  right: 0px;
+  z-index: 1;
+  transition: border-radius 0.3s, height 0.3s;
+  overflow: hidden;
+  color: #ffffff;
 }
-.lights-settings:hover{     
-    border: none;
-    border-radius: 0% 0% 10px 10px;
-    border-width: 1px 2px 2px 2px;
-    transition: border-radius .3s, height .3s;
-    height: 150px;
-    cursor: default;
+.lights-settings:hover {
+  border: none;
+  border-radius: 0% 0% 10px 10px;
+  border-width: 1px 2px 2px 2px;
+  transition: border-radius 0.3s, height 0.3s;
+  height: 150px;
+  cursor: default;
 }
-.lightbulb-container{
-    position: absolute;
-    top: 10px;
-    left: 28px;
+.lightbulb-container {
+  position: absolute;
+  top: 10px;
+  left: 28px;
 }
-.lightbulb-off{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    font-size: 18pt;
-    color:#ffffff;
-    z-index: 1;
+.lightbulb-off {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 18pt;
+  color: #ffffff;
+  z-index: 1;
 }
-.lightbulb-color{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    font-size: 18pt;
+.lightbulb-color {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 18pt;
 }
-.lightbulb-outline{
-    position: absolute;
-    font-size: 18pt;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
+.lightbulb-outline {
+  position: absolute;
+  font-size: 18pt;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
 }
-.slider-icon-container{
-    position: absolute;
-    top: 5px;
-    left: 30px;
+.slider-icon-container {
+  position: absolute;
+  top: 5px;
+  left: 30px;
 }
-.lights-settings:hover .slider-icon-container{
-    display: none;
+.lights-settings:hover .slider-icon-container {
+  display: none;
 }
-.lights-settings:hover .sliders-container{
-    opacity:1;
-    transition: opacity .3s;
+.lights-settings:hover .sliders-container {
+  opacity: 1;
+  transition: opacity 0.3s;
 }
-.sliders-container{
-    transition: opacity .3s;
-    position: absolute !important;
-    top: 0px;
-    left:0px;
-    width: 76px;
-    height: 150px;
-    opacity: 0;
+.sliders-container {
+  transition: opacity 0.3s;
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  width: 76px;
+  height: 150px;
+  opacity: 0;
 }
-.vertical-slider-red{
-    background: rgb(255,0,0);
-    background: linear-gradient(180deg, rgba(255,0,0,1) 0%, rgba(0,0,0,1) 100%);position: absolute !important;
-    top: 30px;
-    left: 5px;
-    width: 6px;
-    height: 110px;
-    margin-right: 0px;
+.vertical-slider-red {
+  background: rgb(255, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  position: absolute !important;
+  top: 30px;
+  left: 5px;
+  width: 6px;
+  height: 110px;
+  margin-right: 0px;
 }
-.vertical-slider-green{
-    background: rgb(0,255,0);
-    background: linear-gradient(180deg, rgba(0,255,0,1) 0%, rgba(0,0,0,1) 100%);
-    position: absolute !important;
-    top: 30px;
-    left: 25px;
-    width: 6px;
-    height: 110px;
+.vertical-slider-green {
+  background: rgb(0, 255, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  position: absolute !important;
+  top: 30px;
+  left: 25px;
+  width: 6px;
+  height: 110px;
 }
-.vertical-slider-blue{
-    background: rgb(0,0,255);
-    background: linear-gradient(180deg, rgba(0,0,255,1) 0%, rgba(0,0,0,1) 100%);
-    position: absolute !important;
-    top: 30px;
-    left: 45px;
-    width: 6px;
-    height: 110px;
+.vertical-slider-blue {
+  background: rgb(0, 0, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 255, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  position: absolute !important;
+  top: 30px;
+  left: 45px;
+  width: 6px;
+  height: 110px;
 }
-.vertical-slider-brightness{
-    background: white; 
-    background: linear-gradient(180deg, rgba(245,245,245,1) 67%, rgba(0,0,0,1) 100%);
-    position: absolute;
-    top: 30px;
-    left: 65px;
-    width: 6px;
-    height: 110px;
+.vertical-slider-brightness {
+  background: white;
+  background: linear-gradient(
+    180deg,
+    rgba(245, 245, 245, 1) 67%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  position: absolute;
+  top: 30px;
+  left: 65px;
+  width: 6px;
+  height: 110px;
 }
-.slider-thumb{
-    background-color: white;
-    border: 1px solid black;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    transform: translateX(-2px);
-    cursor: pointer;
+.slider-thumb {
+  background-color: white;
+  border: 1px solid black;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateX(-2px);
+  cursor: pointer;
 }
-.color-label{
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    padding: 0px;
+.color-label {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+}
+.intensity-label {
+  width: 15px;
+  height: 15px;
+  font-size: 20pt;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.color-label div {
+  position: absolute;
+  font-size: 10pt;
+  top: -5px;
+  left: 0.5px;
+  margin: 0;
+}
+.label-position1 {
+  position: absolute;
+  top: 10px;
+  left: 3px;
+}
+.label-position2 {
+  position: absolute;
+  top: 10px;
+  left: 22px;
+}
+.label-position3 {
+  position: absolute;
+  top: 10px;
+  left: 43px;
+}
+.label-position4 {
+  position: absolute;
+  top: 8px;
+  left: 60px;
+}
+.sun-position {
+  width: 18px;
+}
+.light-show {
+  opacity: 1;
+}
+.light-hide {
+  opacity: 0;
+}
 
-}
-.intensity-label{
-    width: 15px;
-    height: 15px;
-    font-size: 20pt;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    padding: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.color-label div{
-    position: absolute;
-    font-size: 10pt;
-    top: -5px;
-    left: .5px;
-    margin: 0;
-}
-.label-position1{
-    position: absolute;
-    top:10px;
-    left: 3px;
-}
-.label-position2{
-    position: absolute;
-    top:10px;
-    left:22px;
-}
-.label-position3{
-    position: absolute;
-    top:10px;
-    left:43px;
-}
-.label-position4{
-    position: absolute;
-    top:8px;
-    left:60px;
-}
-.sun-position{
-    width:18px
-}
-.light-show{
-    opacity:1;
-}
-.light-hide{
-    opacity: 0;
-}
-
-
-@media (max-width: 768px){
-    
-    
+@media (max-width: 768px) {
 }
 /* .lights-plus{
     position: absolute;

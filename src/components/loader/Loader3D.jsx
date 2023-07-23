@@ -1,13 +1,12 @@
 import React from "react";
 import "./styles.css";
 
-const Loader3D = ()=>{
+const Loader3D = () => {
+  return (
+    <div className="loaderContainer mt-5">
+      <div className="threeDLoader"></div>
+    </div>
+  );
+};
 
-    return(
-        <div className="loaderContainer mt-5">
-        <div className="threeDLoader"></div>
-        </div>
-    )
-}
-
-export default Loader3D
+export default Loader3D;

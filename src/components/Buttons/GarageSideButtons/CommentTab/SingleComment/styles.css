@@ -2,7 +2,7 @@
   width: 40px;
   height: 40px;
 }
-.uploaded-comment{
+.uploaded-comment {
   position: relative;
   border-top: 1px solid var(--boot-gray);
   height: 60px;
@@ -15,18 +15,18 @@
   color: black;
   margin: 0;
 }
-.model-comment{
+.model-comment {
   font-size: 10pt;
 }
-.delete-tab{
+.delete-tab {
   position: absolute;
-  top:5px;
+  top: 5px;
   right: 5px;
   color: red;
   display: none;
 }
 
-.truncate{
+.truncate {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

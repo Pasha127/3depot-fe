@@ -1,164 +1,178 @@
-.arrows-container{
-    position: absolute;
-    bottom: 50px;
-    left: calc(50vw - 75px);
-    animation: 2s infinite upNDown; 
+.arrows-container {
+  position: absolute;
+  bottom: 50px;
+  left: calc(50vw - 75px);
+  animation: 2s infinite upNDown;
 }
 @keyframes upNDown {
+  0% {
+    bottom: 500px;
+    opacity: 0.2;
+  }
+  50% {
+    bottom: 400px;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+    bottom: 500px;
+  }
+}
+@media (max-height: 700px) {
+  @keyframes upNDown {
     0% {
-        bottom: 500px;
-        opacity: .2;
+      bottom: 400px;
+      opacity: 0.2;
     }
     50% {
-        bottom: 400px;
-        opacity: 1;
+      bottom: 300px;
+      opacity: 1;
     }
     100% {
-        opacity: .2;
-        bottom: 500px;
+      opacity: 0.2;
+      bottom: 400px;
     }
+  }
 }
-@media(max-height: 700px){
+.arrow-text {
+  position: absolute;
+  top: -100px;
+  left: 0px;
+  font-family: Allerta Stencil;
+  font-size: 40pt;
+  color: rgb(99, 182, 202);
+  font-weight: 500;
+}
+.color-arrowL {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 0px;
+  left: 0;
+  background: linear-gradient(
+    to top left,
+    rgb(99, 182, 202) 50%,
+    rgba(185, 250, 255, 0.342) 100%
+  );
+  rotate: 45deg;
+}
+.color-arrowR {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 0px;
+  left: 50px;
+  background: linear-gradient(
+    to top right,
+    rgb(99, 182, 202) 50%,
+    rgba(185, 250, 255, 0.342) 100%
+  );
+  rotate: -45deg;
+}
+.color-arrowL2 {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 55px;
+  left: 0;
+  background: linear-gradient(
+    to top left,
+    rgb(99, 182, 202) 50%,
+    rgba(185, 250, 255, 0.342) 100%
+  );
+  rotate: 45deg;
+}
+.color-arrowR2 {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 55px;
+  left: 50px;
+  background: linear-gradient(
+    to top right,
+    rgb(99, 182, 202) 50%,
+    rgba(185, 250, 255, 0.342) 100%
+  );
+  rotate: -45deg;
+}
 
-    @keyframes upNDown {
-        0% {
-            bottom: 400px;
-            opacity: .2;
-        }
-        50% {
-            bottom: 300px;
-            opacity: 1;
-        }
-        100% {
-            opacity: .2;
-            bottom: 400px;
-        }
-    }
-}
-.arrow-text{
-    position: absolute;
-    top: -100px;
-    left: 0px;
-    font-family: Allerta Stencil;
-    font-size: 40pt;
-    color: rgb(99, 182, 202);
-    font-weight: 500;
-}
-.color-arrowL{
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    top: 0px;
-    left: 0;
-    background: linear-gradient(to top left, rgb(99, 182, 202) 50%, rgba(185, 250, 255, 0.342) 100%);
-    rotate: 45deg;
-}
-.color-arrowR{
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    top: 0px;
-    left: 50px;
-    background: linear-gradient(to top right, rgb(99, 182, 202) 50%, rgba(185, 250, 255, 0.342) 100%);
-    rotate: -45deg;
-}
-.color-arrowL2{
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    top: 55px;
-    left: 0;
-    background: linear-gradient(to top left, rgb(99, 182, 202) 50%, rgba(185, 250, 255, 0.342) 100%);
-    rotate: 45deg;
-}
-.color-arrowR2{
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    top: 55px;
-    left: 50px;
-    background: linear-gradient(to top right, rgb(99, 182, 202) 50%, rgba(185, 250, 255, 0.342) 100%);
-    rotate: -45deg;
-}
-
-.circle-container{
-    position: absolute;
-    top: 500px;
-    left: calc(50vw);
-    animation: 2s 1 forwards inNOut; 
+.circle-container {
+  position: absolute;
+  top: 500px;
+  left: calc(50vw);
+  animation: 2s 1 forwards inNOut;
 }
 @keyframes inNOut {
-    0% {
-        transform: scale(1);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(.1);
-        opacity: 1;
-    }
-    100% {
-          opacity: 0;
-          transform: scale(1);
-      }
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
 }
-.inner-circle{
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    top: -150px;
-    left: -150px;
-    border-radius: 50%;
-    border: 5px solid rgb(99, 182, 202);
+.inner-circle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  left: -150px;
+  border-radius: 50%;
+  border: 5px solid rgb(99, 182, 202);
 }
-.fill-circle{
-    position: absolute;
-    width: 312px;
-    height: 312px;
-    top: -156px;
-    left: -156px;
-    border-radius: 50%;
-    border: 10px solid rgba(185, 250, 255, 0.6);
+.fill-circle {
+  position: absolute;
+  width: 312px;
+  height: 312px;
+  top: -156px;
+  left: -156px;
+  border-radius: 50%;
+  border: 10px solid rgba(185, 250, 255, 0.6);
 }
-.outer-circle{
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    top: -160px;
-    left: -160px;
-    border-radius: 50%;
-    border: 4px solid rgb(99, 182, 202);
+.outer-circle {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: -160px;
+  left: -160px;
+  border-radius: 50%;
+  border: 4px solid rgb(99, 182, 202);
 }
-.clicking-finger{
-        color: rgba(185, 250, 255, 0.8);
-        position: absolute;
-        left: calc(50vw - 94px);
-        animation: 2s 1 forwards click; 
-        width: 200px;
-        font-size: 60pt;
-    }
+.clicking-finger {
+  color: rgba(185, 250, 255, 0.8);
+  position: absolute;
+  left: calc(50vw - 94px);
+  animation: 2s 1 forwards click;
+  width: 200px;
+  font-size: 60pt;
+}
 @keyframes click {
-    0% {
-        top: 650px;
-        opacity: 0;
-    }
-    40% {
-        top: 500px;
-        opacity: 1;
-        scale: 1;
-    }
-    50% {
-        top: 480px;
-        opacity: 1;
-        scale: .4;
-    }
-    55% {
-        top: 500px;
-        opacity: 1;
-        scale:1;
-    }
-    100% {
-        top: 650px;
-          opacity: 0;
-
-      }
+  0% {
+    top: 650px;
+    opacity: 0;
+  }
+  40% {
+    top: 500px;
+    opacity: 1;
+    scale: 1;
+  }
+  50% {
+    top: 480px;
+    opacity: 1;
+    scale: 0.4;
+  }
+  55% {
+    top: 500px;
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    top: 650px;
+    opacity: 0;
+  }
 }

@@ -1,74 +1,77 @@
-.instructionSVG{
-    color: rgba(185, 250, 255);
-    position: absolute;
-    background-image: url("/public/mouseInstructionsWhite.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 250px;
-    height: 400px;
-    z-index: 2;
-    top: 10px;
-    }
-.instruction-container{
-    background-color:var(--holo-blue);
-    cursor:pointer;
-    border-radius: 10px;
-    width: 250px;
-    height: 300px;
-    z-index: 1;
-    position: absolute;
-    top: calc(50vh - 180px);
-    left: calc(50vw - 120px);
-    opacity: 1;
-    transition: scale .3s, left 1s cubic-bezier(1,-0.02,.16,.18), top 1s cubic-bezier(1,-0.02,.16,.18), opacity 1.5s cubic-bezier(1,0,1,-0.07);
+.instructionSVG {
+  color: rgba(185, 250, 255);
+  position: absolute;
+  background-image: url("/public/mouseInstructionsWhite.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 250px;
+  height: 400px;
+  z-index: 2;
+  top: 10px;
 }
-.instruction-container-close{
-    background-color:var(--holo-blue);
-    cursor:pointer;
-    border-radius: 10px;
-    width: 250px;
-    height: 300px;
-    z-index: 1;
-    position: absolute;
-    top: 385px;
-    left: 100vw;
-    scale:.1;
-    opacity: 0;
-    transition: scale .3s, left 1s cubic-bezier(1,-0.02,.16,.18), top 1s cubic-bezier(1,-0.02,.16,.18), opacity 1.5s cubic-bezier(1,0,1,-0.07);
+.instruction-container {
+  background-color: var(--holo-blue);
+  cursor: pointer;
+  border-radius: 10px;
+  width: 250px;
+  height: 300px;
+  z-index: 1;
+  position: absolute;
+  top: calc(50vh - 180px);
+  left: calc(50vw - 120px);
+  opacity: 1;
+  transition: scale 0.3s, left 1s cubic-bezier(1, -0.02, 0.16, 0.18),
+    top 1s cubic-bezier(1, -0.02, 0.16, 0.18),
+    opacity 1.5s cubic-bezier(1, 0, 1, -0.07);
 }
-.instruction-details{
-    padding-top: 10px;;
-    color: white;
-    font-size: 20pt;
-    display: flex;
-    justify-content: center;
-    background-color:var(--holo-blue);
-    cursor:pointer;
-    border-radius: 10px;
-    z-index: 6;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 250px;
-    height: 370px;
+.instruction-container-close {
+  background-color: var(--holo-blue);
+  cursor: pointer;
+  border-radius: 10px;
+  width: 250px;
+  height: 300px;
+  z-index: 1;
+  position: absolute;
+  top: 385px;
+  left: 100vw;
+  scale: 0.1;
+  opacity: 0;
+  transition: scale 0.3s, left 1s cubic-bezier(1, -0.02, 0.16, 0.18),
+    top 1s cubic-bezier(1, -0.02, 0.16, 0.18),
+    opacity 1.5s cubic-bezier(1, 0, 1, -0.07);
 }
-.instruction-border{
-    background-color:var(--holo-blue-alpha);
-    border-radius: 10px;
-    position: absolute;
-    width: 270px;
-    height: 400px;
-    z-index: 1;
-    top:-20px;
-    left: -10px;
-
+.instruction-details {
+  padding-top: 10px;
+  color: white;
+  font-size: 20pt;
+  display: flex;
+  justify-content: center;
+  background-color: var(--holo-blue);
+  cursor: pointer;
+  border-radius: 10px;
+  z-index: 6;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 250px;
+  height: 370px;
 }
-.instructions-tray-close-icon{
-    color: white;
-    font-size: 20pt;
+.instruction-border {
+  background-color: var(--holo-blue-alpha);
+  border-radius: 10px;
+  position: absolute;
+  width: 270px;
+  height: 400px;
+  z-index: 1;
+  top: -20px;
+  left: -10px;
+}
+.instructions-tray-close-icon {
+  color: white;
+  font-size: 20pt;
   position: absolute;
   right: 0px;
   top: 0px;
   height: 50px;
-  }
+}
